@@ -14,6 +14,9 @@ CREATE TABLE QT_USER (
 	USER_AREA NUMBER NOT NULL
 );
 
+ALTER TABLE QT_USER DROP COLUMN USER_INSERTDATE;
+ALTER TABLE QT_USER ADD USER_ENROLLDATE DATE DEFAULT SYSDATE;
+
 -- USER_WITHDRAW 테이블 생성
 CREATE TABLE USER_WITHDRAW (
 	USER_ID	VARCHAR2(20) NOT NULL,
@@ -154,7 +157,7 @@ COMMENT ON COLUMN QT_USER.USER_EMAIL IS '이메일';
 COMMENT ON COLUMN QT_USER.USER_PROFILE IS '프로필사진';
 COMMENT ON COLUMN QT_USER.USER_PHONE IS '전화번호';
 COMMENT ON COLUMN QT_USER.USER_ROLE IS '유저권한';
-COMMENT ON COLUMN QT_USER.USER_INSERTDATE IS '가입날짜';
+COMMENT ON COLUMN QT_USER.USER_ENROLLDATE IS '가입날짜';
 COMMENT ON COLUMN QT_USER.USER_AREA IS '지역명';
 
 -- USER_WITHDRAW 테이블 COMMENT 추가
@@ -327,5 +330,61 @@ REFERENCES "QT_USER" (
 ALTER TABLE GOODS ADD CONSTRAINT GOODS_CATEGORY_TO_GOODS_FK FOREIGN KEY(G_CATE_NO) REFERENCES GOODS_CATEGORY (G_CATE_NO);
 
 
+-- <INSERT DATA>
+
+------------------------------------------------
+--------------- USER 관련 테이블 -----------------
+------------------------------------------------
+
+CREATE SEQUENCE SEQ_UNO;
+
+INSERT INTO QT_USER (
+    USER_ID,
+    USER_PASSWORD,
+    USER_NAME,
+    USER_EMAIL,
+    USER_PROFILE,
+    USER_PHONE,
+    USER_ROLE,
+    USER_ENROLLDATE,
+    USER_AREA
+) VALUES (
+    'admin2',
+    '1234',
+    '서수민',
+    'ssm@naver.com',
+    'profile1.jpg',
+    '010-1234-5678',
+    1,
+    DEFAULT,
+    1
+);
+
+COMMIT;
+
+-- SELECT * FROM MEMBER WHERE ID='admin' AND STATUS='Y'; 
+                                         
+-- 멤버 조회
+-- SELECT * FROM MEMBER WHERE ID=? AND STATUS='Y'
+
+-- 멤버 추가
+-- INSERT INTO MEMBER VALUES(SEQ_UNO.NEXTVAL,?,?,DEFAULT,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT)
+
+-- 멤버 수정               
+-- UPDATE MEMBER SET NAME=?,PHONE=?,EMAIL=?,ADDRESS=?,HOBBY=?,MODIFY_DATE=SYSDATE WHERE NO=?
+
+-- 멤버 패스워드 변경
+-- UPDATE MEMBER SET PASSWORD=? WHERE NO=?
+
+-- 멤버 삭제
+-- UPDATE MEMBER SET STATUS=? WHERE NO=?
 
 
+------------------------------------------------
+--------------- BOARD 관련 테이블 ---------------
+------------------------------------------------
+
+
+------------------------------------------------
+--------------- GOODS 관련 테이블 ---------------
+------------------------------------------------
