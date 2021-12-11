@@ -12,7 +12,7 @@
     <title>큐티마켓</title>
     <meta name="description" content="큐티마켓" />
     <meta name="author" content="Dapalzo" />
-    <link rel="icon" type="image/png" sizes="152x152" href="${ path }/resources/images/favicon/favicon.png" />
+    <link rel="icon" type="image/png" sizes="152x152" href="${ path }/resources/imgs/favicon/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet" />
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="${ path }/resources/css/main/style.css" />
     <style>
     body {
-      background: url(${ path }/resources/images/backgorund/background2.png) center/cover no-repeat;
+      background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
       }
     </style>
   </head>
@@ -30,27 +30,27 @@
       <!-- Navbar -->
       <nav id="navbar">
         <div class="navbar__logo">
-          <img src="${ path }/resources/images/favicon/favicon.png" alt="logo">
-          <a href="main.html">큐티마켓</a>
+          <img src="${ path }/resources/imgs/favicon/favicon.png" alt="logo">
+          <a href="${ path }">큐티마켓</a>
         </div>
         <ul class="navbar__menu">
           <li class="navbar__menu__item">
-            <a href="main.html" class="active">메인</a>
+            <a href="${ path }" class="active">메인</a>
           </li>
           <li class="navbar__menu__item">
-            <a href="market.html">마켓</a>
+            <a href="${ path }/QT/market">마켓</a>
           </li>
           <li class="navbar__menu__item">
-            <a href="community.html">커뮤니티</a>
+            <a href="${ path }/QT/community">커뮤니티</a>
           </li>
           <c:if test="${ empty loginMember }">
           	<li class="navbar__menu__item">
-           	 	<a href="${ path }/views/member/signinup.jsp">로그인</a>
+           	 	<a href="${ path }/QT/login">로그인</a>
          	</li>
           </c:if>
           <c:if test="${ !empty loginMember }">
           	<li class="navbar__menu__item">
-            	<a href="mypage.html">마이페이지</a>
+            	<a href="${ path }/QT/mypage">마이페이지</a>
          	</li>
           	<li class="navbar__menu__item">
           	  <a href="${ path }/logout">로그아웃</a>
@@ -62,7 +62,7 @@
       <section id="home" class="section" >
         <div class="home section__container" >
           <div class="home__logo"></div>
-            <img src="${ path }/resources/images/logo.png" alt="logo" class="home__logo__image"/>
+            <img src="${ path }/resources/imgs/logo.png" alt="logo" class="home__logo__image"/>
           </div>
           <div class="home__description">
             <p>큐티마켓은</p><br>
@@ -75,7 +75,7 @@
       <!-- footer -->
       <footer id="footer">
         <div>
-          <p><a href="aboutus.html" class="footer__au">about us</a></p>
+          <p><a href="${ path }/QT/aboutus" class="footer__au">about us</a></p>
         </div>
         <div>
           <p>2021 Dapalzo - All right reserved </p>

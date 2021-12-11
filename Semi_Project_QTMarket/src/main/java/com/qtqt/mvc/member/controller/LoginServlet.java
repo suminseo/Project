@@ -13,16 +13,22 @@ import javax.servlet.http.HttpSession;
 import com.qtqt.mvc.member.model.service.MemberService;
 import com.qtqt.mvc.member.model.vo.Member;
 
-@WebServlet(name="login", urlPatterns = "/login")
+@WebServlet(name="login", urlPatterns = "/QT/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private MemberService service = new MemberService();
 	
     public LoginServlet() {
-        super();
     }
 
+    @Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	request.getRequestDispatcher("/views/member/signinup.jsp").forward(request, response);
+	}
+    
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = null;
 		String userId = request.getParameter("userId");

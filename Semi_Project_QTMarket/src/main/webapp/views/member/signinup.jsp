@@ -10,7 +10,7 @@
 	<title>큐티마켓_로그인</title>
     <meta name="description" content="큐티마켓" />
     <meta name="author" content="Dapalzo" />
-    <link rel="icon" type="image/png" sizes="152x152" href="${ path }/resources/images/favicon/favicon.png" />
+    <link rel="icon" type="image/png" sizes="152x152" href="${ path }/resources/imgs/favicon/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet" />
@@ -19,7 +19,7 @@
     <script src="${ path }/resources/js/login/main.js" defer></script>
     <style>
     body {
-      background: url(${ path }/resources/images/backgorund/background2.png) center/cover no-repeat;
+      background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
       }
     </style>
 </head>
@@ -30,7 +30,7 @@
         <!-- SIGN UP -->
         <div class="col align-items-center flex-col sign-up">
           <div class="form-wrapper align-items-center">
-            <form class="form sign-up" name="memberEnrollFrm" action="${ pageContext.request.contextPath }/member/enroll" method="post">
+            <form class="form sign-up" name="memberEnrollFrm" action="${ pageContext.request.contextPath }/QT/enroll" method="post">
               <div class="input-group up">
                 <i class="fas fa-user"></i>
                 <input type="text" name="userId" id="newId" placeholder="아이디" required />
@@ -106,10 +106,10 @@
         <!-- SIGN IN -->
         <div class="col align-items-center flex-col sign-in">
           <div class="form-wrapper align-items-center">
-            <form action="${ path }/login" method="post" class="form sign-in">
+            <form action="${ path }/QT/login" method="post" class="form sign-in">
               <div class="input-group in">
                 <i class="fas fa-user"></i>
-                <input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요." />
+                <input type="text" name="userId" id="userId" value="${ empty cookie.saveId ? '' : cookie.saveId.value }" placeholder="아이디를 입력해주세요." />
               </div>
               <div class="input-group in">
                 <i class="fas fa-lock"></i>

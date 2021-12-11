@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.qtqt.mvc.member.model.service.MemberService;
 import com.qtqt.mvc.member.model.vo.Member;
 
-@WebServlet(name="enroll", urlPatterns = "/member/enroll")
+@WebServlet(name="enroll", urlPatterns = "/QT/enroll")
 public class EnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberService service = new MemberService();

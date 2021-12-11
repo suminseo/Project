@@ -1,0 +1,270 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${ pageContext.request.contextPath }" />
+
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>큐티마켓_커뮤니티</title>
+		<meta name="description" content="큐티마켓" />
+		<meta name="author" content="Dapalzo" />
+		<link rel="icon" type="image/png" sizes="152x152"href="${ path }/resources/imgs/favicon/favicon.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap"rel="stylesheet" />
+		<script src="https://kit.fontawesome.com/91b5983e4b.js"crossorigin="anonymous"></script>
+		<link rel="stylesheet"href="${ path }/resources/css/community/style.css" />
+		<script src="${ path }/resources/js/community/main.js" defer></script>
+		<style>
+		body {
+			background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
+		}
+		</style>
+	</head>
+<body>
+	<!-- navbar -->
+	<nav id="navbar">
+		<div class="navbar__logo">
+			<img src="${ path }/resources/imgs/favicon/favicon.png" alt="logo">
+			<a href="${ path }">큐티마켓</a>
+		</div>
+		<ul class="navbar__menu">
+			<li class="navbar__menu__item"><a href="${ path }"
+				class="active">메인</a></li>
+			<li class="navbar__menu__item"><a href="${ path }/QT/market">마켓</a>
+			</li>
+			<li class="navbar__menu__item"><a href="${ path }/QT/community">커뮤니티</a>
+			</li>
+			<c:if test="${ empty loginMember }">
+				<li class="navbar__menu__item"><a href="${ path }/QT/login">로그인</a>
+				</li>
+			</c:if>
+			<c:if test="${ !empty loginMember }">
+				<li class="navbar__menu__item"><a href="${ path }/QT/mypage">마이페이지</a>
+				</li>
+				<li class="navbar__menu__item"><a href="${ path }/logout">로그아웃</a>
+				</li>
+			</c:if>
+		</ul>
+	</nav>
+	<!-- main -->
+	<!-- Grid 형식 알아보기 왼쪽상단또는 왼쪽 전체에 사이드바 형식의 카테고리 메뉴 설정. 옵션으로 베스트 게시글 등 (조회수순)으로 또 댓글 도 필요. -->
+	<main id="main">
+		<section class="main__section">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="table__no">번호</th>
+						<th class="table__title">제목</th>
+						<th class="table__author">작성자</th>
+						<th class="table__enroll">날짜</th>
+						<th class="table__hits">조회수</th>
+					</tr>
+				</thead>
+				<tbody class="table__tbody">
+					<tr>
+						<td>25</td>
+						<td>영화의 전당 회원권 1년 동안 2번밖에 못쓴거 실화냐 진짜..</td>
+						<td>제기랄</td>
+						<td>21.12.07</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>24</td>
+						<td>해외여행이 너무 가고싶습니다.</td>
+						<td>거북이</td>
+						<td>21.12.07</td>
+						<td>23</td>
+					</tr>
+					<tr>
+						<td>23</td>
+						<td>요즘 유튜브에 수빙수 재밌더라구요. 저도 회좀 뜨고싶네요.</td>
+						<td>칼재비</td>
+						<td>21.12.07</td>
+						<td>46</td>
+					</tr>
+					<tr>
+						<td>22</td>
+						<td>강남에 치과 괜찮은 곳 있나요?</td>
+						<td>미생</td>
+						<td>21.12.07</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>21</td>
+						<td>그을린 사랑은 심멎이죠</td>
+						<td>영잘알</td>
+						<td>21.12.07</td>
+						<td>12</td>
+					</tr>
+					<tr>
+						<td>20</td>
+						<td>그래도 드니 빌뇌브는 전 그을린 사랑이라고 생각해요.</td>
+						<td>조연1</td>
+						<td>21.12.07</td>
+						<td>46</td>
+					</tr>
+					<tr>
+						<td>19</td>
+						<td>얼른 듄 파트 2가 나왔스면 좋겠습니다.</td>
+						<td>박수갈채</td>
+						<td>21.12.07</td>
+						<td>46</td>
+					</tr>
+					<tr>
+						<td>18</td>
+						<td>배고파요 매우</td>
+						<td>휴우</td>
+						<td>21.12.07</td>
+						<td>46</td>
+					</tr>
+					<tr>
+						<td>17</td>
+						<td>날씨가 다시 따뜻해진거 같아요</td>
+						<td>선샤인</td>
+						<td>21.12.07</td>
+						<td>35</td>
+					</tr>
+					<tr>
+						<td>16</td>
+						<td>상품권 무료 나눔합니다</td>
+						<td>응난애기천사</td>
+						<td>21.12.06</td>
+						<td>88</td>
+					</tr>
+					<tr>
+						<td>15</td>
+						<td>한우가 그리 맛있다던데..</td>
+						<td>큐브라떼</td>
+						<td>21.12.06</td>
+						<td>46</td>
+					</tr>
+					<tr>
+						<td>14</td>
+						<td>어제 코인 다 털렸습니다.. 구제좀..</td>
+						<td>응애</td>
+						<td>21.12.06</td>
+						<td>44</td>
+					</tr>
+					<tr>
+						<td>13</td>
+						<td>이 사이트 어떻게 사용하나요?</td>
+						<td>흠좀무</td>
+						<td>21.12.06</td>
+						<td>30</td>
+					</tr>
+					<tr>
+						<td>12</td>
+						<td>영등포에 씽크홀 발생했데요</td>
+						<td>홍반장</td>
+						<td>21.12.05</td>
+						<td>46</td>
+					</tr>
+					<tr>
+						<td>11</td>
+						<td>오마카세 추천 해주세요</td>
+						<td>진미채</td>
+						<td>21.12.05</td>
+						<td>48</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>홍대 맛집 추천</td>
+						<td>먹잘알</td>
+						<td>21.12.04</td>
+						<td>42</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>이 동네에 기타 수리점 있나요?</td>
+						<td>갱안리딩기딩</td>
+						<td>21.12.04</td>
+						<td>34</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>배고파요</td>
+						<td>햄최몇</td>
+						<td>21.12.04</td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td>부산 살기 좋나요?</td>
+						<td>프로탈출러</td>
+						<td>21.12.03</td>
+						<td>4</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>공원이 없어요</td>
+						<td>병알쓰</td>
+						<td>21.12.03</td>
+						<td>8</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>은평구 사건</td>
+						<td>마문</td>
+						<td>21.12.02</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>요즘 날씨가?</td>
+						<td>사모예드</td>
+						<td>21.12.01</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>요즘 관악구 살기 좋나요?</td>
+						<td>귤상자</td>
+						<td>21.12.01</td>
+						<td>4</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>이거 당근 짭아닌가요</td>
+						<td>당근수호자</td>
+						<td>21.11.31</td>
+						<td>12</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>첫 글 루팡</td>
+						<td>광안리토템</td>
+						<td>96.01.24</td>
+						<td>27</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<div class="main__paging">
+			<!-- <a href=""></a> -->
+			<a href="">1</a> <a href="">2</a> <a href="">3</a> <a href="">4</a> <a
+				href="">5</a>
+			<!-- <a href=""></a> -->
+		</div>
+	</main>
+
+	<footer class="menu">
+		<input type="checkbox" href="#" class="menu-open" name="menu-open"
+			id="menu-open" /> <label class="menu-open-button" for="menu-open">
+			<span class="lines line-1"></span> <span class="lines line-2"></span>
+			<span class="lines line-3"></span>
+		</label> <a href="#" class="menu-item orange"> <i class="fas fa-plus"></i>
+		</a> <a href="#" class="menu-item red"> <i class="fa fa-heart"></i>
+		</a> <a href="#" class="menu-item green"> <i class="fas fa-comments"></i>
+		</a> <a href="main.html" class="menu-item purple"> <i
+			class="fas fa-home"></i>
+		</a> <a href="#" class="menu-item blue"> <i class="fas fa-question"></i></i>
+		</a>
+		<!-- <a href="#" class="menu-item lightblue"> <i class="fas fa-question"></i> </a> -->
+	</footer>
+</body>
+</html>
