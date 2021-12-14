@@ -1,8 +1,12 @@
 package com.qtqt.mvc.member.model.service;
 
+import static com.qtqt.mvc.common.jdbc.JDBCTemplate.close;
+import static com.qtqt.mvc.common.jdbc.JDBCTemplate.commit;
+import static com.qtqt.mvc.common.jdbc.JDBCTemplate.getConnection;
+import static com.qtqt.mvc.common.jdbc.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 
-import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
 import com.qtqt.mvc.member.model.dao.MemberDao;
 import com.qtqt.mvc.member.model.vo.Member;
 
@@ -39,4 +43,19 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public boolean isDuplicateID(String id) {
+
+		return this.findMemberById(id) != null;
+	}
+
+	public Member findMemberById(String id) {
+		Connection connection = getConnection();
+		Member member = dao.findMemberById(connection, id);
+
+		close(connection);
+
+		return member;
+	}
+
 }

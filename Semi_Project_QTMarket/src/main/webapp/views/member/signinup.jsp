@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="${ path }/resources/css/login/style.css" />
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
+    <script src="${ path }/resources/js/login/jquery-3.6.0.js"></script>
     <script src="${ path }/resources/js/login/main.js" defer></script>
     <style>
     body {
@@ -30,11 +31,12 @@
         <!-- SIGN UP -->
         <div class="col align-items-center flex-col sign-up">
           <div class="form-wrapper align-items-center">
-            <form class="form sign-up" name="memberEnrollFrm" action="${ pageContext.request.contextPath }/QT/enroll" method="post">
+            <form class="form sign-up" name="memberEnrollFrm" action="${ Path }/QT/enroll" method="post">
               <div class="input-group up">
                 <i class="fas fa-user"></i>
                 <input type="text" name="userId" id="newId" placeholder="아이디" required />
               </div>
+              <input class="enroll__idcheck" type="button" id="checkDuplicate" value="중복검사"	>
               <div class="input-group up">
                 <i class="fas fa-lock"></i>
                 <input type="password" name="userPwd" id="pass1" placeholder="비밀번호" required />
@@ -48,8 +50,8 @@
                 <input type="text" name="userName" id="userName" placeholder="이름"  required />
               </div>
               <div class="input-group up">
-                <i class="fas fa-mobile-alt"></i>
-                <input type="file" name="profile" id="profile" placeholder="프로필" required />
+                <i class="fas fa-images"></i>
+                <input type="file" name="profile" id="profile" title="프로필사진" required />
               </div>
               <div class="input-group up">
                 <i class="fas fa-mobile-alt"></i>
@@ -159,4 +161,32 @@
       <!-- END CONTENT SECTION -->
     </div>
 </body>
+<script>
+$(document).ready(() => {
+	$("#checkDuplicate").on("click", () => {
+		let userId = $("#newId").val().trim();
+		
+		$.ajax({
+			type: "post",
+			url: "${ path }/QT/idCheck",
+			dataType: "json",
+			data: {
+				userId
+			},
+			success: (data) => {
+				console.log(data);
+				
+				if(data.duplicate === true) {
+					alert("이미 사용중인 아이디 입니다.");
+				} else {
+					alert("사용 가능한 아이디 입니다.");						
+				}
+			},
+			error: (error) => {
+				console.log(error);
+			}
+		});
+	});		
+});
+</script>
 </html>

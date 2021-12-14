@@ -53,205 +53,96 @@
 	</nav>
 	<!-- main -->
 	<!-- Grid 형식 알아보기 왼쪽상단또는 왼쪽 전체에 사이드바 형식의 카테고리 메뉴 설정. 옵션으로 베스트 게시글 등 (조회수순)으로 또 댓글 도 필요. -->
-	<main id="main">
-		<section class="main__section">
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="table__no">번호</th>
-						<th class="table__title">제목</th>
-						<th class="table__author">작성자</th>
-						<th class="table__enroll">날짜</th>
-						<th class="table__hits">조회수</th>
-					</tr>
-				</thead>
-				<tbody class="table__tbody">
-					<tr>
-						<td>25</td>
-						<td>영화의 전당 회원권 1년 동안 2번밖에 못쓴거 실화냐 진짜..</td>
-						<td>제기랄</td>
-						<td>21.12.07</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<td>24</td>
-						<td>해외여행이 너무 가고싶습니다.</td>
-						<td>거북이</td>
-						<td>21.12.07</td>
-						<td>23</td>
-					</tr>
-					<tr>
-						<td>23</td>
-						<td>요즘 유튜브에 수빙수 재밌더라구요. 저도 회좀 뜨고싶네요.</td>
-						<td>칼재비</td>
-						<td>21.12.07</td>
-						<td>46</td>
-					</tr>
-					<tr>
-						<td>22</td>
-						<td>강남에 치과 괜찮은 곳 있나요?</td>
-						<td>미생</td>
-						<td>21.12.07</td>
-						<td>14</td>
-					</tr>
-					<tr>
-						<td>21</td>
-						<td>그을린 사랑은 심멎이죠</td>
-						<td>영잘알</td>
-						<td>21.12.07</td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>20</td>
-						<td>그래도 드니 빌뇌브는 전 그을린 사랑이라고 생각해요.</td>
-						<td>조연1</td>
-						<td>21.12.07</td>
-						<td>46</td>
-					</tr>
-					<tr>
-						<td>19</td>
-						<td>얼른 듄 파트 2가 나왔스면 좋겠습니다.</td>
-						<td>박수갈채</td>
-						<td>21.12.07</td>
-						<td>46</td>
-					</tr>
-					<tr>
-						<td>18</td>
-						<td>배고파요 매우</td>
-						<td>휴우</td>
-						<td>21.12.07</td>
-						<td>46</td>
-					</tr>
-					<tr>
-						<td>17</td>
-						<td>날씨가 다시 따뜻해진거 같아요</td>
-						<td>선샤인</td>
-						<td>21.12.07</td>
-						<td>35</td>
-					</tr>
-					<tr>
-						<td>16</td>
-						<td>상품권 무료 나눔합니다</td>
-						<td>응난애기천사</td>
-						<td>21.12.06</td>
-						<td>88</td>
-					</tr>
-					<tr>
-						<td>15</td>
-						<td>한우가 그리 맛있다던데..</td>
-						<td>큐브라떼</td>
-						<td>21.12.06</td>
-						<td>46</td>
-					</tr>
-					<tr>
-						<td>14</td>
-						<td>어제 코인 다 털렸습니다.. 구제좀..</td>
-						<td>응애</td>
-						<td>21.12.06</td>
-						<td>44</td>
-					</tr>
-					<tr>
-						<td>13</td>
-						<td>이 사이트 어떻게 사용하나요?</td>
-						<td>흠좀무</td>
-						<td>21.12.06</td>
-						<td>30</td>
-					</tr>
-					<tr>
-						<td>12</td>
-						<td>영등포에 씽크홀 발생했데요</td>
-						<td>홍반장</td>
-						<td>21.12.05</td>
-						<td>46</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td>오마카세 추천 해주세요</td>
-						<td>진미채</td>
-						<td>21.12.05</td>
-						<td>48</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>홍대 맛집 추천</td>
-						<td>먹잘알</td>
-						<td>21.12.04</td>
-						<td>42</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>이 동네에 기타 수리점 있나요?</td>
-						<td>갱안리딩기딩</td>
-						<td>21.12.04</td>
-						<td>34</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>배고파요</td>
-						<td>햄최몇</td>
-						<td>21.12.04</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>부산 살기 좋나요?</td>
-						<td>프로탈출러</td>
-						<td>21.12.03</td>
-						<td>4</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>공원이 없어요</td>
-						<td>병알쓰</td>
-						<td>21.12.03</td>
-						<td>8</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>은평구 사건</td>
-						<td>마문</td>
-						<td>21.12.02</td>
-						<td>7</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>요즘 날씨가?</td>
-						<td>사모예드</td>
-						<td>21.12.01</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>요즘 관악구 살기 좋나요?</td>
-						<td>귤상자</td>
-						<td>21.12.01</td>
-						<td>4</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>이거 당근 짭아닌가요</td>
-						<td>당근수호자</td>
-						<td>21.11.31</td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>첫 글 루팡</td>
-						<td>광안리토템</td>
-						<td>96.01.24</td>
-						<td>27</td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
-		<div class="main__paging">
-			<!-- <a href=""></a> -->
-			<a href="">1</a> <a href="">2</a> <a href="">3</a> <a href="">4</a> <a
-				href="">5</a>
-			<!-- <a href=""></a> -->
-		</div>
-	</main>
+	  <main id="main">
+    <header class="main__header">
+      <div class="main__header__categories box">
+        <p>카테고리</p>
+        <div>
+          <ul>
+            <li><a href=""></a>전체게시판</li>
+            <li><a href=""></a>자유게시판<li>
+            <li><a href=""></a>질문게시판</li>
+            <li><a href=""></a>지역게시판</li>
+            <li><a href=""></a>신고게시판</li>
+          </ul>
+        </div>
+      </div>
+      <div class="main__header__best box">
+        <p>실시간 베스트</p>
+        <div>
+          <p>갑자기 너무 추워요 안그럼?</p>
+          <span>32 댓글</span>
+        </div>
+        <div>
+          <p>흠좀무..</p>
+          <span>32 댓글</span>
+        </div>
+        <div>
+          <p>난곡동 모이셔</p>
+          <span>32 댓글</span>
+        </div>
+      </div>
+      <div class="main__header__read box">
 
+      </div>
+    </header>
+    <home class="main__home">
+      <div class="main__home__categories box">
+        <p>전체게시판</p>
+        <span>84 게시글</span>
+      </div>
+      <div class="main__home__board box">
+        <article>
+          <div class="article__one">
+            <img src="${ path }/resources/imgs/ex4.jpg" alt="">
+          </div>
+          <div class="article__two">
+            <div class="two__div">
+              <div class="two__div__one">
+                <img src="${ path }/resources/imgs/profile/4.png" alt="">
+                <span>Aloofelicidad</span>
+              </div>
+              <div class="two__div__two">
+                <span>1일전</span>
+              </div>
+            </div>
+            <div class="two__div__description">
+              <p>제목이 어쩌고 저쩌고...</p>
+              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
+            </div>
+            <div class="two__div__footer">
+              <span>5 댓글</span>
+              <span>60 조회</span>
+            </div>
+          </div>
+        </article>
+        <article>
+          <div class="article__one">
+            <img src="${ path }/resources/imgs/ex4.jpg" alt="">
+          </div>
+          <div class="article__two">
+            <div class="two__div">
+              <div class="two__div__one">
+                <img src="${ path }/resources/imgs/profile/4.png" alt="">
+                <span>Aloofelicidad</span>
+              </div>
+              <div class="two__div__two">
+                <span>1일전</span>
+              </div>
+            </div>
+            <div class="two__div__description">
+              <p>제목이 어쩌고 저쩌고...</p>
+              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
+            </div>
+            <div class="two__div__footer">
+              <span>5 댓글</span>
+              <span>60 조회</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </home>
+  </main>
 	<footer class="menu">
 		<input type="checkbox" href="#" class="menu-open" name="menu-open"
 			id="menu-open" /> <label class="menu-open-button" for="menu-open">
