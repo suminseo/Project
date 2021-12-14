@@ -59,7 +59,7 @@
         <div>
           <ul>
             <li><a href=""></a>전체게시판</li>
-            <li><a href=""></a>자유게시판<li>
+            <li><a href=""></a>자유게시판</li>
             <li><a href=""></a>질문게시판</li>
             <li><a href=""></a>지역게시판</li>
             <li><a href=""></a>신고게시판</li>
