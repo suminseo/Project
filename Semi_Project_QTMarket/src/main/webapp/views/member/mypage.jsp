@@ -34,7 +34,7 @@
         </div>
         <ul class="navbar__menu">
           <li class="navbar__menu__item">
-            <a href="${ path }" class="active">메인</a>
+            <a href="${ path }">메인</a>
           </li>
           <li class="navbar__menu__item">
             <a href="${ path }/QT/market">마켓</a>
@@ -49,7 +49,7 @@
           </c:if>
           <c:if test="${ !empty loginMember }">
           	<li class="navbar__menu__item">
-            	<a href="${ path }/QT/mypage">마이페이지</a>
+            	<a href="${ path }/QT/mypage" class="active">마이페이지</a>
          	</li>
           	<li class="navbar__menu__item">
           	  <a href="${ path }/logout">로그아웃</a>

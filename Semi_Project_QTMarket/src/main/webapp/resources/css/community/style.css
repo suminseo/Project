@@ -148,8 +148,14 @@ body::-webkit-scrollbar {
 .box {
   background: #ffffff;
   border-radius: 4px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
   padding: 14px;
+}
+
+.imgbox {
+	background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 5px 5px 15px 3px rgba(0, 0, 0, 0.2);
 }
 
 .main__header__categories {
@@ -160,13 +166,17 @@ body::-webkit-scrollbar {
 }
 
 .main__header__categories p {
-  font-size: 38px;
+  font-size: 30px;
   border-bottom: 1px solid black;
 }
 
 .main__header__categories li {
-  font-size: 25px;
+  font-size: 23px;
   margin-top: 18px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+  padding: 3px;
 }
 
 .main__header__best {
@@ -177,17 +187,23 @@ body::-webkit-scrollbar {
 }
 
 .main__header__best > p {
-  font-size: 38px;
+  font-size: 30px;
   border-bottom: 1px solid black;
 }
 
 .main__header__best div {
   font-size: 20px;
   margin-top: 8%;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+  padding: 4px;
 }
 
 .main__header__best div span {
-  font-size: 13 px;
+  font-size: 13px;
+  color: gray;
+  margin-left: 3%;
 }
 
 .main__header__read {
@@ -212,11 +228,29 @@ body::-webkit-scrollbar {
   margin-bottom: auto;
 }
 
+.main__home__categories p {
+  font-size: 50px;
+  border-bottom: 1px solid gray;
+  margin-bottom: 5px;
+}
+
+.main__home__categories span {
+  color: grey;
+  margin-left: 2%;
+}
+
 .main__home__board {
   width: 100%;
   height: 88%;
   border: 1px solid black;
   margin-top: auto;
+  overflow: scroll;
+  scrollbar-width: none; /* -- Firefox */
+}
+
+
+.main__home__board::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 .main__home__board article {

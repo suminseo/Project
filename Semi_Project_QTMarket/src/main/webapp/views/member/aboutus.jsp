@@ -35,8 +35,7 @@
 			<a href="${ path }">큐티마켓</a>
 		</div>
 		<ul class="navbar__menu">
-			<li class="navbar__menu__item"><a href="${ path }"
-				class="active">메인</a></li>
+			<li class="navbar__menu__item"><a href="${ path }">메인</a></li>
 			<li class="navbar__menu__item"><a href="${ path }/QT/market">마켓</a>
 			</li>
 			<li class="navbar__menu__item"><a href="${ path }/QT/community">커뮤니티</a>
