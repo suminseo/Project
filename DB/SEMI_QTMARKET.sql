@@ -351,7 +351,96 @@ INSERT INTO QT_USER (
     '서수민',
     'ssm@naver.com',
     'profile1.jpg',
-    '010-1234-5678',
+    '010-8864-5742',
+    DEFAULT,
+    DEFAULT,
+    1
+);
+
+
+INSERT INTO QT_USER (
+    USER_ID,
+    USER_PASSWORD,
+    USER_NAME,
+    USER_EMAIL,
+    USER_PROFILE,
+    USER_PHONE,
+    USER_ROLE,
+    USER_ENROLLDATE,
+    USER_AREA
+) VALUES (
+    'qtlhg',
+    '1234',
+    '임현규',
+    'lhg@naver.com',
+    'profile2.jpg',
+    '010-2704-6934',
+    DEFAULT,
+    DEFAULT,
+    1
+);
+
+INSERT INTO QT_USER (
+    USER_ID,
+    USER_PASSWORD,
+    USER_NAME,
+    USER_EMAIL,
+    USER_PROFILE,
+    USER_PHONE,
+    USER_ROLE,
+    USER_ENROLLDATE,
+    USER_AREA
+) VALUES (
+    'qtlsa',
+    '1234',
+    '이산아',
+    'lsa@naver.com',
+    'profile3.jpg',
+    '010-4841-8235',
+    DEFAULT,
+    DEFAULT,
+    1
+);
+
+INSERT INTO QT_USER (
+    USER_ID,
+    USER_PASSWORD,
+    USER_NAME,
+    USER_EMAIL,
+    USER_PROFILE,
+    USER_PHONE,
+    USER_ROLE,
+    USER_ENROLLDATE,
+    USER_AREA
+) VALUES (
+    'qtksy',
+    '1234',
+    '김성엽',
+    'ksy@naver.com',
+    'profile4.jpg',
+    '010-5490-8002',
+    DEFAULT,
+    DEFAULT,
+    1
+);
+
+INSERT INTO QT_USER (
+    USER_ID,
+    USER_PASSWORD,
+    USER_NAME,
+    USER_EMAIL,
+    USER_PROFILE,
+    USER_PHONE,
+    USER_ROLE,
+    USER_ENROLLDATE,
+    USER_AREA
+) VALUES (
+    'qtmsj',
+    '1234',
+    '맹세정',
+    'msj@naver.com',
+    'profile5.jpg',
+    '010-2995-2579',
     DEFAULT,
     DEFAULT,
     1
