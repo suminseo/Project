@@ -82,6 +82,7 @@
         </div>
       </div>
       <div class="main__header__read box">
+
       </div>
     </header>
     <home class="main__home">
