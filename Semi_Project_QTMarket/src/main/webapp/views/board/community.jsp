@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path" value="${ pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -37,6 +38,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="board_list">
                 <div class="top">
                     <div class="no">글번호</div>
@@ -128,7 +130,7 @@
                 </div>
             </div>
             <div class="board_page">
-                <a href="" class="btn first"><<</a>
+                <a href="${ path }/QT/community?page=1" class="btn first"><<</a>
                 <a href="" class="btn prev"><</a>
                 <a href="" class="num on">1</a>
                 <a href="" class="num">2</a>
@@ -141,11 +143,10 @@
                 <a href="" class="num">9</a>
                 <a href="" class="num">10</a>
                 <a href="" class="btn next">></a>
-                <a href="" class="btn last">>></a>
+                <a href="${ path }/QT/community?page=${ pageInfo.MaxPage }" class="btn last">>></a>
             </div>
             <div class="btn_wrap">
-                <a href="write.html" class="on">글쓰기</a>
-                <!-- <a href="">수정</a> -->
+				<button type="button" id="btn-add" onclick="location.href='${ pageContext.request.contextPath }/board/boardwrite'">글쓰기</button>
             </div>
         </div>
 

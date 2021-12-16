@@ -17,16 +17,8 @@ public class Member {
 	private String profile;
 	private String phone;
 	private String role;
-	private String area;
+	private String area1;
+	private String area2;
 	private Date enrollDate;
 }
 
-//USER_ID,
-//USER_PASSWORD,
-//USER_NAME,
-//USER_EMAIL,
-//USER_PROFILE,
-//USER_PHONE,
-//USER_ROLE,
-//USER_ENROLLDATE,
-//USER_AREA

@@ -18,54 +18,56 @@
 </head>
 <body>
     <div class="board_wrap">
-        <div class="board_title">
-            <h1><b>큐티 게시판</b></h1>
-            <p>큐티님을 위한 공간입니다.</p>
-        </div>
-        <div class="board_write_wrap">
-            <div class="board_write">
-                <div class="title">
-                    <dl>
-                        <dt>제목</dt>
-                        <dd><input type="text" placeholder="제목 입력" required></dd>
-                    </dl>
-                </div>
-                <div class="info">
-                    <dl>
-                        <dt>카테고리</dt>
-                        <dd>
-                            <select name="board_category" id="board_category">
-                                <option selected>----</option>
-                                <option value="bfree">자유 게시판</option>
-                                <option value="bregion">우리 동네 소식</option>
-                                <option value="bpromo">지역 홍보 게시판</option>
-                            </select>
-                        </dd>
-                    </dl>
-                
-                    <dl>
-                        <dt>작성자</dt>
-                        <dd><input type="text" placeholder="작성자 입력" required></dd>
-                    </dl>
-                    <div class="file">
-                        <dl>
-                            <dt>첨부파일</dt>
-                            <dd><input type="file"></dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="content">
-
-                    <textarea placeholder="내용을 입력해주세요."></textarea>
-                </div>
-
-            </div>
-            <div class="btn_wrap">
-                <a href="view.html" class="on">글쓰기</a>
-                <a href="list.html">취소</a>
-            </div>
-        </div>
-
+	    <form action="${ pageContext.request.contextPath }/board/boardwrite" method="post" 
+				enctype="multipart/form-data">
+	        <div class="board_title">
+	            <h1><b>큐티 게시판</b></h1>
+	            <p>큐티님을 위한 공간입니다.</p>
+	        </div>
+	        <div class="board_write_wrap">
+	            <div class="board_write">
+	                <div class="title">
+	                    <dl>
+	                        <dt>제목</dt>
+	                        <dd><input type="text" placeholder="제목 입력" required></dd>
+	                    </dl>
+	                </div>
+	                <div class="info">
+	                    <dl>
+	                        <dt>카테고리</dt>
+	                        <dd>
+	                            <select name="board_category" id="board_category">
+	                                <option selected>----</option>
+	                                <option value="bfree">자유 게시판</option>
+	                                <option value="bregion">우리 동네 소식</option>
+	                                <option value="bpromo">지역 홍보 게시판</option>
+	                            </select>
+	                        </dd>
+	                    </dl>
+	                
+	                    <dl>
+	                        <dt>작성자</dt>
+	                        <dd><input type="text" placeholder="작성자 입력" required></dd>
+	                    </dl>
+	                    <div class="file">
+	                        <dl>
+	                            <dt>첨부파일</dt>
+	                            <dd><input type="file"></dd>
+	                        </dl>
+	                    </div>
+	                </div>
+	                <div class="content">
+	
+	                    <textarea placeholder="내용을 입력해주세요."></textarea>
+	                </div>
+	
+	            </div>
+	            <div class="btn_wrap">
+	                <button type="submit" value="등록">등록</button>
+	                <button type="reset" value="취소" class="on">취소</button>
+	            </div>
+	        </div>
+		</form>
     </div>
 </body>
 </html>

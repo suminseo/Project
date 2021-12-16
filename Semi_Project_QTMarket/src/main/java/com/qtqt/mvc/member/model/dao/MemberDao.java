@@ -32,7 +32,7 @@ public class MemberDao {
 				member.setProfile(rs.getString("USER_PROFILE"));
 				member.setPhone(rs.getString("USER_PHONE"));
 				member.setRole(rs.getString("USER_ROLE"));
-				member.setArea(rs.getString("USER_AREA"));
+				member.setArea1(rs.getString("USER_AREA1"));
 				member.setEnrollDate(rs.getDate("USER_ENROLLDATE"));
 			}
 		} catch (SQLException e) {
@@ -59,7 +59,7 @@ public class MemberDao {
 			pstmt.setString(4, member.getEmail());
 			pstmt.setString(5, member.getProfile());
 			pstmt.setString(6, member.getPhone());
-			pstmt.setString(7, member.getArea());
+			pstmt.setString(7, member.getArea1());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

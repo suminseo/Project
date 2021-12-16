@@ -53,11 +53,9 @@
                     글 내용을 작성해주세요. 
                 </div>
             </div>
-
-
             <div class="btn_wrap">
-                <a href="list.html" class="on">목록</a>
-                <a href="edit.html">수정</a>
+                <button type="button" class="on">목록</button>
+                <button type="button">수정</button>
             </div>
         </div>
 

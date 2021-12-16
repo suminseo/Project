@@ -58,8 +58,8 @@
 
             </div>
             <div class="btn_wrap">
-                <a href="view.html" class="on">수정</a>
-                <a href="view.html">취소</a>
+                <button type="button">수정</button>
+                <button type="button" class="on">취소</button>
             </div>
         </div>
 

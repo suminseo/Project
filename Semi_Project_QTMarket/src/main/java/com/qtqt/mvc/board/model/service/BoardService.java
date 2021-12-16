@@ -1,8 +1,12 @@
 package com.qtqt.mvc.board.model.service;
 
 import java.sql.Connection;
+import java.util.List;
 
+import com.qtqt.mvc.board.model.vo.Board;
 import com.qtqt.mvc.board.model.dao.BoardDao;
+import com.qtqt.mvc.common.util.PageInfo;
+
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
 
 public class BoardService {
@@ -19,6 +23,11 @@ public class BoardService {
 		close(connection);
 		
 		return count;
+	}
+
+	public List<Board> getBoardList(PageInfo pageInfo) {
+		
+		return null;
 	}
 
 }

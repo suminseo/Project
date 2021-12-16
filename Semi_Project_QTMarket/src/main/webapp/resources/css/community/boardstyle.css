@@ -84,24 +84,27 @@ a:hover{
 
 }
 
-.btn_wrap a{
+
+.btn_wrap button{
     display: inline-block;
-    min-width: 80px;
     margin-left: 10px;
     padding: 10px;
-    border: 1px solid black;
-    border-radius: 2px;
-    font-size: 1.2rem;
+    border: 1px solid #FDE37B;
+    background: #FDE37B;
+    color: white;
+    width: 100px;
+    height: 40px;
 }
+
 
 .bt_wrap a:first-child{
     margin-left: 0;
 }
 
-.btn_wrap a.on{
+.btn_wrap button.on{
     border-color: #FDE37B;
-    background: #FDE37B;
-    color: white;
+    background: white;
+    color: black;
 }
 
 .board_list{
@@ -278,8 +281,8 @@ a:hover{
 }
 
 .board_write .title,
-.board_write .info
-.board_wirte .file{
+.board_write .info,
+.board_write .file{
     padding: 15px;
 }
 
@@ -291,12 +294,11 @@ a:hover{
 
 .board_write .file{
     margin-top: 10px;
-    padding-top: 10;
+    padding: 10px;
     padding-left: 0px;
-    padding-bottom: 0;
+    padding-bottom: 0px;
     border-top: dashed 1px #ddd;
 }
-
 
 .board_write .content{
     border-bottom: 2px solid black;
