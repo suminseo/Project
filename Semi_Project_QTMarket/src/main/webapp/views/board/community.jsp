@@ -1,424 +1,154 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${ pageContext.request.contextPath }" />
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="ko">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>큐티마켓_커뮤니티</title>
-		<meta name="description" content="큐티마켓" />
-		<meta name="author" content="Dapalzo" />
-		<link rel="icon" type="image/png" sizes="152x152"href="${ path }/resources/imgs/favicon/favicon.png" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap"rel="stylesheet" />
-		<script src="https://kit.fontawesome.com/91b5983e4b.js"crossorigin="anonymous"></script>
-		<link rel="stylesheet"href="${ path }/resources/css/community/style.css" />
-		<script src="${ path }/resources/js/community/main.js" defer></script>
-		<style>
-		body {
-			background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
-		}
-		</style>
-	</head>
-<body>
-	<!-- navbar -->
-	<nav id="navbar">
-		<div class="navbar__logo">
-			<img src="${ path }/resources/imgs/favicon/favicon.png" alt="logo">
-			<a href="${ path }">큐티마켓</a>
-		</div>
-		<ul class="navbar__menu">
-			<li class="navbar__menu__item"><a href="${ path }">메인</a></li>
-			<li class="navbar__menu__item"><a href="${ path }/QT/market">마켓</a>
-			</li>
-			<li class="navbar__menu__item"><a href="${ path }/QT/community" class="active">커뮤니티</a>
-			</li>
-			<c:if test="${ empty loginMember }">
-				<li class="navbar__menu__item"><a href="${ path }/QT/login">로그인</a>
-				</li>
-			</c:if>
-			<c:if test="${ !empty loginMember }">
-				<li class="navbar__menu__item"><a href="${ path }/QT/mypage">마이페이지</a>
-				</li>
-				<li class="navbar__menu__item"><a href="${ path }/logout">로그아웃</a>
-				</li>
-			</c:if>
-		</ul>
-	</nav>
-	<!-- main -->
-	<!-- Grid 형식 알아보기 왼쪽상단또는 왼쪽 전체에 사이드바 형식의 카테고리 메뉴 설정. 옵션으로 베스트 게시글 등 (조회수순)으로 또 댓글 도 필요. -->
-	  <main id="main">
-    <header class="main__header">
-      <div class="main__header__categories box">
-        <p>카테고리</p>
-        <div>
-          <ul>
-            <li><a href=""></a>전체게시판</li>
-            <li><a href=""></a>자유게시판</li>
-            <li><a href=""></a>질문게시판</li>
-            <li><a href=""></a>지역게시판</li>
-            <li><a href=""></a>신고게시판</li>
-          </ul>
-        </div>
-      </div>
-      <div class="main__header__best box">
-        <p>실시간 베스트</p>
-        <div>
-          <p>갑자기 너무 추워요 안그럼?</p>
-          <span>32 댓글</span>
-        </div>
-        <div>
-          <p>흠좀무..</p>
-          <span>32 댓글</span>
-        </div>
-        <div>
-          <p>난곡동 모이셔</p>
-          <span>32 댓글</span>
-        </div>
-      </div>
-      <div class="main__header__read box">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/community/boardstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
 
-      </div>
-    </header>
-    <home class="main__home">
-      <div class="main__home__categories box">
-        <p>전체게시판</p>
-        <span>총 84 게시글</span>
-      </div>
-      <div class="main__home__board box">
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
+</head>
+<body>
+    <div class="board_wrap">
+        <div class="board_title">
+            <h1><b>큐티 게시판</b></h1>
+            <p>큐티님을 위한 공간입니다.</p>
+        </div>
+        <div class="board_list_wrap">
+            <div class="function_wrap">
+                <div class="b_function">
+                    <form class="search_wrap">
+                        <input type="text" placeholder="검색어를 입력하세요." id="b_search">
+                        <button type="submit" id="search_btn">검색</button>
+                    </form>
+                        <div class="sort_wrap">
+                            <a href="">최신순</a>
+                            <a href="">댓글순</a>
+                            <a href="">조회수</a>
+                    </div>
+                </div>
             </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
+            <div class="board_list">
+                <div class="top">
+                    <div class="no">글번호</div>
+                    <div class="category">카테고리</div>
+                    <div class="title">제목</div>
+                    <div class="writer">작성자</div>
+                    <div class="date">작성일</div>
+                    <div class="count">조회수</div>
+                </div>
+                <div>
+                    <div class="no">10</div>
+                    <div class="category">공지사항</div>
+                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
+                    <div class="writer">관리자</div>
+                    <div class="date">2021-12-14</div>
+                    <div class="count">10</div>
+                </div>
+                <div>
+                    <div class="no">9</div>
+                    <div class="category">공지사항</div>
+                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
+                    <div class="writer">관리자</div>
+                    <div class="date">2021-11-28</div>
+                    <div class="count">10</div>
+                </div>
+                <div>
+                    <div class="no">8</div>
+                    <div class="category">공지사항</div>
+                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
+                    <div class="writer">관리자</div>
+                    <div class="date">2021-11-28</div>
+                    <div class="count">10</div>
+                </div>
+                <div>
+                    <div class="no">7</div>
+                    <div class="category">공지사항</div>
+                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
+                    <div class="writer">관리자</div>
+                    <div class="date">2021-11-28</div>
+                    <div class="count">10</div>
+                </div>
+                <div>
+                    <div class="no">6</div>
+                    <div class="category">공지사항</div>
+                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
+                    <div class="writer">관리자</div>
+                    <div class="date">2021-11-28</div>
+                    <div class="count">10</div>
+                </div>
+                <div>
+                    <div class="no">5</div>
+                    <div class="category">공지사항</div>
+                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
+                    <div class="writer">관리자</div>
+                    <div class="date">2021-11-28</div>
+                    <div class="count">10</div>
+                </div>
+                <div>
+                    <div class="no">4</div>
+                    <div class="category">자유게시판</div>
+                    <div class="title"><a href="view.html">벌써 겨울이네요</a></div>
+                    <div class="writer">김겨울</div>
+                    <div class="date">2021-11-27</div>
+                    <div class="count">100</div>
+                </div>
+                <div>
+                    <div class="no">3</div>
+                    <div class="category">자유게시판</div>
+                    <div class="title"><a href="view.html">코로나 조심하세요!</a></div>
+                    <div class="writer">이가을</div>
+                    <div class="date">2021-11-26</div>
+                    <div class="count">150</div>
+                </div>
+                <div>
+                    <div class="no">2</div>
+                    <div class="category">자유게시판</div>
+                    <div class="title"><a href="view.html">큐티 마켓 너무 좋아요!</a></div>
+                    <div class="writer">최여름</div>
+                    <div class="date">2021-11-25</div>
+                    <div class="count">1000</div>
+                </div>
+                <div>
+                    <div class="no">1</div>
+                    <div class="category">자유게시판</div>
+                    <div class="title"><a href="view.html">벌써 겨울이네요</a></div>
+                    <div class="writer">유봄</div>
+                    <div class="date">2021-11-24</div>
+                    <div class="count">120</div>
+                </div>
             </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
+            <div class="board_page">
+                <a href="" class="btn first"><<</a>
+                <a href="" class="btn prev"><</a>
+                <a href="" class="num on">1</a>
+                <a href="" class="num">2</a>
+                <a href="" class="num">3</a>
+                <a href="" class="num">4</a>
+                <a href="" class="num">5</a>
+                <a href="" class="num">6</a>
+                <a href="" class="num">7</a>
+                <a href="" class="num">8</a>
+                <a href="" class="num">9</a>
+                <a href="" class="num">10</a>
+                <a href="" class="btn next">></a>
+                <a href="" class="btn last">>></a>
             </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
+            <div class="btn_wrap">
+                <a href="write.html" class="on">글쓰기</a>
+                <!-- <a href="">수정</a> -->
             </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="article__one">
-            <img class="imgbox" src="${ path }/resources/imgs/ex4.jpg" alt="">
-          </div>
-          <div class="article__two">
-            <div class="two__div">
-              <div class="two__div__one">
-                <img class="imgbox"src="${ path }/resources/imgs/profile/4.png" alt="">
-                <span>Aloofelicidad</span>
-              </div>
-              <div class="two__div__two">
-                <span>1일전</span>
-              </div>
-            </div>
-            <div class="two__div__description">
-              <p>제목이 어쩌고 저쩌고...</p>
-              <span>내용이 어쩌고.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloribus autem quo quia nam suscipit libero, culpa at non nihil animi quis aut sapiente optio soluta odio neque ipsa sint!</span>
-            </div>
-            <div class="two__div__footer">
-              <span>5 댓글</span>
-              <span>60 조회</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </home>
-  </main>
-	<footer class="menu">
-		<input type="checkbox" href="#" class="menu-open" name="menu-open"
-			id="menu-open" /> <label class="menu-open-button" for="menu-open">
-			<span class="lines line-1"></span> <span class="lines line-2"></span>
-			<span class="lines line-3"></span>
-		</label> <a href="#" class="menu-item orange"> <i class="fas fa-plus"></i>
-		</a> <a href="#" class="menu-item red"> <i class="fa fa-heart"></i>
-		</a> <a href="#" class="menu-item green"> <i class="fas fa-comments"></i>
-		</a> <a href="main.html" class="menu-item purple"> <i
-			class="fas fa-home"></i>
-		</a> <a href="#" class="menu-item blue"> <i class="fas fa-question"></i></i>
-		</a>
-		<!-- <a href="#" class="menu-item lightblue"> <i class="fas fa-question"></i> </a> -->
-	</footer>
+        </div>
+
+    </div>
 </body>
 </html>

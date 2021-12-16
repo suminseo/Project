@@ -38,7 +38,7 @@ public class CommunityServlet extends HttpServlet {
 		pageInfo = new PageInfo(page, 10, listCount, 10);
 		
 		request.setAttribute("pageInfo", pageInfo);
-		request.getRequestDispatcher("/views/member/community.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/board/community.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
