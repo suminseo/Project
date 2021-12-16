@@ -1,4 +1,4 @@
-package com.qtqt.mvc.member.controller;
+package com.qtqt.mvc.market.controller;
 
 import java.io.IOException;
 

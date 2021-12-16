@@ -19,11 +19,6 @@
 		<script src="https://kit.fontawesome.com/91b5983e4b.js"crossorigin="anonymous"></script>
 		<link rel="stylesheet"href="${ path }/resources/css/community/style.css" />
 		<script src="${ path }/resources/js/community/main.js" defer></script>
-		<style>
-		body {
-			background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
-		}
-		</style>
 	</head>
 <body>
 	<!-- navbar -->
@@ -42,12 +37,19 @@
 				<li class="navbar__menu__item"><a href="${ path }/QT/login">로그인</a>
 				</li>
 			</c:if>
-			<c:if test="${ !empty loginMember }">
-				<li class="navbar__menu__item"><a href="${ path }/QT/mypage">마이페이지</a>
-				</li>
-				<li class="navbar__menu__item"><a href="${ path }/logout">로그아웃</a>
-				</li>
-			</c:if>
+          <c:if test="${ !empty loginMember }">
+          	<li class="navbar__menu__item">
+            	<a href="${ path }/QT/mypage">마이페이지</a>
+         	</li>
+         	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
+         	<li class="navbar__menu__item">
+         		<a href="${ path }/QT/mypage">관리자페이지</a>
+         	</li>
+         	</c:if>
+          	<li class="navbar__menu__item">
+          	  <a href="${ path }/logout">로그아웃</a>
+         	</li>
+          </c:if>
 		</ul>
 	</nav>
 	<!-- main -->

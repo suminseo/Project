@@ -18,11 +18,6 @@
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
     <script src="${ path }/resources/js/login/jquery-3.6.0.js"></script>
     <script src="${ path }/resources/js/login/main.js" defer></script>
-    <style>
-    body {
-      background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
-      }
-    </style>
 </head>
 <body>
  <div id="container" class="container">
@@ -31,7 +26,7 @@
         <!-- SIGN UP -->
         <div class="col align-items-center flex-col sign-up">
           <div class="form-wrapper align-items-center">
-            <form class="form sign-up" name="memberEnrollFrm" action="${ Path }/QT/enroll" method="post">
+            <form class="form sign-up" name="memberEnrollFrm" action="${ path }/QT/enroll" enctype="multipart/form-data" method="post">
               <div class="input-group up">
                 <i class="fas fa-user"></i>
                 <input type="text" name="userId" id="newId" placeholder="아이디" required />
@@ -80,7 +75,8 @@
         <!-- END SIGN UP -->
         <!-- SIGN IN -->
         <div class="col align-items-center flex-col sign-in">
-          <div class="form-wrapper align-items-center">
+          <div class="form-wrapper align-items-center"
+          >
             <form action="${ path }/QT/login" method="post" class="form sign-in">
               <div class="input-group in">
                 <i class="fas fa-user"></i>
@@ -133,34 +129,5 @@
       </div>
       <!-- END CONTENT SECTION -->
     </div>
-<script>
-$('document').ready(() => {
-	// 아이디 중복 체크
-		$("#checkDuplicate").on("click", () => {
-		let userId = $("#newId").val().trim();
-		
-		$.ajax({
-			type: "post",
-			url: "${ path }/QT/idCheck",
-			dataType: "json",
-			data: {
-				userId
-			},
-			success: (data) => {
-				console.log(data);
-				
-				if(data.duplicate === true) {
-					alert("이미 사용중인 아이디 입니다.");
-				} else {
-					alert("사용 가능한 아이디 입니다.");						
-				}
-			},
-			error: (error) => {
-				console.log(error);
-			}
-		});
-	});
-});
-</script>
 </body>
 </html>

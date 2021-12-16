@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.qtqt.mvc.common.util.EncryptUtil;
+import com.qtqt.mvc.common.util.FileRename;
 import com.qtqt.mvc.member.model.service.MemberService;
 import com.qtqt.mvc.member.model.vo.Member;
 
@@ -28,16 +31,35 @@ public class EnrollServlet extends HttpServlet {
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Member member = new Member();
-		System.out.println(request.getParameter("userId"));
-		
-		member.setId(request.getParameter("userId"));
-		member.setPassword(request.getParameter("userPwd"));
-		member.setName(request.getParameter("userName"));
-		member.setEmail(request.getParameter("email"));
-		member.setProfile(request.getParameter("profile"));
-		member.setPhone(request.getParameter("phone"));
-		member.setArea(request.getParameter("area"));
+    	String path = getServletContext().getRealPath("/resources/upload/memberProfile");
+    	int maxSize = 10485760;
+    	
+    	String encoding = "UTF-8";
+    	
+    	MultipartRequest mr = new MultipartRequest(request, path, maxSize, encoding, new FileRename());
+    	
+    	String id = mr.getParameter("userId");
+    	String password = EncryptUtil.oneWayEnc(mr.getParameter("userPwd"), "SHA-256");
+    	String name = mr.getParameter("userName");
+    	String email = mr.getParameter("email");
+    	String phone = mr.getParameter("phone");
+    	String area1 = mr.getParameter("area1");
+    	String area2 = mr.getParameter("area2");
+    	String filesystemName = mr.getFilesystemName("profile");
+    	String originalFileName = mr.getOriginalFileName("profile");
+    	
+    	
+    	Member member = new Member();
+    	
+		member.setId(id);
+		member.setPassword(password);
+		member.setName(name);
+		member.setEmail(email);
+		member.setOriginalProfileName(originalFileName);
+		member.setRenamedProfileName(filesystemName);
+		member.setPhone(phone);
+		member.setArea1(area1);
+		member.setArea2(area2);
 		
 		System.out.println(member);
 

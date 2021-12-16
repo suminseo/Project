@@ -19,11 +19,6 @@
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${ path }/resources/css/mypage/style.css" />
     <script src="${ path }/resources/js/mypage/main.js" defer></script>
-    <style>
-    	body {
-      		background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
-      	}	
-    </style>
   </head>
   <body>
       <!-- Navbar -->
@@ -49,8 +44,13 @@
           </c:if>
           <c:if test="${ !empty loginMember }">
           	<li class="navbar__menu__item">
-            	<a href="${ path }/QT/mypage" class="active">마이페이지</a>
+            	<a href="${ path }/QT/mypage">마이페이지</a>
          	</li>
+         	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
+         	<li class="navbar__menu__item">
+         		<a href="${ path }/QT/mypage">관리자페이지</a>
+         	</li>
+         	</c:if>
           	<li class="navbar__menu__item">
           	  <a href="${ path }/logout">로그아웃</a>
          	</li>
