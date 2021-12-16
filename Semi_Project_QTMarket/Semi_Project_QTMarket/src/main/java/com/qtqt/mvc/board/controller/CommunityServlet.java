@@ -29,8 +29,10 @@ public class CommunityServlet extends HttpServlet {
 		PageInfo pageInfo = null;
 		List<Board> list = null;
 		
+		
 		try {
 			page = Integer.parseInt(request.getParameter("page"));
+			
 		} catch (NumberFormatException e) {
 			page = 1;
 		}
@@ -40,7 +42,6 @@ public class CommunityServlet extends HttpServlet {
 		list = service.getBoardList(pageInfo);
 		
 		request.setAttribute("pageInfo", pageInfo);
-		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/board/community.jsp").forward(request, response);
 	}
 

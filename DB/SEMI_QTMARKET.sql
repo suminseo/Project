@@ -342,11 +342,12 @@ INSERT INTO QT_USER (
     'ssm@naver.com',
     'profile1.jpg',
     '010-8864-5742',
-    DEFAULT,
+    'ROLE_ADMIN',
     DEFAULT,
     1
 );
 
+-- UPDATE QT_USER SET USER_ROLE='ROLE_ADMIN' WHERE USER_ID='admin2';
 
 INSERT INTO QT_USER (
     USER_ID,
@@ -460,7 +461,23 @@ COMMIT;
 --------------- BOARD 관련 테이블 ---------------
 ------------------------------------------------
 
+CREATE SEQUENCE SEQ_BOARD_NO;
 
+INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL, 'qtlsa', '게시글 1',  '큐티마켓 최고', SYSDATE, SYSDATE, DEFAULT, '원본파일명.txt', '변경된파일명.txt');
+
+COMMIT;
+
+BEGIN
+    FOR N IN 1..52
+    LOOP
+        INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL, 'qtlsa', '게시글 ' || SEQ_BOARD_NO.CURRVAL , '큐티마켓 최고' ||  SEQ_BOARD_NO.CURRVAL, SYSDATE, SYSDATE, DEFAULT, NULL, NULL);
+    END LOOP;
+    
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN ROLLBACK;
+END;
+/
 
 
 ------------------------------------------------

@@ -4,11 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.qtqt.mvc.board.model.vo.Board;
-import com.qtqt.mvc.common.util.PageInfo;
 
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
 
@@ -19,7 +14,7 @@ public class BoardDao {
 		int count = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT COUNT(*) FROM BOARD";
+		String query = "SELECT COUNT(*) FROM QT_USER";
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -37,17 +32,6 @@ public class BoardDao {
 		}
 		
 		return count;
-	}
-
-	public List<Board> findAll(Connection connection, PageInfo pageInfo) {
-		List<Board> list = new ArrayList<>();
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String query = "";
-				
-				
-		return list;
 	}
 
 }

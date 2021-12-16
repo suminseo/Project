@@ -131,14 +131,19 @@
             </div>
             <div class="board_page">
                 <a href="${ path }/QT/community?page=1" class="btn first"><<</a>
-                <a href="${ path }/QT/community?page=${ pageInfo.prevPage }" class="btn prev"><</a>
-                
-                <c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
-					<a class="num" href="${ path }/QT/community?page=${ status.current }">${ status.current }</a>
-                </c:forEach>
-                 
-                <a href="${ path }/QT/community?page=${ pageInfo.nextPage }" class="btn next">></a>
-                <a href="${ path }/QT/community?page=${ pageInfo.maxPage }" class="btn last">>></a>
+                <a href="" class="btn prev"><</a>
+                <a href="" class="num on">1</a>
+                <a href="" class="num">2</a>
+                <a href="" class="num">3</a>
+                <a href="" class="num">4</a>
+                <a href="" class="num">5</a>
+                <a href="" class="num">6</a>
+                <a href="" class="num">7</a>
+                <a href="" class="num">8</a>
+                <a href="" class="num">9</a>
+                <a href="" class="num">10</a>
+                <a href="" class="btn next">></a>
+                <a href="${ path }/QT/community?page=${ pageInfo.MaxPage }" class="btn last">>></a>
             </div>
             <div class="btn_wrap">
 				<button type="button" id="btn-add" onclick="location.href='${ pageContext.request.contextPath }/board/boardwrite'">글쓰기</button>

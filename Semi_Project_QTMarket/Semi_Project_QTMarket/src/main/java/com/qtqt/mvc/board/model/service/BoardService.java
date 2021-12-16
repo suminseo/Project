@@ -26,15 +26,8 @@ public class BoardService {
 	}
 
 	public List<Board> getBoardList(PageInfo pageInfo) {
-		List<Board> list = null;
-		Connection connection = getConnection();
 		
-		list = dao.findAll(connection, pageInfo);
-		
-		close(connection);
-		
-		
-		return list;
+		return null;
 	}
 
 }

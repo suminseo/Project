@@ -197,13 +197,11 @@ a:hover{
     padding-top: 9px;
 }
 
-/*
 .board_page a.num.on{
     border-color: #FDE37B;
     background: #FDE37B;
     color: white;
 }
-*/
 
 .board_page a:first-child{
     border-left: 1px solid #ddd;
