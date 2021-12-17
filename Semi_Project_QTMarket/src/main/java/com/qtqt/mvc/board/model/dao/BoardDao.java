@@ -99,4 +99,32 @@ public class BoardDao {
 		return list;
 	}
 
+	public int insertBoard(Connection connection, Board board) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String query = "INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL,?,?,?,DEFAULT,DEFAULT,DEFAULT,?,?)";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, board.getWriterId());
+			pstmt.setString(2, board.getTitle());
+			pstmt.setString(3, board.getContent());
+			pstmt.setString(4, board.getOriginalFileName());
+			pstmt.setString(5, board.getRenamedFileName());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
+
 }

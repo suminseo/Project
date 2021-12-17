@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.qtqt.mvc.board.model.service.BoardService;
+import com.qtqt.mvc.board.model.vo.Board;
 import com.qtqt.mvc.common.util.FileRename;
 import com.qtqt.mvc.member.model.vo.Member;
 
@@ -17,7 +19,8 @@ import com.qtqt.mvc.member.model.vo.Member;
 @WebServlet("/board/boardwrite")
 public class BoardWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	private BoardService service = new BoardService();
 
     public BoardWriteServlet() {
     }
@@ -41,11 +44,11 @@ public class BoardWriteServlet extends HttpServlet {
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String path = getServletContext().getRealPath("/resources/upload/board");
+    	int result = 0;
     	
+    	String path = getServletContext().getRealPath("/resources/upload/board");
     	// 파일 사이즈 (50MB)
     	int maxSize = 52428800;
-    	
     	String encoding = "UTF-8";
     	
     	MultipartRequest mr = new MultipartRequest(request, path, maxSize ,encoding, new FileRename()); 
@@ -54,18 +57,41 @@ public class BoardWriteServlet extends HttpServlet {
     	String writerId = mr.getParameter("writerId");
     	String content = mr.getParameter("content");
     	
-    	String fileName = mr.getFilesystemName("upfile");
-    	String upfileName = mr.getOriginalFileName("upfile");
+    	String filesystemName = mr.getFilesystemName("upfile");
+    	String originalFileName = mr.getOriginalFileName("upfile");
+    	
+    	HttpSession session = request.getSession(false); 
+    	Member loginMember = session != null ? (Member)session.getAttribute("loginMember") : null;
+    	
+    	if(loginMember != null) {
+    		Board board = new Board();
+    		
+    		board.setWriterId(loginMember.getId());
+    		board.setTitle(title);
+    		board.setContent(content);
+    		board.setOriginalFileName(originalFileName);
+    		board.setRenamedFileName(filesystemName);
+    		
+    		result = service.save(board);
+    		
+    		if(result > 0) {
+    			// 게시글 등록이 성공했다는 뜻
+    			request.setAttribute("msg", "게시글 등록 성공");
+    			request.setAttribute("location", "/QT/community");
+    		} else {
+    			// 게시글 등록이 실패했다는 뜻
+    			request.setAttribute("msg", "게시글 등록 실패");
+    			request.setAttribute("location", "/QT/community");
+    		}
+    		
+    	} else {
+    		request.setAttribute("msg", "로그인 후 사용할 수 있습니다.");
+    		request.setAttribute("location", "/");    		
+    	}
+    	
+    	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);	
+		
 
-    	
-    	System.out.println(title);
-    	System.out.println(writerId);
-    	System.out.println(content);
-    	
-    	System.out.println(fileName);
-    	System.out.println(upfileName);
-    	
-    	
 	}
 
 }

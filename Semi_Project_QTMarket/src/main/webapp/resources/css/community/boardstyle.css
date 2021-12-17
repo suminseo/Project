@@ -116,6 +116,10 @@ a:hover{
     border-top: 2px solid black;
 }
 
+.board_list .title a:hover{
+	color: #fe4365;
+}
+
 .board_list>div{
     border-bottom: 1px solid #ddd;
     font-size: 0;
@@ -199,6 +203,10 @@ a:hover{
 .board_page a.num{
     font-size: 1.4rem;
     padding-top: 9px;
+}
+
+.board_page a:hover{
+	color: #fe4365;
 }
 
 /*

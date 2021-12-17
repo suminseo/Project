@@ -95,7 +95,7 @@
 	                
 	                    <dl>
 	                        <dt>작성자</dt>
-	                        <dd><input type="text" name="writerId" placeholder="작성자 입력" required></dd>
+	                        <dd><input type="text" name="writerId" value="${ loginMember.id }" readonly></dd>
 	                    </dl>
 	                    <div class="file">
 	                        <dl>
