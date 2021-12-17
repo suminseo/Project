@@ -480,6 +480,19 @@ END;
 /
 
 
+SELECT RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS
+FROM (
+        SELECT ROWNUM AS RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS
+        FROM (
+            SELECT B.BOARD_NO, B.BOARD_TITLE, M.USER_ID, B.BOARD_CREATED, B.ORIGINAL_FILENAME, B.BOARD_HITS
+            FROM BOARD B JOIN QT_USER M ON(B.USER_ID = M.USER_ID) 
+            ORDER BY B.BOARD_NO DESC
+    )
+)
+WHERE RNUM BETWEEN 1 and 11;
+
+
+SELECT * FROM BOARD;
 ------------------------------------------------
 --------------- GOODS 관련 테이블 ---------------
 ------------------------------------------------

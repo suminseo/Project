@@ -38,7 +38,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="board_list">
                 <div class="top">
                     <div class="no">글번호</div>
@@ -48,86 +47,19 @@
                     <div class="date">작성일</div>
                     <div class="count">조회수</div>
                 </div>
+            <c:if test="${ !empty list }">
+            <c:forEach var="board" items="${ list }">
                 <div>
-                    <div class="no">10</div>
+                    <div class="no">${ board.no }</div>
                     <div class="category">공지사항</div>
-                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
-                    <div class="writer">관리자</div>
-                    <div class="date">2021-12-14</div>
-                    <div class="count">10</div>
+                    <div class="title"><a href="view.html">${ board.title }</a></div>
+                    <div class="writer">${ board.writerId }</div>
+                    <div class="date">${ board.createDate }</div>
+                    <div class="count">${ board.hits }</div>
                 </div>
-                <div>
-                    <div class="no">9</div>
-                    <div class="category">공지사항</div>
-                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
-                    <div class="writer">관리자</div>
-                    <div class="date">2021-11-28</div>
-                    <div class="count">10</div>
-                </div>
-                <div>
-                    <div class="no">8</div>
-                    <div class="category">공지사항</div>
-                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
-                    <div class="writer">관리자</div>
-                    <div class="date">2021-11-28</div>
-                    <div class="count">10</div>
-                </div>
-                <div>
-                    <div class="no">7</div>
-                    <div class="category">공지사항</div>
-                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
-                    <div class="writer">관리자</div>
-                    <div class="date">2021-11-28</div>
-                    <div class="count">10</div>
-                </div>
-                <div>
-                    <div class="no">6</div>
-                    <div class="category">공지사항</div>
-                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
-                    <div class="writer">관리자</div>
-                    <div class="date">2021-11-28</div>
-                    <div class="count">10</div>
-                </div>
-                <div>
-                    <div class="no">5</div>
-                    <div class="category">공지사항</div>
-                    <div class="title"><a href="view.html">운영진 공지사항입니다</a></div>
-                    <div class="writer">관리자</div>
-                    <div class="date">2021-11-28</div>
-                    <div class="count">10</div>
-                </div>
-                <div>
-                    <div class="no">4</div>
-                    <div class="category">자유게시판</div>
-                    <div class="title"><a href="view.html">벌써 겨울이네요</a></div>
-                    <div class="writer">김겨울</div>
-                    <div class="date">2021-11-27</div>
-                    <div class="count">100</div>
-                </div>
-                <div>
-                    <div class="no">3</div>
-                    <div class="category">자유게시판</div>
-                    <div class="title"><a href="view.html">코로나 조심하세요!</a></div>
-                    <div class="writer">이가을</div>
-                    <div class="date">2021-11-26</div>
-                    <div class="count">150</div>
-                </div>
-                <div>
-                    <div class="no">2</div>
-                    <div class="category">자유게시판</div>
-                    <div class="title"><a href="view.html">큐티 마켓 너무 좋아요!</a></div>
-                    <div class="writer">최여름</div>
-                    <div class="date">2021-11-25</div>
-                    <div class="count">1000</div>
-                </div>
-                <div>
-                    <div class="no">1</div>
-                    <div class="category">자유게시판</div>
-                    <div class="title"><a href="view.html">벌써 겨울이네요</a></div>
-                    <div class="writer">유봄</div>
-                    <div class="date">2021-11-24</div>
-                    <div class="count">120</div>
-                </div>
+            </c:forEach>
+          
+            </c:if>
             </div>
             <div class="board_page">
                 <a href="${ path }/QT/community?page=1" class="btn first"><<</a>
@@ -141,7 +73,9 @@
                 <a href="${ path }/QT/community?page=${ pageInfo.maxPage }" class="btn last">>></a>
             </div>
             <div class="btn_wrap">
-				<button type="button" id="btn-add" onclick="location.href='${ pageContext.request.contextPath }/board/boardwrite'">글쓰기</button>
+	            <c:if test="${ !empty loginMember }">
+					<button type="button" id="btn-add" onclick="location.href='${ pageContext.request.contextPath }/board/boardwrite'">글쓰기</button>
+	            </c:if>
             </div>
         </div>
 
