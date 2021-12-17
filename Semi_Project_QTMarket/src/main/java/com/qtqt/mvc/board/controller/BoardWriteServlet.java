@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.qtqt.mvc.common.util.FileRename;
 import com.qtqt.mvc.member.model.vo.Member;
 
 
@@ -33,15 +36,36 @@ public class BoardWriteServlet extends HttpServlet {
         		
     	}
     	
-    	
-    	
-    	
     	request.getRequestDispatcher(viewName).forward(request, response);
 	}
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String path = getServletContext().getRealPath("/resources/upload/board");
+    	
+    	// 파일 사이즈 (50MB)
+    	int maxSize = 52428800;
+    	
+    	String encoding = "UTF-8";
+    	
+    	MultipartRequest mr = new MultipartRequest(request, path, maxSize ,encoding, new FileRename()); 
+    	
+    	String title = mr.getParameter("title");
+    	String writerId = mr.getParameter("writerId");
+    	String content = mr.getParameter("content");
+    	
+    	String fileName = mr.getFilesystemName("upfile");
+    	String upfileName = mr.getOriginalFileName("upfile");
 
+    	
+    	System.out.println(title);
+    	System.out.println(writerId);
+    	System.out.println(content);
+    	
+    	System.out.println(fileName);
+    	System.out.println(upfileName);
+    	
+    	
 	}
 
 }
