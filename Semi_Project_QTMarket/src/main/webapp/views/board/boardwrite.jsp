@@ -111,7 +111,7 @@
 	
 	            </div>
 	           
-	            <div class="btn_wrap">
+	            <div class="btn_wrap_nv">
 	                <button type="submit" value="등록">등록</button>
 	                <button type="reset" value="취소" class="on" 
 	                		id="btn-cancel" onclick="location.href='${ pageContext.request.contextPath }/QT/community'">취소</button>

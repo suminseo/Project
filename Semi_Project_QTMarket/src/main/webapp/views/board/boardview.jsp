@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/community/boardstyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,40 +74,55 @@
         <div class="board_view_wrap">
             <div class="board_view">
                 <div class="title">
-                    제목을 작성해주세요.
+                    ${ board.title }
                 </div>
                 <div class="info">
                     <dl>
                         <dt>번호</dt>
-                        <dd>1</dd>
+                        <dd>${ board.no }</dd>
                     </dl>
                     <dl>
                         <dt>글쓴이</dt>
-                        <dd>이산아</dd>
+                        <dd>${ board.writerId }</dd>
                     </dl>
                     <dl>
                         <dt>작성일</dt>
-                        <dd>2021.11.28</dd>
+                        <dd>${ board.createDate }</dd>
                     </dl>
                     <dl>
                         <dt>조회수</dt>
-                        <dd>100</dd>
+                        <dd>${ board.hits }</dd>
                     </dl>
                 </div>
                 <div class="content">
-                    글 내용을 작성해주세요. <br>
-                    글 내용을 작성해주세요. <br>
-                    글 내용을 작성해주세요. <br>
-                    글 내용을 작성해주세요. <br>
-                    글 내용을 작성해주세요. 
+					${ board.content }
                 </div>
             </div>
             <div class="btn_wrap">
-                <button type="button" class="on">목록</button>
-                <button type="button">수정</button>
+                <button type="button" class="on" onclick="location.href='${ pageContext.request.contextPath }/QT/community'">목록</button>
+                
+                <c:if test="${ loginMember != null && loginMember.id == board.writerId }">
+                	<button type="button" id="btnEdit">수정</button>
+                	<button type="button" id="btnDelete">삭제</button>
+            	</c:if>
             </div>
         </div>
-
     </div>
+
+<script>
+	$(document).ready(() => {
+		$("#btnDelete").on("click", () => {
+			if(confirm("정말 게시글을 삭제 하시겠습니까?")){
+				location.replace("${ pageContext.request.contextPath }/board/boarddelete?no=${ board.no }");
+			} 
+			
+		})
+
+	});
+	
+
+</script>
+
 </body>
+
 </html>

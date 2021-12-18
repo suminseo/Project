@@ -461,12 +461,15 @@ COMMIT;
 --------------- BOARD 관련 테이블 ---------------
 ------------------------------------------------
 
+-- Board 테이블을 위한 시퀀스 생성
 CREATE SEQUENCE SEQ_BOARD_NO;
 
+-- Board 테이블에 게시글 삽입 쿼리
 INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL, 'qtlsa', '게시글 1',  '큐티마켓 최고', SYSDATE, SYSDATE, DEFAULT, '원본파일명.txt', '변경된파일명.txt');
 
 COMMIT;
 
+-- Board 테이블 더미 데이터를 위한 시퀀스 구문
 BEGIN
     FOR N IN 1..52
     LOOP
@@ -479,7 +482,7 @@ EXCEPTION
 END;
 /
 
-
+-- 목록 조회 페이징 쿼리
 SELECT RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS
 FROM (
         SELECT ROWNUM AS RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS
@@ -491,8 +494,13 @@ FROM (
 )
 WHERE RNUM BETWEEN 1 and 11;
 
+-- 게시글 상세 조회 쿼리
+SELECT  B.BOARD_NO, B.BOARD_TITLE, M.USER_ID, B.BOARD_HITS, B.ORIGINAL_FILENAME, B.RENAMED_FILENAME, B.BOARD_CONTENT, B.BOARD_CREATED, B.BOARD_MODIFIED
+FROM BOARD B
+JOIN QT_USER M ON(B.USER_ID = M.USER_ID)
+WHERE B.NO=?
 
-SELECT * FROM BOARD;
+
 ------------------------------------------------
 --------------- GOODS 관련 테이블 ---------------
 ------------------------------------------------

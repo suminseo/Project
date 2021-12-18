@@ -39,9 +39,6 @@ public class CommunityServlet extends HttpServlet {
 		pageInfo = new PageInfo(page, 10, listCount, 10);
 		list = service.getBoardList(pageInfo);
 		
-		System.out.println(list);
-		System.out.println(listCount);
-		
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/board/community.jsp").forward(request, response);

@@ -105,7 +105,7 @@
                 </div>
 
             </div>
-            <div class="btn_wrap">
+            <div class="btn_wrap_nv">
                 <button type="button">수정</button>
                 <button type="button" class="on">취소</button>
             </div>

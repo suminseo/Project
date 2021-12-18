@@ -39,6 +39,59 @@ public class BoardDao {
 		return count;
 	}
 
+	public Board findBoardByNo(Connection connection, int no) {
+		Board board = new Board();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = 
+				"SELECT "
+				+		"B.BOARD_NO, "
+				+		"B.BOARD_TITLE, "
+				+ 		"M.USER_ID, "
+				+		"B.BOARD_HITS, "
+				+		"B.ORIGINAL_FILENAME, "
+				+		"B.RENAMED_FILENAME, "
+				+ 		"B.BOARD_CONTENT, "
+				+		"B.BOARD_CREATED, "
+				+ 		"B.BOARD_MODIFIED "
+				+ "FROM BOARD B "
+				+ "JOIN QT_USER M ON(B.USER_ID = M.USER_ID) "
+				+ "WHERE B.BOARD_NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board = new Board();
+				
+				board.setNo(no);
+				board.setTitle(rs.getString("BOARD_TITLE"));
+				board.setWriterId(rs.getString("USER_ID"));
+				board.setHits(rs.getInt("BOARD_HITS"));
+				board.setOriginalFileName(rs.getString("ORIGINAL_FILENAME"));
+				board.setRenamedFileName(rs.getString("RENAMED_FILENAME"));
+				board.setContent(rs.getString("BOARD_CONTENT"));
+				board.setCreateDate(rs.getDate("BOARD_CREATED"));
+				board.setModifyDate(rs.getDate("BOARD_MODIFIED"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return board;
+	}
+	
+	
 	public List<Board> findAll(Connection connection, PageInfo pageInfo) {
 		List<Board> list = new ArrayList<>();
 		
@@ -126,5 +179,12 @@ public class BoardDao {
 		
 		return result;
 	}
+
+	public int updateStatus(Connection connection, int no) {
+		
+		return 1;
+	}
+
+
 
 }

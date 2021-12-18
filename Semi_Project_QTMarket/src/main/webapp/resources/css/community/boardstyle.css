@@ -105,10 +105,54 @@ a:hover{
     border-color: #FDE37B;
     background: white;
     color: black;
+    float: left;
+    margin-left: auto;
+}
+
+#btnEdit:hover{
+	background: #8c52ff;
+}
+
+.btn_wrap button.on:hover{
+	background: #8c52ff;
 }
 
 .btn_wrap button:hover{
 	background: #fe4365;
+}
+
+.btn_wrap_nv button:hover{
+	background: #8c52ff;
+}
+
+.btn_wrap_nv button.on:hover{
+	background: #fe4365;
+}
+
+.btn_wrap_nv{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+
+}
+
+.btn_wrap_nv button{
+    display: inline-block;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    background: #FDE37B;
+    color: black;
+    width: 100px;
+    height: 40px;
+}
+
+.btn_wrap_nv button.on{
+    border-color: #FDE37B;
+    background: white;
+    color: black;
+    float: right;
+    margin-left: auto;
 }
 
 .board_list{

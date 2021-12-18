@@ -99,7 +99,7 @@
                 <div>
                     <div class="no">${ board.no }</div>
                     <div class="category">공지사항</div>
-                    <div class="title"><a href="view.html">${ board.title }</a></div>
+                    <div class="title"><a href="${ pageContext.request.contextPath }/board/boardview?no=${ board.no }">${ board.title }</a></div>
                     <div class="writer">${ board.writerId }</div>
                     <div class="date">${ board.createDate }</div>
                     <div class="count">${ board.hits }</div>
