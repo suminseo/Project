@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -70,46 +71,58 @@
             <h1><b>큐티 게시판</b></h1>
             <p>큐티님을 위한 공간입니다.</p>
         </div>
+    	<form action="${ pageContext.request.contextPath }/board/boardedit" method="post" enctype="multipart/form-data">
         <div class="board_write_wrap">
+				<input type="hidden" name="no" value="${ board.no }">
+				<input type="hidden" name="originalFileName" value="${ board.originalFileName }">
+				<input type="hidden" name="renamedFileName" value="${ board.renamedFileName }">		
             <div class="board_write">
                 <div class="title">
                     <dl>
                         <dt>제목</dt>
-                        <dd><input type="text" placeholder="제목 입력" value="글 제목이 들어가야 합니다." required></dd>
+                        <dd><input type="text" name="title" value="${ board.title }"></dd>
                     </dl>
                 </div>
                 <div class="info">
+                	<dl>
+                        <dt>카테고리</dt>
+                        <dd>
+                            <select name="board_category" id="board_category">
+                                <option selected>----</option>
+                                <option value="bfree">자유 게시판</option>
+                                <option value="bregion">우리 동네 소식</option>
+                                <option value="bpromo">지역 홍보 게시판</option>
+                            </select>
+                        </dd>
+	                </dl>
                     <dl>
                         <dt>작성자</dt>
-                        <dd><input type="text" placeholder="작성자 입력" value="이산아" required></dd>
-                    </dl>
-                
-                    <dl>
-                        <dt>비밀번호</dt>
-                        <dd><input type="password" placeholder="비밀번호 입력" value="1234" required></dd>
+                        <dd><input type="text" name="writerId" value="${ board.writerId }" readonly></dd>
                     </dl>
                     <div class="file">
                         <dl>
                             <dt>첨부파일</dt>
-                            <dd><input type="file"></dd>
+                            <dd><input type="file" name="upfile"></dd>
+                            	<c:if test="${ !empty board.originalFileName }">
+								<c:out value="${ board.originalFileName }"></c:out>
+								</c:if>
                         </dl>
                     </div>
                 </div>
                 <div class="content">
-                    <textarea placeholder="내용을 입력해주세요.">
-작성한 내용이 보여집니다.
-작성한 내용이 보여집니다.
-작성한 내용이 보여집니다.
-작성한 내용이 보여집니다.
+                    <textarea name="content">
+${ board.content }
                     </textarea>
                 </div>
 
             </div>
             <div class="btn_wrap_nv">
-                <button type="button">수정</button>
-                <button type="button" class="on">취소</button>
+                <button type="submit" value="수정">수정</button>
+                <button type="reset" value="취소" class="on" 
+	                		id="btn-cancel" onclick="location.href='${ pageContext.request.contextPath }/QT/community'">취소</button>
             </div>
         </div>
+        </form>
 
     </div>
 </body>

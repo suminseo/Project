@@ -181,8 +181,50 @@ public class BoardDao {
 	}
 
 	public int updateStatus(Connection connection, int no) {
+		int result = 0;
 		
-		return 1;
+		PreparedStatement pstmt = null;
+		String query = "DELETE FROM BOARD WHERE BOARD_NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int updateBoard(Connection connection, Board board) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE BOARD SET BOARD_TITLE=?,BOARD_CONTENT=?,ORIGINAL_FILENAME=?,RENAMED_FILENAME=?,BOARD_MODIFIED=SYSDATE WHERE BOARD_NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			pstmt.setString(3, board.getOriginalFileName());
+			pstmt.setString(4, board.getRenamedFileName());
+			pstmt.setInt(5, board.getNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 

@@ -73,6 +73,7 @@
 	        <div class="board_write_wrap">
 	      		<form action="${ pageContext.request.contextPath }/board/boardwrite" method="post" 
 						enctype="multipart/form-data">
+				<input type="hidden" name="no" value="${ board.no }">
 	            <div class="board_write">
 	                <div class="title">
 	                    <dl>

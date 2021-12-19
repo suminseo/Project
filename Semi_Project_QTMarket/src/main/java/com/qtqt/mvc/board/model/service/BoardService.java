@@ -55,7 +55,7 @@ public class BoardService {
 		Connection connection = getConnection();
 		
 		if(board.getNo() != 0) {
-//			result = dao.updateBoard(connection, board);
+			result = dao.updateBoard(connection, board);
 		} else {
 			result = dao.insertBoard(connection, board);
 		}
@@ -78,6 +78,12 @@ public class BoardService {
 		Connection connection = getConnection();
 		
 		result = dao.updateStatus(connection, no);
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
 		
 		close(connection);
 		

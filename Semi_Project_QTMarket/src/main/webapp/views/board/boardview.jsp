@@ -100,9 +100,9 @@
             </div>
             <div class="btn_wrap">
                 <button type="button" class="on" onclick="location.href='${ pageContext.request.contextPath }/QT/community'">목록</button>
-                
+                <%-- 로그인 한 사람만, 로그인한 아이디와 게시글 작성자가 동일인일 경우만 버튼이 보이고 수정, 삭제 가능 --%>
                 <c:if test="${ loginMember != null && loginMember.id == board.writerId }">
-                	<button type="button" id="btnEdit">수정</button>
+                	<button type="button" id="btnEdit" onclick="location.href='${ pageContext.request.contextPath }/board/boardedit?no=${ board.no }'">수정</button>
                 	<button type="button" id="btnDelete">삭제</button>
             	</c:if>
             </div>
