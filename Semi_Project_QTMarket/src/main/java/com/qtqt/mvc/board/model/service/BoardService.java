@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.qtqt.mvc.board.model.vo.Board;
+import com.qtqt.mvc.board.model.vo.Reply;
 import com.qtqt.mvc.board.model.dao.BoardDao;
 import com.qtqt.mvc.common.util.PageInfo;
 
@@ -22,7 +23,7 @@ public class BoardService {
 		
 		close(connection);
 		
-		return count;
+		return count; 
 	}
 
 	public Board findBoardbyNo(int no) {
@@ -78,6 +79,24 @@ public class BoardService {
 		Connection connection = getConnection();
 		
 		result = dao.updateStatus(connection, no);
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+		
+		return result;
+	}
+
+	public int saveReply(Reply reply) {
+		
+		int result = 0;
+		Connection connection = getConnection();
+		
+		result = dao.insertReply(connection, reply);
 		
 		if(result > 0) {
 			commit(connection);

@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qtqt.mvc.board.model.vo.Board;
+import com.qtqt.mvc.board.model.vo.Reply;
 import com.qtqt.mvc.common.util.PageInfo;
 
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
 
 public class BoardDao {
+
 
 	public int getBoardCount(Connection connection) {
 		
@@ -76,6 +78,7 @@ public class BoardDao {
 				board.setOriginalFileName(rs.getString("ORIGINAL_FILENAME"));
 				board.setRenamedFileName(rs.getString("RENAMED_FILENAME"));
 				board.setContent(rs.getString("BOARD_CONTENT"));
+				board.setReplies(this.getRepliesByNO(connection, no));
 				board.setCreateDate(rs.getDate("BOARD_CREATED"));
 				board.setModifyDate(rs.getDate("BOARD_MODIFIED"));
 				
@@ -92,6 +95,37 @@ public class BoardDao {
 	}
 	
 	
+	private List<Reply> getRepliesByNO(Connection connection, int boardNo) {
+		List<Reply> replise = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT C.COMMENT_NO, C.BOARD_NO, C.COMMENT_CONTENT, M.USER_ID, C.B_COMMENT_CREATED, C.B_COMMENT_MODIFIED "
+				+ "FROM BOARD_COMMENT C "
+				+ "JOIN QT_USER M ON(C.USER_ID = M.USER_ID) "
+				+ "WHERE BOARD_NO=? "
+				+ "ORDER BY C.COMMENT_NO DESC";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setInt(1, boardNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+					Reply reply = new Reply();
+					
+					
+				
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 	public List<Board> findAll(Connection connection, PageInfo pageInfo) {
 		List<Board> list = new ArrayList<>();
 		
@@ -225,6 +259,11 @@ public class BoardDao {
 		}
 		
 		return result;
+	}
+
+	public int insertReply(Connection connection, Reply reply) {
+		
+		return 0;
 	}
 
 

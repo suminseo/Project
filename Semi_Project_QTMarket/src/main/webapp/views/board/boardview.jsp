@@ -98,6 +98,33 @@
 					${ board.content }
                 </div>
             </div>
+            <div id="comment-container">
+		    	<div class="comment-editor">
+		    		<form action="{ pageContext.request.contextPath }/board/reply" method="POST">
+		    			<input type="hidden" name="boardNo" value="${ board.no }">
+		    			<!-- <input type="hidden" name="writer" value="">  -->
+						<textarea name="content" id="replyContent" rows="3"  placeholder="댓글을 입력해주세요"></textarea>
+						<button type="submit" id="btn-insert">등록</button>	    			
+		    		</form>
+		    	</div>
+	    	</div>
+            <table id="tbl-comment">
+            <c:forEach var="reply" items="${ board.replies }">
+                <tr>
+                    <td class="comment-writer"><c:out value="${ reply.writerId }"/></td>
+                    <td class="comment-date"><fmt:formatDate type="date" value="${ reply.createDate }" /></td>
+                    <td class="btn-comment">
+                    	<c:if test="${ !empty loginMember && loginMember.id == reply.writerId }">
+	                        <button type="submit">수정</button>
+	                        <button type="button">삭제</button>
+                        </c:if>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="comment-content"><c:out value="${ reply.content }"/> </td>
+                </tr>
+            </c:forEach>
+            </table>
             <div class="btn_wrap">
                 <button type="button" class="on" onclick="location.href='${ pageContext.request.contextPath }/QT/community'">목록</button>
                 <%-- 로그인 한 사람만, 로그인한 아이디와 게시글 작성자가 동일인일 경우만 버튼이 보이고 수정, 삭제 가능 --%>
@@ -116,7 +143,15 @@
 				location.replace("${ pageContext.request.contextPath }/board/boarddelete?no=${ board.no }");
 			} 
 			
-		})
+		});
+		
+		$("#replyContent").on("focus", () => {
+			if(${ empty loginMember }) {
+				alert("로그인 후 이용해주세요!");
+				
+				history.back();
+			}
+		});
 
 	});
 	
