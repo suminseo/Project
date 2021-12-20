@@ -100,7 +100,7 @@
             </div>
             <div id="comment-container">
 		    	<div class="comment-editor">
-		    		<form action="{ pageContext.request.contextPath }/board/reply" method="POST">
+		    		<form action="${ pageContext.request.contextPath }/board/reply" method="POST">
 		    			<input type="hidden" name="boardNo" value="${ board.no }">
 		    			<!-- <input type="hidden" name="writer" value="">  -->
 						<textarea name="content" id="replyContent" rows="3"  placeholder="댓글을 입력해주세요"></textarea>
@@ -116,7 +116,7 @@
                     <td class="btn-comment">
                     	<c:if test="${ !empty loginMember && loginMember.id == reply.writerId }">
 	                        <button type="submit">수정</button>
-	                        <button type="button">삭제</button>
+	                        <button type="button" id="btnCDelete">삭제</button>
                         </c:if>
                     </td>
                 </tr>
@@ -145,13 +145,20 @@
 			
 		});
 		
-		$("#replyContent").on("focus", () => {
+		$("#replyContent").on("click", () => {
 			if(${ empty loginMember }) {
 				alert("로그인 후 이용해주세요!");
 				
-				history.back();
+				location.replace("${ pageContext.request.contextPath }/QT/login");
 			}
 		});
+		
+		$("#btnCDelete").on("click", () => {
+			if(confirm("댓글을 삭제하시겠습니까?")){
+				location.replace("${ pageContext.request.contextPath }/board/boardview?no=${ board.no }")
+			}
+			
+		})
 
 	});
 	

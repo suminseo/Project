@@ -553,7 +553,8 @@ WHERE B.NO=?
 -- 게시글 수정 쿼리
 -- UPDATE BOARD SET BOARD_TITLE=?,BOARD_CONTENT=?,ORIGINAL_FILENAME=?,RENAMED_FILENAME=?,BOARD_MODIFIED=SYSDATE WHERE BOARD_NO=?
 
-
+-- 조회수 증가
+-- UPDATE BOARD SET BOARD_HITS=? WHERE BOARD_NO=?
 
 ------------------------------------------------
 ------------ BOARD_COMMENT 관련 테이블 -----------

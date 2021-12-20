@@ -115,15 +115,24 @@ public class BoardDao {
 			while(rs.next()) {
 					Reply reply = new Reply();
 					
-					
+					reply.setNo(rs.getInt("COMMENT_NO"));
+					reply.setBoardNo(rs.getInt("BOARD_NO"));
+					reply.setContent(rs.getString("COMMENT_CONTENT"));
+					reply.setWriterId(rs.getString("USER_ID"));
+					reply.setCreateDate(rs.getDate("B_COMMENT_CREATED"));
+					reply.setModifyDate(rs.getDate("B_COMMENT_MODIFIED"));;
 				
+					replise.add(reply);
 			}
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
 		
-		return null;
+		return replise;
 	}
 
 	public List<Board> findAll(Connection connection, PageInfo pageInfo) {
@@ -261,10 +270,57 @@ public class BoardDao {
 		return result;
 	}
 
+	
+	public int updateHits(Connection connection, Board board) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE BOARD SET BOARD_HITS=? WHERE BOARD_NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			board.setHits(board.getHits() + 1);
+			
+			pstmt.setInt(1, board.getHits());
+			pstmt.setInt(2, board.getNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+	
 	public int insertReply(Connection connection, Reply reply) {
 		
-		return 0;
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "INSERT INTO BOARD_COMMENT VALUES(SEQ_COMMENT_NO.NEXTVAL, ?, ?, ?, DEFAULT, DEFAULT)";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setInt(1, reply.getBoardNo());
+			pstmt.setString(2, reply.getWriterId());
+			pstmt.setString(3, reply.getContent());
+			
+			result = pstmt.executeUpdate();	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
+
 
 
 

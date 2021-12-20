@@ -31,7 +31,7 @@ public class BoardEditServlet extends HttpServlet {
     	Board board = null;
     	int no = Integer.parseInt(request.getParameter("no"));
     	
-    	board = new BoardService().findBoardbyNo(no);
+    	board = new BoardService().findBoardbyNo(no, true);
     	
     	request.setAttribute("board", board);
     	request.getRequestDispatcher("/views/board/boardedit.jsp").forward(request, response);

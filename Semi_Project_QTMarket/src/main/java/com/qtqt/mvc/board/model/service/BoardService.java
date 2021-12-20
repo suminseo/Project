@@ -26,11 +26,24 @@ public class BoardService {
 		return count; 
 	}
 
-	public Board findBoardbyNo(int no) {
+	public Board findBoardbyNo(int no, boolean hasRead) {
 		Board board = null;
 		Connection connection = getConnection();
 		
 		board = dao.findBoardByNo(connection, no);
+		
+		// 조회수를 증가하는 로직
+		if(board != null && !hasRead) {
+			int result = dao.updateHits(connection, board);
+			
+			if(result > 0) {
+				commit(connection);
+			} else {
+				rollback(connection);
+			}
+			
+		}
+		
 		
 		close(connection);
 		
