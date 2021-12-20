@@ -29,10 +29,12 @@ public class MemberDao {
 				member.setPassword(rs.getString("USER_PASSWORD"));
 				member.setName(rs.getString("USER_NAME"));
 				member.setEmail(rs.getString("USER_EMAIL"));
-				member.setProfile(rs.getString("USER_PROFILE"));
+				member.setOriginalProfileName(rs.getString("ORIGINAL_PROFILENAME"));
+				member.setRenamedProfileName(rs.getString("RENAMED_PROFILENAME"));
 				member.setPhone(rs.getString("USER_PHONE"));
 				member.setRole(rs.getString("USER_ROLE"));
-				member.setArea(rs.getString("USER_AREA"));
+				member.setArea1(rs.getString("USER_AREA1"));
+				member.setArea2(rs.getString("USER_AREA2"));
 				member.setEnrollDate(rs.getDate("USER_ENROLLDATE"));
 			}
 		} catch (SQLException e) {
@@ -48,7 +50,7 @@ public class MemberDao {
 	public int insertMember(Connection connection, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO QT_USER VALUES(?,?,?,?,?,?,?,DEFAULT,DEFAULT)";
+		String query = "INSERT INTO QT_USER VALUES(?,?,?,?,?,?,?,DEFAULT,DEFAULT,?,?)";
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -57,9 +59,11 @@ public class MemberDao {
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getEmail());
-			pstmt.setString(5, member.getProfile());
-			pstmt.setString(6, member.getPhone());
-			pstmt.setString(7, member.getArea());
+			pstmt.setString(5, member.getOriginalProfileName());
+			pstmt.setString(6, member.getRenamedProfileName());
+			pstmt.setString(7, member.getPhone());
+			pstmt.setString(8, member.getArea1());
+			pstmt.setString(9, member.getArea2());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

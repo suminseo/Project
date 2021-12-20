@@ -67,9 +67,9 @@ button {
 
 body {
   width: 100%;
-  height: 140vh;
+  height: 160vh;
   font-family: "Gugi", cursive;
-  background: url(/Semi_Project_QTMarket/resources/imgs/backgorund/background2.png) center/cover no-repeat;
+  background: url(/imgs/backgorund/background2.png) center/cover no-repeat;
   /* /* -ms-overflow-style: none; -- IE & Edge */
   scrollbar-width: none; /* -- Firefox */
 }
@@ -110,7 +110,11 @@ body::-webkit-scrollbar {
 
 .navbar__logo > a {
   background: rgb(255, 87, 87);
-  background: linear-gradient(90deg, rgba(255, 87, 87, 1) 16%, rgba(140, 82, 255, 1) 89%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 87, 87, 1) 16%,
+    rgba(140, 82, 255, 1) 89%
+  );
   background-size: 100% 100%;
   background-clip: border-box;
   -webkit-background-clip: text;
@@ -141,175 +145,109 @@ body::-webkit-scrollbar {
 
 /* User_Table */
 #main {
-  width: 75%;
+  width: 40%;
   margin: auto;
 }
 
-.main__user {
+p {
+  font-size: 42px;
+  font-weight: var(--weight-bold);
+}
+
+.main_user {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background-color: #f4d03f;
   background-image: linear-gradient(132deg, #f4d03f 0%, #16a085 100%);
   margin-top: 50px;
-  padding: 30px;
+  padding: 50px;
+  padding-top: 60px;
   border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.main__user__header {
+.input-group {
+  display: flex;
+  position: relative;
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  padding-bottom: 50px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid black;
+  margin: 1rem 0;
 }
 
-.main__user__header__profile {
-  width: 300px;
-  border-radius: 50%;
-  border: 1px solid var(--color-white);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-  margin-right: 30px;
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--gray-2);
 }
 
-.main__user__header__description {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 35px;
-  padding-left: 60px;
-  border-left: 1px solid black;
-}
-
-.main__user__header__description > p:nth-child(2) {
-  font-size: 20px;
-  padding-left: 20px;
-  padding-top: 10px;
-}
-
-.main__user__body {
-  display: flex;
-  flex-direction: column;
-}
-
-.main__user__body__category {
-  display: flex;
-  justify-content: space-evenly;
-  padding-bottom: 30px;
-}
-
-.category {
-  width: 80px;
-  height: 30px;
-  background: var(--color-yellow);
-  /* border: 1px solid var(--color-black); */
+.input-group input {
+  width: 100%;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 0.125rem solid white;
   outline: none;
-  border-radius: 2px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.main__user__body__product {
-  border-top: 1px solid black;
-}
-
-.main__user__body__product p {
-  padding-left: 20px;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  font-size: 25px;
-}
-
-.main__user__body__table {
+.input-group select {
   width: 100%;
-  table-layout: fixed;
-  background: rgba(255, 255, 255, 0.205);
-  border-collapse: collapse;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-  padding: 14px;
-  margin-bottom: 30px;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 0.125rem solid white;
+  outline: none;
 }
 
-.main__user__body__table button {
-  background: transparent;
+.up input:focus {
+  border: 0.125rem solid #ff5757;
+}
+
+.btn {
+  cursor: pointer;
+  width: 100%;
+  padding: 0.6rem 0;
+  border-radius: 0.5rem;
   border: none;
-  font-size: 18px;
-  transition: all var(--animation-duration) ease-in;
-}
-
-.main__user__body__table button:hover {
-  color: var(--color-dark-pink);
-}
-
-th {
-  letter-spacing: 2px;
-}
-
-td {
-  letter-spacing: 1px;
-}
-
-th,
-td {
-  padding: 10px;
-  border-top: 1px solid var(--color-black);
-  border-bottom: 1px solid var(--color-black);
-  border-collapse: collapse;
-}
-
-.table__sel {
-  width: 5%;
-}
-
-.table__no {
-  width: 5%;
-}
-
-.table__title {
-  width: 45%;
-}
-
-.table__author {
-  width: 20%;
-}
-
-.table__enroll {
-  width: 15%;
-}
-
-.table__hits {
-  width: 5%;
-}
-
-.table__change {
-  width: 5%;
-}
-
-.table__tbody {
-  text-align: center;
-}
-
-.table__tbody tr td:nth-child(3) {
-  text-align: start;
-}
-
-.product__btn {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.product__btn > button {
-  margin-left: 20px;
-  width: 80px;
-  height: 30px;
-  background: var(--color-yellow);
-  /* border: 1px solid var(--color-black); */
+  color: black;
+  font-size: 1.2rem;
   outline: none;
-  border-radius: 2px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
+
+.sign-ups {
+  background-color: #fff7d1;
+}
+
+.input-group input::file-selector-button {
+  display: none;
+}
+
+.enroll__idcheck {
+  /* position: absolute; */
+  top: 6%;
+  right: 6%;
+  width: 20%;
+  padding: 2px;
+  font-size: 1rem;
+  background-color: #fff7d1;
+  border-radius: 0.5rem;
+  border: 0.125rem solid #fff7d1;
+  outline: none;
+}
+
+.form p {
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.pointer {
+  cursor: pointer;
+}}

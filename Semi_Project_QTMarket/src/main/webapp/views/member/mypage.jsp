@@ -19,11 +19,6 @@
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${ path }/resources/css/mypage/style.css" />
     <script src="${ path }/resources/js/mypage/main.js" defer></script>
-    <style>
-    	body {
-      		background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
-      	}	
-    </style>
   </head>
   <body>
       <!-- Navbar -->
@@ -49,8 +44,13 @@
           </c:if>
           <c:if test="${ !empty loginMember }">
           	<li class="navbar__menu__item">
-            	<a href="${ path }/QT/mypage" class="active">마이페이지</a>
+            	<a href="${ path }/QT/mypage">마이페이지</a>
          	</li>
+         	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
+         	<li class="navbar__menu__item">
+         		<a href="${ path }/QT/mypage">관리자페이지</a>
+         	</li>
+         	</c:if>
           	<li class="navbar__menu__item">
           	  <a href="${ path }/logout">로그아웃</a>
          	</li>
@@ -61,9 +61,9 @@
     <main id="main">
       <section class="main__user">
         <div class="main__user__header">
-          <img class="main__user__header__profile" src="${ path }/resources/imgs/profile/4.png" alt="" />
+          <img class="main__user__header__profile" src="${ path }/resources/upload/memberProfile/${ loginMember.renamedProfileName }" alt="" />
           <div class="main__user__header__description">
-            <p>{닉네임} || {실명} 님 환영합니다.</p>
+            <p>${ loginMember.name } 님 환영합니다.</p>
             <p>일반 회원</p>
           </div>
         </div>
@@ -72,7 +72,7 @@
             <button class="category product">상품 관리</button>
             <button class="category board">게시글 관리</button>
             <button class="category wish">찜 목록</button>
-            <button class="category prefernce">정보 수정</button>
+            <button class="category prefernce" onclick="location.href='${ path }/QT/editprofile'">정보 수정</button>
             <button class="category resign">회원 탈퇴</button>
           </div>
           <div class="main__user__body__product">
