@@ -321,6 +321,50 @@ public class BoardDao {
 		return result;
 	}
 
+	public int updateComStatus(Connection connection, int no) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String query = "DELETE FROM BOARD_COMMENT WHERE COMMENT_NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateReply(Connection connection, Reply reply) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE BOARD SET USER_ID=?,COMMENT_CONTENT=? WHERE COMMNET_NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, reply.getWriterId());
+			pstmt.setString(2, reply.getContent());
+			pstmt.setInt(3, reply.getNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 
 
 

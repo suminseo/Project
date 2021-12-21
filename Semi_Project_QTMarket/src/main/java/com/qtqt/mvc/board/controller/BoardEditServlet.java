@@ -87,7 +87,6 @@ public class BoardEditServlet extends HttpServlet {
     		request.setAttribute("msg", "게시글 수정 실패");
     	}
     	
-    	System.out.println(board);
     	
     	request.setAttribute("location", "/board/boardview?no=" + board.getNo());
     	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);

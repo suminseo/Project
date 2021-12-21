@@ -93,6 +93,19 @@
                         <dt>조회수</dt>
                         <dd>${ board.hits }</dd>
                     </dl>
+                    <dl>
+                    	<dt>첨부파일</dt>
+                        <dd>
+                        	<c:if test="${ empty board.originalFileName }">
+							<span> - </span>
+							</c:if>
+							<c:if test="${ !empty board.originalFileName }">
+							 <a href="javascript:fileDownload('${ board.originalFileName }', '${ board.renamedFileName }')">
+						 	<c:out value="${ board.originalFileName }"/>
+						 	</a>
+							</c:if>
+                        </dd>
+                    </dl>
                 </div>
                 <div class="content">
 					${ board.content }
@@ -102,21 +115,22 @@
 		    	<div class="comment-editor">
 		    		<form action="${ pageContext.request.contextPath }/board/reply" method="POST">
 		    			<input type="hidden" name="boardNo" value="${ board.no }">
-		    			<!-- <input type="hidden" name="writer" value="">  -->
 						<textarea name="content" id="replyContent" rows="3"  placeholder="댓글을 입력해주세요"></textarea>
 						<button type="submit" id="btn-insert">등록</button>	    			
 		    		</form>
 		    	</div>
 	    	</div>
+	    	<form action="${ pageContext.request.contextPath }/board/boardComDelete" method="GET">
             <table id="tbl-comment">
             <c:forEach var="reply" items="${ board.replies }">
+		    	<input type="hidden" name="replyNo" value="${ reply.no }">
                 <tr>
                     <td class="comment-writer"><c:out value="${ reply.writerId }"/></td>
                     <td class="comment-date"><fmt:formatDate type="date" value="${ reply.createDate }" /></td>
                     <td class="btn-comment">
                     	<c:if test="${ !empty loginMember && loginMember.id == reply.writerId }">
-	                        <button type="submit">수정</button>
-	                        <button type="button" id="btnCDelete">삭제</button>
+	                        <button type="submit" value="수정" name="btnCEdit" data-eno="${ reply.no }">수정</button>
+	                        <button type="button" value="삭제" id="btnCDelete" data-no="${ reply.no }">삭제</button>
                         </c:if>
                     </td>
                 </tr>
@@ -125,6 +139,7 @@
                 </tr>
             </c:forEach>
             </table>
+            </form>
             <div class="btn_wrap">
                 <button type="button" class="on" onclick="location.href='${ pageContext.request.contextPath }/QT/community'">목록</button>
                 <%-- 로그인 한 사람만, 로그인한 아이디와 게시글 작성자가 동일인일 경우만 버튼이 보이고 수정, 삭제 가능 --%>
@@ -153,14 +168,29 @@
 			}
 		});
 		
-		$("#btnCDelete").on("click", () => {
+		$("#btnCDelete").on("click", (event) => {
+				const btn = event.target.dataset.no;
 			if(confirm("댓글을 삭제하시겠습니까?")){
-				location.replace("${ pageContext.request.contextPath }/board/boardview?no=${ board.no }")
+				location.replace("${ pageContext.request.contextPath }/board/boardComDelete?no=" + btn);
 			}
 			
-		})
+		});
+		
+		$('[name="btnCEdit"]').on("click", (event) => {
+				const btnn = event.target.dataset.eno;
+			if(confirm("댓글을 수정하시겠습니까?")){
+				location.replace("${ pageContext.request.contextPath }/board/boardComEdit?no=" + btnn);
+			}
+			
+		});
 
 	});
+	
+	function fileDownload(oname, rname){
+		
+		location.assign("${ pageContext.request.contextPath }/board/boardFileDown?oname=" + encodeURIComponent(oname) + "&rname=" + encodeURIComponent(rname));
+	}
+	
 	
 
 </script>
