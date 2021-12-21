@@ -36,7 +36,7 @@
 			<li class="navbar__menu__item"><a href="${ path }/QT/community">커뮤니티</a>
 			</li>
 			<c:if test="${ empty loginMember }">
-				<li class="navbar__menu__item"><a href="${ path }/QT/login">로그인</a>
+				<li class="navbar__menu__item"><a href="${ path }/QT/signinup">로그인</a>
 				</li>
 			</c:if>
           <c:if test="${ !empty loginMember }">
@@ -45,7 +45,7 @@
          	</li>
          	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
          	<li class="navbar__menu__item">
-         		<a href="${ path }/QT/mypage">관리자페이지</a>
+         		<a href="${ path }/QT/admin/member">관리자페이지</a>
          	</li>
          	</c:if>
           	<li class="navbar__menu__item">

@@ -40,7 +40,7 @@
           </li>
           <c:if test="${ empty loginMember }">
           	<li class="navbar__menu__item">
-           	 	<a href="${ path }/QT/login">로그인</a>
+           	 	<a href="${ path }/QT/signinup">로그인</a>
          	</li>
           </c:if>
           <c:if test="${ !empty loginMember }">
@@ -49,7 +49,7 @@
          	</li>
          	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
          	<li class="navbar__menu__item">
-         		<a href="${ path }/QT/mypage">관리자페이지</a>
+         		<a href="${ path }/QT/admin/member">관리자페이지</a>
          	</li>
          	</c:if>
           	<li class="navbar__menu__item">
@@ -68,9 +68,7 @@
             <p>큐티마켓은</p><br>
             <p class="text"></p><br>
             <p>있는 마켓 입니다.</p>
-            
           </div>
-        </div>
       </section>
       <!-- footer -->
       <footer id="footer">

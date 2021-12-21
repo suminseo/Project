@@ -14,20 +14,13 @@ import com.qtqt.mvc.common.util.FileRename;
 import com.qtqt.mvc.member.model.service.MemberService;
 import com.qtqt.mvc.member.model.vo.Member;
 
-@WebServlet(name="enroll", urlPatterns = "/QT/enroll")
+@WebServlet(name="enroll", urlPatterns = "/QT/signinup/enroll")
 public class EnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberService service = new MemberService();
        
     public EnrollServlet() {
     }
-    
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 회원가입 페이지로 전환해주는 기능
-		
-		request.getRequestDispatcher("/views/member/signinup.jsp").forward(request,response);
-	}
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

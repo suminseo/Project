@@ -40,7 +40,7 @@
           </li>
           <c:if test="${ empty loginMember }">
           	<li class="navbar__menu__item">
-           	 	<a href="${ path }/QT/login">로그인</a>
+           	 	<a href="${ path }/QT/signinup">로그인</a>
          	</li>
           </c:if>
           <c:if test="${ !empty loginMember }">
@@ -49,7 +49,7 @@
          	</li>
          	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
          	<li class="navbar__menu__item">
-         		<a href="${ path }/QT/mypage">관리자페이지</a>
+         		<a href="${ path }/QT/admin/member">관리자페이지</a>
          	</li>
          	</c:if>
           	<li class="navbar__menu__item">
@@ -200,7 +200,7 @@
       <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a>
       <a href="#" class="menu-item green"> <i class="fas fa-comments"></i> </a>
       <a href="main.html" class="menu-item purple"> <i class="fas fa-home"></i> </a>
-      <a href="#" class="menu-item blue"> <i class="fas fa-question"></i></i> </a>
+      <a href="#" class="menu-item blue"> <i class="fas fa-question"></i> </a>
       <!-- <a href="#" class="menu-item lightblue"> <i class="fas fa-question"></i> </a> -->
     </footer>
 </body>
