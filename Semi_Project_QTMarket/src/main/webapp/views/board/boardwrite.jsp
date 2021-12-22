@@ -23,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${ path }/resources/css/market/style.css" />
+    <script src="${ path }/resources/js/login/jquery-3.6.0.js"></script>
     <script src="${ path }/resources/js/market/isotope.pkgd.min.js"></script>
     <script src="${ path }/resources/js/market/main.js" defer></script>
     <style>
@@ -85,11 +86,11 @@
 	                    <dl>
 	                        <dt>카테고리</dt>
 	                        <dd>
-	                            <select name="board_category" id="board_category">
-	                                <option selected>----</option>
-	                                <option value="bfree">자유 게시판</option>
-	                                <option value="bregion">우리 동네 소식</option>
-	                                <option value="bpromo">지역 홍보 게시판</option>
+	                            <select name="category" id="category">
+	                                <option value="공지사항" >공지 사항</option>
+	                                <option value="오늘의 이야기" >오늘의 이야기</option>
+	                                <option value="우리 동네 소식" >우리 동네 소식</option>
+	                                <option value="지역 홍보" >지역 홍보</option>
 	                            </select>
 	                        </dd>
 	                    </dl>
@@ -121,5 +122,7 @@
 	        </div>
 
     </div>
+    
+    
 </body>
 </html>

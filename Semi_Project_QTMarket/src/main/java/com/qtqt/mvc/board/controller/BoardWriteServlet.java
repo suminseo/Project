@@ -56,6 +56,7 @@ public class BoardWriteServlet extends HttpServlet {
     	String title = mr.getParameter("title");
     	String writerId = mr.getParameter("writerId");
     	String content = mr.getParameter("content");
+    	String category = mr.getParameter("category");
     	
     	String filesystemName = mr.getFilesystemName("upfile");
     	String originalFileName = mr.getOriginalFileName("upfile");
@@ -71,6 +72,7 @@ public class BoardWriteServlet extends HttpServlet {
     		board.setContent(content);
     		board.setOriginalFileName(originalFileName);
     		board.setRenamedFileName(filesystemName);
+    		board.setCategory(category);
     		
     		result = service.save(board);
     		

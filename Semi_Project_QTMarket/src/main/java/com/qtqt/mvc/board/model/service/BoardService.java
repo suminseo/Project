@@ -143,6 +143,7 @@ public class BoardService {
 	public int updateReply(Reply reply) {
 		
 		int result = 0;
+		
 		Connection connection = getConnection();
 		
 		result = dao.updateReply(connection, reply);
@@ -155,8 +156,10 @@ public class BoardService {
 		
 		close(connection);
 		
+		
 		return result;
 	}
+
 
 
 

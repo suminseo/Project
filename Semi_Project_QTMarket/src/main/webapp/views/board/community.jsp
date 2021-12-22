@@ -75,8 +75,8 @@
             <div class="function_wrap">
                 <div class="b_function">
                     <form class="search_wrap">
-                        <input type="text" placeholder="검색어를 입력하세요." id="b_search">
-                        <button type="submit" id="search_btn">검색</button>
+                        <input type="text" placeholder="검색어를 입력하세요." class="fuzzy-search" id="b_search">
+                        <button type="submit" id="search_btn" value="검색">검색</button>
                     </form>
                         <div class="sort_wrap">
                             <a href="">최신순</a>
@@ -98,7 +98,7 @@
             <c:forEach var="board" items="${ list }">
                 <div>
                     <div class="no">${ board.no }</div>
-                    <div class="category">공지사항</div>
+                    <div class="category">${ board.category }</div>
                     <div class="title"><a href="${ pageContext.request.contextPath }/board/boardview?no=${ board.no }">${ board.title }</a></div>
                     <div class="writer">${ board.writerId }</div>
                     <div class="date">${ board.createDate }</div>
@@ -124,8 +124,12 @@
 					<button type="button" id="btn-add" onclick="location.href='${ pageContext.request.contextPath }/board/boardwrite'">글쓰기</button>
 	            </c:if>
             </div>
+            
+            
         </div>
 
     </div>
+    
+    
 </body>
 </html>

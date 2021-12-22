@@ -56,7 +56,8 @@ public class BoardDao {
 				+		"B.RENAMED_FILENAME, "
 				+ 		"B.BOARD_CONTENT, "
 				+		"B.BOARD_CREATED, "
-				+ 		"B.BOARD_MODIFIED "
+				+ 		"B.BOARD_MODIFIED, "
+				+		"B.CATEGORY "
 				+ "FROM BOARD B "
 				+ "JOIN QT_USER M ON(B.USER_ID = M.USER_ID) "
 				+ "WHERE B.BOARD_NO=?";
@@ -81,6 +82,7 @@ public class BoardDao {
 				board.setReplies(this.getRepliesByNO(connection, no));
 				board.setCreateDate(rs.getDate("BOARD_CREATED"));
 				board.setModifyDate(rs.getDate("BOARD_MODIFIED"));
+				board.setCategory(rs.getString("CATEGORY"));
 				
 			}
 			
@@ -141,7 +143,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = 
-							"SELECT RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS "
+							"SELECT RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS, CATEGORY "
 							+ "FROM ("
 							+    "SELECT ROWNUM AS RNUM, "
 							+           "BOARD_NO, "
@@ -149,14 +151,16 @@ public class BoardDao {
 							+ 			"USER_ID, "
 							+ 			"BOARD_CREATED, "
 							+			"ORIGINAL_FILENAME, "
-							+  			"BOARD_HITS "
+							+  			"BOARD_HITS, "
+							+			"CATEGORY "
 							+ 	 "FROM ("
 							+ 	    "SELECT B.BOARD_NO, "
 							+ 			   "B.BOARD_TITLE, "
 							+  			   "M.USER_ID, "
 							+ 			   "B.BOARD_CREATED, "
 							+			   "B.ORIGINAL_FILENAME, "
-							+ 			   "B.BOARD_HITS "
+							+ 			   "B.BOARD_HITS, "
+							+			   "B.CATEGORY "
 							+ 		"FROM BOARD B "
 							+ 		"JOIN QT_USER M ON(B.USER_ID = M.USER_ID) "
 							+ 		"ORDER BY B.BOARD_NO DESC"
@@ -181,6 +185,7 @@ public class BoardDao {
 				board.setCreateDate(rs.getDate("BOARD_CREATED"));
 				board.setOriginalFileName(rs.getString("ORIGINAL_FILENAME"));
 				board.setHits(rs.getInt("BOARD_HITS"));
+				board.setCategory(rs.getString("CATEGORY"));
 				
 				list.add(board);
 			}
@@ -199,7 +204,7 @@ public class BoardDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL,?,?,?,DEFAULT,DEFAULT,DEFAULT,?,?)";
+		String query = "INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL,?,?,?,DEFAULT,DEFAULT,DEFAULT,?,?,?)";
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -209,6 +214,7 @@ public class BoardDao {
 			pstmt.setString(3, board.getContent());
 			pstmt.setString(4, board.getOriginalFileName());
 			pstmt.setString(5, board.getRenamedFileName());
+			pstmt.setString(6, board.getCategory());
 			
 			result = pstmt.executeUpdate();
 			
@@ -249,7 +255,7 @@ public class BoardDao {
 	public int updateBoard(Connection connection, Board board) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "UPDATE BOARD SET BOARD_TITLE=?,BOARD_CONTENT=?,ORIGINAL_FILENAME=?,RENAMED_FILENAME=?,BOARD_MODIFIED=SYSDATE WHERE BOARD_NO=?";
+		String query = "UPDATE BOARD SET BOARD_TITLE=?,BOARD_CONTENT=?,ORIGINAL_FILENAME=?,RENAMED_FILENAME=?,CATEGORY=?,BOARD_MODIFIED=SYSDATE WHERE BOARD_NO=?";
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -258,7 +264,8 @@ public class BoardDao {
 			pstmt.setString(2, board.getContent());
 			pstmt.setString(3, board.getOriginalFileName());
 			pstmt.setString(4, board.getRenamedFileName());
-			pstmt.setInt(5, board.getNo());
+			pstmt.setString(5, board.getCategory());
+			pstmt.setInt(6, board.getNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -346,16 +353,16 @@ public class BoardDao {
 	public int updateReply(Connection connection, Reply reply) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "UPDATE BOARD SET USER_ID=?,COMMENT_CONTENT=? WHERE COMMNET_NO=?";
+		String query = "UPDATE BOARD_COMMENT SET COMMENT_CONTENT =? WHERE COMMENT_NO =?";
 		
 		try {
 			pstmt = connection.prepareStatement(query);
 			
-			pstmt.setString(1, reply.getWriterId());
-			pstmt.setString(2, reply.getContent());
-			pstmt.setInt(3, reply.getNo());
+			pstmt.setString(1, reply.getContent());
+			pstmt.setInt(2, reply.getNo());
 			
-			result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();	
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

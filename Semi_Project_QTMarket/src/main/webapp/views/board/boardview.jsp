@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="${ path }/resources/css/market/style.css" />
     <script src="${ path }/resources/js/market/isotope.pkgd.min.js"></script>
     <script src="${ path }/resources/js/market/main.js" defer></script>
+    
+    
     <style>
     	body {
       		background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
@@ -77,6 +79,10 @@
                     ${ board.title }
                 </div>
                 <div class="info">
+                	<dl>
+                		<dt>카테고리</dt>
+                		<dd>${ board.category }</dd>
+                	</dl>
                     <dl>
                         <dt>번호</dt>
                         <dd>${ board.no }</dd>
@@ -129,7 +135,7 @@
                     <td class="comment-date"><fmt:formatDate type="date" value="${ reply.createDate }" /></td>
                     <td class="btn-comment">
                     	<c:if test="${ !empty loginMember && loginMember.id == reply.writerId }">
-	                        <button type="submit" value="수정" name="btnCEdit" data-eno="${ reply.no }">수정</button>
+	                        <button type="submit" value="수정" id="btnCEdit" data-eno="${ reply.no }">수정</button>
 	                        <button type="button" value="삭제" id="btnCDelete" data-no="${ reply.no }">삭제</button>
                         </c:if>
                     </td>
@@ -176,15 +182,20 @@
 			
 		});
 		
-		$('[name="btnCEdit"]').on("click", (event) => {
+		
+		$("#btnCEdit").on("click", (event) => {
 				const btnn = event.target.dataset.eno;
 			if(confirm("댓글을 수정하시겠습니까?")){
 				location.replace("${ pageContext.request.contextPath }/board/boardComEdit?no=" + btnn);
 			}
 			
 		});
+		
+		
 
 	});
+	
+	
 	
 	function fileDownload(oname, rname){
 		

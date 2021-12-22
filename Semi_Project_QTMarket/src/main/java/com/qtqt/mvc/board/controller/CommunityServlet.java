@@ -24,6 +24,7 @@ public class CommunityServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		int page = 0;
 		int listCount = 0;
 		PageInfo pageInfo = null;

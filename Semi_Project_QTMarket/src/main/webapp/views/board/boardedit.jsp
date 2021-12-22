@@ -87,11 +87,11 @@
                 	<dl>
                         <dt>카테고리</dt>
                         <dd>
-                            <select name="board_category" id="board_category">
-                                <option selected>----</option>
-                                <option value="bfree">자유 게시판</option>
-                                <option value="bregion">우리 동네 소식</option>
-                                <option value="bpromo">지역 홍보 게시판</option>
+                            <select name="category" id="category">
+                                <option value="공지 사항">공지 사항</option>
+                                <option value="오늘의 이야기">오늘의 이야기</option>
+                                <option value="우리 동네 소식">우리 동네 소식</option>
+                                <option value="지역 홍보">지역 홍보</option>
                             </select>
                         </dd>
 	                </dl>
@@ -110,9 +110,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <textarea name="content">
-${ board.content }
-                    </textarea>
+                    <textarea name="content">${ board.content }</textarea>
                 </div>
 
             </div>

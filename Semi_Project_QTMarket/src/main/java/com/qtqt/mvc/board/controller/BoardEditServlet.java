@@ -57,10 +57,10 @@ public class BoardEditServlet extends HttpServlet {
     	board.setNo(Integer.parseInt(mr.getParameter("no")));
     	board.setTitle(mr.getParameter("title"));
     	board.setWriterId(mr.getParameter("writer"));
-    	board.setContent(mr.getParameter("writer"));
     	board.setContent(mr.getParameter("content"));
     	board.setOriginalFileName(mr.getParameter("originalFileName"));
     	board.setRenamedFileName(mr.getParameter("renamedFileName"));
+    	board.setCategory(mr.getParameter("category"));
     	
     	// 여기는 사용자가 edit할 때 파일이 바뀌었을 경우
     	originalFileName = mr.getOriginalFileName("upfile");

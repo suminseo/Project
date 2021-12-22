@@ -566,6 +566,10 @@ WHERE B.NO=?
 -- 조회수 증가
 -- UPDATE BOARD SET BOARD_HITS=? WHERE BOARD_NO=?
 
+-- 게시판에 카테고리 컬럼 추가
+ALTER TABLE BOARD ADD CATEGORY VARCHAR2(30);
+COMMENT ON COLUMN BOARD.CATEGORY IS '게시판 카테고리';
+
 ------------------------------------------------
 ------------ BOARD_COMMENT 관련 테이블 -----------
 ------------------------------------------------
@@ -613,7 +617,8 @@ ALTER TABLE BOARD_COMMENT ADD CONSTRAINT BOARD_COMMENT_BOARD_NO_FK FOREIGN KEY(B
 -- 댓글 삭제 쿼리
 DELETE FROM BOARD_COMMENT WHERE COMMENT_NO=27;
 
-
+-- 댓글 수정 쿼리
+UPDATE BOARD_COMMENT SET COMMENT_CONTENT = '댓글 수정 테스트 성공' WHERE COMMENT_NO = 57;
 
 
 
