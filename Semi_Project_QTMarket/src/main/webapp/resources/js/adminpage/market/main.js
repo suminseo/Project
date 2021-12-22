@@ -25,3 +25,12 @@ cancelBtn.onclick = () => {
   cancelBtn.classList.remove("active");
   searchInput.value = "";
 };
+
+$(document).ready(() => {
+	$(".deleteBtn").on("click", (event) => {
+		const no = event.target.dataset.productno;
+		if (confirm("정말로 삭제 하시겠습니까?")) {
+			location.replace("market/delete?no=" + no);
+		};
+	});
+});

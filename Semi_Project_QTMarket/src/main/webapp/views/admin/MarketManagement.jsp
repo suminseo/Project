@@ -19,6 +19,7 @@
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${ path }/resources/css/adminpage/market/main.css" />
     <script src="${ path }/resources/js/adminpage/list.js"></script>
+    <script src="${ path }/resources/js/login/jquery-3.6.0.js"></script>
     <script src="${ path }/resources/js/adminpage/market/main.js" defer></script>
   </head>
 <body>
@@ -91,7 +92,7 @@
       <div class="main__home__categories box">
         <p>: : 마켓관리 : :</p>
         <!-- 총 회원 수 DB따와서 출력 -->
-        <span>총 84 물품</span>
+        <span>총 ${ listCount } 물품</span>
       </div>
       <div class="main__home__board box">
         <div id="list" class="main__home__board__members">
@@ -136,19 +137,23 @@
                 </td>
               </tr>	 -->
             <tbody class="list">
-              <tr>
-                <td class="no">1</td>
-                <td class="title">정장 한 벌</td>
-                <td class="price">16,000원</td>
-                <td class="writer">임현규</td>
-                <td class="enroll">2021/12/12</td>
-                <td class="city">부산특별시</td>
-                <td class="district">관악구</td>
-                <td class="hits">35</td>
-                <td>
-                  <input type="button" value="X">
-                </td>
-              </tr>
+              <c:if test="${ !empty list }">
+            	<c:forEach var="board" items="${ list }">
+	              <tr>
+	                <td class="no">${ board.rowNum }</td>
+	                <td class="title">${ board.title }</td>
+	                <td class="price">${ board.price }</td>
+	                <td class="writer">${ board.writerId }</td>
+	                <td class="enroll">${ board.createDate }</td>
+	                <td class="city">${ board.area1 }</td>
+	                <td class="district">${ board.area2 }</td>
+	                <td class="hits">${ board.readCount }</td>
+	                <td>
+	                  <input class="deleteBtn" name="deleteBtn" type="button" value="X" data-productNo="${ board.no }" ></input>
+	                </td>
+	              </tr>
+              </c:forEach>
+            </c:if>
               </tbody>
           </table>      
         </div>
