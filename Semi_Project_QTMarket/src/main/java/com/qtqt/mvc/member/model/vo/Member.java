@@ -24,12 +24,3 @@ public class Member {
 	private Date enrollDate;
 }
 
-//USER_ID,
-//USER_PASSWORD,
-//USER_NAME,
-//USER_EMAIL,
-//USER_PROFILE,
-//USER_PHONE,
-//USER_ROLE,
-//USER_ENROLLDATE,
-//USER_AREA

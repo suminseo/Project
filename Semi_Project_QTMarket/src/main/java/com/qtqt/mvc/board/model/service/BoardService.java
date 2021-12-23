@@ -120,6 +120,11 @@ public class BoardService {
 		close(connection);
 		
 		return result;
+<<<<<<< HEAD
+	}
+
+	public int deleteReply(int no) {
+=======
 	}
 
 	public int deleteReply(int no) {
@@ -140,8 +145,40 @@ public class BoardService {
 		return result;
 	}
 
+	public int updateReply(Reply reply) {
+		
+>>>>>>> origin/borad
+		int result = 0;
+		
+		Connection connection = getConnection();
+		
+<<<<<<< HEAD
+		result = dao.updateComStatus(connection, no);
+=======
+		result = dao.updateReply(connection, reply);
+>>>>>>> origin/borad
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+		
+<<<<<<< HEAD
+=======
+		
+>>>>>>> origin/borad
+		return result;
+	}
 
 
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/borad
 }
 
 

@@ -38,7 +38,10 @@ public class MemberDao {
 				member.setPhone(rs.getString("USER_PHONE"));
 				member.setRole(rs.getString("USER_ROLE"));
 				member.setArea1(rs.getString("USER_AREA1"));
+<<<<<<< HEAD
 				member.setArea2(rs.getString("USER_AREA2"));
+=======
+>>>>>>> origin/borad
 				member.setEnrollDate(rs.getDate("USER_ENROLLDATE"));
 			}
 		} catch (SQLException e) {
@@ -63,11 +66,17 @@ public class MemberDao {
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getEmail());
+<<<<<<< HEAD
 			pstmt.setString(5, member.getOriginalProfileName());
 			pstmt.setString(6, member.getRenamedProfileName());
 			pstmt.setString(7, member.getPhone());
 			pstmt.setString(8, member.getArea1());
 			pstmt.setString(9, member.getArea2());
+=======
+			pstmt.setString(5, member.getProfile());
+			pstmt.setString(6, member.getPhone());
+			pstmt.setString(7, member.getArea1());
+>>>>>>> origin/borad
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

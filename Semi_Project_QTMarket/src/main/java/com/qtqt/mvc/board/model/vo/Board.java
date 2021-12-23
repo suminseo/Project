@@ -35,4 +35,9 @@ public class Board {
 	private Date createDate;
 	
 	private Date modifyDate;
+<<<<<<< HEAD
+=======
+	
+	private String category;
+>>>>>>> origin/borad
 }

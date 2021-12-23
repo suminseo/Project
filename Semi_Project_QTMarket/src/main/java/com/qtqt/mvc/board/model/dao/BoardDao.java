@@ -56,7 +56,12 @@ public class BoardDao {
 				+		"B.RENAMED_FILENAME, "
 				+ 		"B.BOARD_CONTENT, "
 				+		"B.BOARD_CREATED, "
+<<<<<<< HEAD
 				+ 		"B.BOARD_MODIFIED "
+=======
+				+ 		"B.BOARD_MODIFIED, "
+				+		"B.CATEGORY "
+>>>>>>> origin/borad
 				+ "FROM BOARD B "
 				+ "JOIN QT_USER M ON(B.USER_ID = M.USER_ID) "
 				+ "WHERE B.BOARD_NO=?";
@@ -81,6 +86,10 @@ public class BoardDao {
 				board.setReplies(this.getRepliesByNO(connection, no));
 				board.setCreateDate(rs.getDate("BOARD_CREATED"));
 				board.setModifyDate(rs.getDate("BOARD_MODIFIED"));
+<<<<<<< HEAD
+=======
+				board.setCategory(rs.getString("CATEGORY"));
+>>>>>>> origin/borad
 				
 			}
 			
@@ -141,24 +150,42 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = 
+<<<<<<< HEAD
 							"SELECT RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CONTENT, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS "
+=======
+							"SELECT RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS, CATEGORY "
+>>>>>>> origin/borad
 							+ "FROM ("
 							+    "SELECT ROWNUM AS RNUM, "
 							+           "BOARD_NO, "
 							+ 			"BOARD_TITLE, "
 							+ 			"USER_ID, "
+<<<<<<< HEAD
 							+ 			"BOARD_CONTENT, "
 							+ 			"BOARD_CREATED, "
 							+			"ORIGINAL_FILENAME, "
 							+  			"BOARD_HITS "
+=======
+							+ 			"BOARD_CREATED, "
+							+			"ORIGINAL_FILENAME, "
+							+  			"BOARD_HITS, "
+							+			"CATEGORY "
+>>>>>>> origin/borad
 							+ 	 "FROM ("
 							+ 	    "SELECT B.BOARD_NO, "
 							+ 			   "B.BOARD_TITLE, "
 							+  			   "M.USER_ID, "
+<<<<<<< HEAD
 							+ 			   "B.BOARD_CONTENT, "
 							+ 			   "B.BOARD_CREATED, "
 							+			   "B.ORIGINAL_FILENAME, "
 							+ 			   "B.BOARD_HITS "
+=======
+							+ 			   "B.BOARD_CREATED, "
+							+			   "B.ORIGINAL_FILENAME, "
+							+ 			   "B.BOARD_HITS, "
+							+			   "B.CATEGORY "
+>>>>>>> origin/borad
 							+ 		"FROM BOARD B "
 							+ 		"JOIN QT_USER M ON(B.USER_ID = M.USER_ID) "
 							+ 		"ORDER BY B.BOARD_NO DESC"
@@ -180,10 +207,17 @@ public class BoardDao {
 				board.setRowNum(rs.getInt("RNUM"));
 				board.setWriterId(rs.getString("USER_ID"));
 				board.setTitle(rs.getString("BOARD_TITLE"));
+<<<<<<< HEAD
 				board.setContent(rs.getString("BOARD_CONTENT"));
 				board.setCreateDate(rs.getDate("BOARD_CREATED"));
 				board.setOriginalFileName(rs.getString("ORIGINAL_FILENAME"));
 				board.setHits(rs.getInt("BOARD_HITS"));
+=======
+				board.setCreateDate(rs.getDate("BOARD_CREATED"));
+				board.setOriginalFileName(rs.getString("ORIGINAL_FILENAME"));
+				board.setHits(rs.getInt("BOARD_HITS"));
+				board.setCategory(rs.getString("CATEGORY"));
+>>>>>>> origin/borad
 				
 				list.add(board);
 			}
@@ -202,7 +236,11 @@ public class BoardDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
+<<<<<<< HEAD
 		String query = "INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL,?,?,?,DEFAULT,DEFAULT,DEFAULT,?,?)";
+=======
+		String query = "INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL,?,?,?,DEFAULT,DEFAULT,DEFAULT,?,?,?)";
+>>>>>>> origin/borad
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -212,6 +250,10 @@ public class BoardDao {
 			pstmt.setString(3, board.getContent());
 			pstmt.setString(4, board.getOriginalFileName());
 			pstmt.setString(5, board.getRenamedFileName());
+<<<<<<< HEAD
+=======
+			pstmt.setString(6, board.getCategory());
+>>>>>>> origin/borad
 			
 			result = pstmt.executeUpdate();
 			
@@ -252,7 +294,11 @@ public class BoardDao {
 	public int updateBoard(Connection connection, Board board) {
 		int result = 0;
 		PreparedStatement pstmt = null;
+<<<<<<< HEAD
 		String query = "UPDATE BOARD SET BOARD_TITLE=?,BOARD_CONTENT=?,ORIGINAL_FILENAME=?,RENAMED_FILENAME=?,BOARD_MODIFIED=SYSDATE WHERE BOARD_NO=?";
+=======
+		String query = "UPDATE BOARD SET BOARD_TITLE=?,BOARD_CONTENT=?,ORIGINAL_FILENAME=?,RENAMED_FILENAME=?,CATEGORY=?,BOARD_MODIFIED=SYSDATE WHERE BOARD_NO=?";
+>>>>>>> origin/borad
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -261,7 +307,12 @@ public class BoardDao {
 			pstmt.setString(2, board.getContent());
 			pstmt.setString(3, board.getOriginalFileName());
 			pstmt.setString(4, board.getRenamedFileName());
+<<<<<<< HEAD
 			pstmt.setInt(5, board.getNo());
+=======
+			pstmt.setString(5, board.getCategory());
+			pstmt.setInt(6, board.getNo());
+>>>>>>> origin/borad
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -346,6 +397,31 @@ public class BoardDao {
 		return result;
 	}
 
+<<<<<<< HEAD
+=======
+	public int updateReply(Connection connection, Reply reply) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE BOARD_COMMENT SET COMMENT_CONTENT=? WHERE COMMENT_NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, reply.getContent());
+			pstmt.setInt(2, reply.getNo());
+			
+			result = pstmt.executeUpdate();	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+>>>>>>> origin/borad
 
 
 
