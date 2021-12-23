@@ -20,11 +20,6 @@
     <link rel="stylesheet" href="${ path }/resources/css/market/style.css" />
     <script src="${ path }/resources/js/market/isotope.pkgd.min.js"></script>
     <script src="${ path }/resources/js/market/main.js" defer></script>
-    <style>
-    	body {
-      		background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
-      	}	
-    </style>
 </head>
 <body>
     <!-- navbar -->
@@ -52,6 +47,11 @@
           	<li class="navbar__menu__item">
             	<a href="${ path }/QT/mypage">마이페이지</a>
          	</li>
+         	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
+         	<li class="navbar__menu__item">
+         		<a href="${ path }/QT/mypage">관리자페이지</a>
+         	</li>
+         	</c:if>
           	<li class="navbar__menu__item">
           	  <a href="${ path }/logout">로그아웃</a>
          	</li>
@@ -72,121 +72,93 @@
         -->
         <li><a href=".home__Appliances">가전</a></li>
       </ul>
-      <section class="section">
-        <article class="clothes">
-          <div>
-            <img src="${ path }/resources/imgs/products/1.jpg" alt="" />
-            <p>난곡동</p>
-            <h2>남성 여름 한벌 + 운동화</h2>
-            <p>한 번에 사놓고 입지도 못하고 있어서 싸게 올려요~</p>
-            <div>
-              <span>가격 : 13000원</span>
-              <div>
-                <button class="wish__btn__0" onclick="heartEmpty()"><i class="far fa-heart"></i></button>
-                <button class="chat__btn"><i class="fas fa-comments"></i></button>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="clothes a">
-          <div>
-            <img src="${ path }/resources/imgs/products/2.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="home__Appliances">
-          <div>
-            <img src="${ path }/resources/imgs/products/3.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="home__Appliances">
-          <div>
-            <img src="${ path }/resources/imgs/products/4.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="clothes">
-          <div>
-            <img src="${ path }/resources/imgs/products/2.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="clothes">
-          <div>
-            <img src="${ path }/resources/imgs/products/1.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="home__Appliances">
-          <div>
-            <img src="${ path }/resources/imgs/products/4.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="home__Appliances">
-          <div>
-            <img src="${ path }/resources/imgs/products/3.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="clothes">
-          <div>
-            <img src="${ path }/resources/imgs/products/1.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="home__Appliances">
-          <div>
-            <img src="${ path }/resources/imgs/products/3.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="clothes">
-          <div>
-            <img src="${ path }/resources/imgs/products/2.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="home__Appliances">
-          <div>
-            <img src="${ path }/resources/imgs/products/4.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article class="clothes">
-          <div>
-            <img src="${ path }/resources/imgs/products/1.jpg" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article>
-          <div>
-            <img src="${ path }/resources/imgs/products/no-image.png" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-        <article>
-          <div>
-            <img src="${ path }/resources/imgs/products/no-image.png" alt="" />
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
-          </div>
-        </article>
-      </section>
+      <c:if test="${ empty list }">			
+				<tr>
+					<td colspan="6">
+						조회된 게시글이 없습니다.
+					</td>
+				</tr>	
+	  </c:if>
+	  
+	  <div>
+	  
+	  <div class="container">
+		<div class="row">
+			<form method="get" name="search" action="${ pageContext.request.contextPath }/goods/notice">
+				<table class="pull-right">
+					<tr>
+						
+						<form class="table-form">
+						<fieldset>
+						<legend class="hidden">공지사항 검색 필드</legend>
+						<label class="hidden">검색분류</label>
+						<select name="f">
+						<option value="G_PRODUCT_NAME">제목</option>
+						<option value="USER_ID">작성자</option>
+						</select>
+						<label class="hidden">검색어</label>
+						<input type="text" name="q" value=""/>
+						<input class="btn btn-search" type="submit" value="검색" / >
+						</fieldset>
+						</form>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+	</div>
+	
+	  </div>
+	  
+	      <section class="section">
+		      <c:if test="${ !empty list }">
+		  		<c:forEach var="board" items="${ list }">
+		        <article class="${ board.cate }">
+		          <div>
+		            <c:if test="${ board.cate == 'clothes' && board.status == 'Y' }">
+	                	<img src="${ path }/resources/imgs/products/1.jpg" alt="" width="570px" />
+	                </c:if>
+	                <c:if test="${ board.cate == 'home__Appliances' && board.status == 'Y' }">
+	                    <img src="${ path }/resources/imgs/products/3.jpg" alt="" width="570px" />
+	                </c:if>
+	                <c:if test="${ board.status == 'N' }">
+	                    <img src="${ path }/resources/imgs/products/5.jpg" alt="" width="570px" />
+	                </c:if>
+	                <c:if test="${ board.status == 'Y' }">
+		            <a href="${ pageContext.request.contextPath }/goods/goodsview?no=${ board.no }">
+			            <p>${ board.area1 } ${ board.area2 }</p>
+			            <h2>${ board.writerId }</h2>
+			            <h3>${ board.title }</h3>
+			            <p>${ board.content }</p>
+			            </a>
+		            </c:if>
+		            <div>
+		              <span>${ board.price }원</span>
+		              <div>
+		                <button class="wish__btn__0" onclick="heartEmpty()"><i class="far fa-heart"></i></button>
+		                <button class="chat__btn"><i class="fas fa-comments"></i></button>
+		              </div>
+		            </div>
+		          </div>
+		          </article>
+		          </c:forEach>
+	
+		  		  </c:if>	
+	        
+	      </section>
+	      
+	      
+      
+	  <!--
+	  <article class="home__Appliances">
+	          <div>
+	            <img src="${ path }/resources/imgs/products/3.jpg" alt="" />
+	            <h2>Lorem, ipsum dolor.</h2>
+	            <p>lorem ipsum dolor, sitamet consectetur adipisicing</p>
+	          </div>
+	  </article>
+	  -->
+	
     </main>
     <footer class="menu">
       <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
@@ -196,12 +168,16 @@
         <span class="lines line-3"></span>
       </label>
 
-      <a href="#" class="menu-item orange"> <i class="fas fa-plus"></i> </a>
-      <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a>
+      <a onclick="location.href='${ pageContext.request.contextPath }/goods/goodsadd'" class="menu-item orange"> <i class="fas fa-plus"></i> </a>
+      <c:if test="${ !empty loginMember }">
+      <a href="${ pageContext.request.contextPath }/goods/goodswishlist" class="menu-item red"> <i class="fa fa-heart"></i> </a>
+      </c:if>
       <a href="#" class="menu-item green"> <i class="fas fa-comments"></i> </a>
       <a href="main.html" class="menu-item purple"> <i class="fas fa-home"></i> </a>
       <a href="#" class="menu-item blue"> <i class="fas fa-question"></i></i> </a>
       <!-- <a href="#" class="menu-item lightblue"> <i class="fas fa-question"></i> </a> -->
     </footer>
+    
+    
 </body>
 </html>
