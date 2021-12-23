@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="${ path }/resources/css/market/style.css" />
     <script src="${ path }/resources/js/market/isotope.pkgd.min.js"></script>
     <script src="${ path }/resources/js/market/main.js" defer></script>
+    
+    
     <style>
     	body {
       		background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
@@ -68,14 +70,14 @@
      <!-- main -->
 		<div class="board_wrap">
         <div class="board_title">
-            <h1><b>큐티 게시판</b></h1>
+            <h1><b>큐티 게시판</b></h1> 
             <p>큐티님을 위한 공간입니다.</p>
         </div>
         <div class="board_list_wrap">
             <div class="function_wrap">
                 <div class="b_function">
                     <form class="search_wrap">
-                        <input type="text" placeholder="검색어를 입력하세요." class="fuzzy-search" id="b_search">
+                        <input type="text" name="keyword" placeholder="검색어를 입력하세요." class="fuzzy-search" id="b_search">
                         <button type="submit" id="search_btn" value="검색">검색</button>
                     </form>
                         <div class="sort_wrap">
@@ -130,6 +132,7 @@
 
     </div>
     
+
     
 </body>
 </html>

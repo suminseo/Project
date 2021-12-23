@@ -1,6 +1,7 @@
 package com.qtqt.mvc.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,48 +17,51 @@ import com.qtqt.mvc.board.model.vo.Reply;
 public class BoardComEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
+	private BoardService service = new BoardService();
+	
     public BoardComEditServlet() {
     }
 
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    	Board board = null;
-    	int no = Integer.parseInt(request.getParameter("no"));
-    	
-    	board = new BoardService().findBoardbyNo(no, true);
-    	
-    	request.setAttribute("board", board);
-    	request.getRequestDispatcher("/views/board/boardedit.jsp").forward(request, response);
-    	
-	}
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Board board = null;
     	int result = 0;
-    	Reply reply = null;
+    	Board board = null;
+    	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+    	int no = 0;
     	
-    	reply = new Reply();
+    	board = new Board();
     	
-    	reply.setNo(Integer.parseInt(request.getParameter("no")));
-    	reply.setContent(request.getParameter("content"));
+    	Reply reply = new Reply();
+
+    	/*
+    	try {
+			no = Integer.parseInt(request.getParameter("no"));
+		} catch (NumberFormatException e) {
+			no = reply.getNo();
+		}
+		*/
     	
     	
-    	result = new BoardService().updateReply(reply);
-    	
-    	if(result > 0) {
-    		request.setAttribute("msg", "게시글 수정 성공");
+		reply.setNo(Integer.parseInt(request.getParameter("no")));
+    	reply.setBoardNo(boardNo);
+		reply.setContent(request.getParameter("content"));
+			
+		result = service.updateReply(reply);
+		
+		if(result > 0) {
+    		request.setAttribute("msg", "댓글 수정 성공");
+    		request.setAttribute("location", "/QT/community");
     	} else {
-    		request.setAttribute("msg", "게시글 수정 실패");
+    		request.setAttribute("msg", "댓글 수정 실패");
+    		request.setAttribute("location", "/QT/community");
     	}
-    	
-    	
-    	request.setAttribute("location", "/board/boardview?no=" + board.getNo());
+  	
+//    	request.setAttribute("location", "/board/boardview?no=" + board.getNo());
     	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
     	
     	
 	}
+
 
 }

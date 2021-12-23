@@ -353,7 +353,7 @@ public class BoardDao {
 	public int updateReply(Connection connection, Reply reply) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "UPDATE BOARD_COMMENT SET COMMENT_CONTENT =? WHERE COMMENT_NO =?";
+		String query = "UPDATE BOARD_COMMENT SET COMMENT_CONTENT=? WHERE COMMENT_NO=?";
 		
 		try {
 			pstmt = connection.prepareStatement(query);

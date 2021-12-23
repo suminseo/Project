@@ -2,6 +2,7 @@ package com.qtqt.mvc.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -78,6 +79,7 @@ public class BoardEditServlet extends HttpServlet {
     		board.setOriginalFileName(originalFileName);
         	board.setRenamedFileName(renamedFileName);
     	} 
+    	
     	
     	result = new BoardService().save(board);
     	

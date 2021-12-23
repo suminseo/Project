@@ -27,7 +27,6 @@
     <script src="${ path }/resources/js/market/isotope.pkgd.min.js"></script>
     <script src="${ path }/resources/js/market/main.js" defer></script>
     
-    
     <style>
     	body {
       		background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
@@ -122,30 +121,36 @@
 		    		<form action="${ pageContext.request.contextPath }/board/reply" method="POST">
 		    			<input type="hidden" name="boardNo" value="${ board.no }">
 						<textarea name="content" id="replyContent" rows="3"  placeholder="댓글을 입력해주세요"></textarea>
-						<button type="submit" id="btn-insert">등록</button>	    			
+						
+						<button type="submit" id="btn-insert">등록</button>
+							    			
 		    		</form>
 		    	</div>
 	    	</div>
-	    	<form action="${ pageContext.request.contextPath }/board/boardComDelete" method="GET">
+	    	<form name="comeEdit" action="${ pageContext.request.contextPath }/board/boardComEdit" method="POST">
             <table id="tbl-comment">
             <c:forEach var="reply" items="${ board.replies }">
 		    	<input type="hidden" name="replyNo" value="${ reply.no }">
+		    	<input type="hidden" name="replyContent" value="${ reply.content }">
+		    	<input type="hidden" name="boardNo" value="${ board.no }">
                 <tr>
                     <td class="comment-writer"><c:out value="${ reply.writerId }"/></td>
-                    <td class="comment-date"><fmt:formatDate type="date" value="${ reply.createDate }" /></td>
+                    <td class="comment-date"><fmt:formatDate type="date" value="${ reply.createDate }" pattern="yyyy-MM-dd" /></td>
                     <td class="btn-comment">
+                    <!-- <form action="${ pageContext.request.contextPath }/board/boardComEdit" method="POST">  -->
                     	<c:if test="${ !empty loginMember && loginMember.id == reply.writerId }">
 	                        <button type="submit" value="수정" id="btnCEdit" data-eno="${ reply.no }">수정</button>
 	                        <button type="button" value="삭제" id="btnCDelete" data-no="${ reply.no }">삭제</button>
                         </c:if>
+                 <!--    </form>  -->
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" id="comment-content"><c:out value="${ reply.content }"/> </td>
+                    <td colspan="3" id="comment-content"> <c:out value="${ reply.content }"/> </td>
                 </tr>
             </c:forEach>
             </table>
-            </form>
+      		</form>
             <div class="btn_wrap">
                 <button type="button" class="on" onclick="location.href='${ pageContext.request.contextPath }/QT/community'">목록</button>
                 <%-- 로그인 한 사람만, 로그인한 아이디와 게시글 작성자가 동일인일 경우만 버튼이 보이고 수정, 삭제 가능 --%>
@@ -182,27 +187,34 @@
 			
 		});
 		
-		
-		$("#btnCEdit").on("click", (event) => {
-				const btnn = event.target.dataset.eno;
-			if(confirm("댓글을 수정하시겠습니까?")){
-				location.replace("${ pageContext.request.contextPath }/board/boardComEdit?no=" + btnn);
-			}
-			
-		});
+
 		
 		
+		$("#btn-insert").click(function() {
+			if($("#replyContent").val().length==0){
+				alert("댓글을 입력하세요."); 
+				$("#replyContent").focus(); 
+				return false;}
+		})
 
 	});
 	
 	
+	$("#btnCEdit").on("click", (event) => {
+			const btn = event.target.dataset.eno;
+	    if(confirm("수정 하시겠습니까?")){
+	 	window.open('${ pageContext.request.contextPath }/board/boardComEdit?no=' + no);
+
+	                }
+	        });
 	
+
 	function fileDownload(oname, rname){
 		
 		location.assign("${ pageContext.request.contextPath }/board/boardFileDown?oname=" + encodeURIComponent(oname) + "&rname=" + encodeURIComponent(rname));
 	}
 	
-	
+
 
 </script>
 

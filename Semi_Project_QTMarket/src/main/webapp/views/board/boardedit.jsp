@@ -87,7 +87,8 @@
                 	<dl>
                         <dt>카테고리</dt>
                         <dd>
-                            <select name="category" id="category">
+                            <select name="category" id="category" required>
+                            	<option value="" selected disabled> 카테고리 선택 </option> 
                                 <option value="공지 사항">공지 사항</option>
                                 <option value="오늘의 이야기">오늘의 이야기</option>
                                 <option value="우리 동네 소식">우리 동네 소식</option>
@@ -98,6 +99,10 @@
                     <dl>
                         <dt>작성자</dt>
                         <dd><input type="text" name="writerId" value="${ board.writerId }" readonly></dd>
+                    </dl>
+                    <dl>
+                    	<dt>작성일</dt>
+                    	<dd>${ board.modifyDate }</dd>
                     </dl>
                     <div class="file">
                         <dl>
