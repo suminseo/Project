@@ -10,10 +10,8 @@ import java.util.List;
 import com.qtqt.mvc.common.util.PageInfo;
 import com.qtqt.mvc.goods.model.vo.GoodsBoard;
 import com.qtqt.mvc.goods.model.vo.GoodsReply;
-<<<<<<< HEAD
-=======
 import com.qtqt.mvc.goods.model.vo.GoodsWish;
->>>>>>> origin/product
+
 
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
 
@@ -75,11 +73,8 @@ public class GoodsDao {
 	public int insertBoard(Connection connection, GoodsBoard board) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-<<<<<<< HEAD
-		String query = "INSERT INTO GOODS VALUES(SEQ_GOODS_NO.NEXTVAL,?,?,?,?,DEFAULT,DEFAULT,?,?,?,?,?)";
-=======
 		String query = "INSERT INTO GOODS VALUES(SEQ_GOODS_NO.NEXTVAL,?,?,?,?,DEFAULT,DEFAULT,?,?,?,?,?,DEFAULT)";
->>>>>>> origin/product
+
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -110,11 +105,7 @@ public class GoodsDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = 
-<<<<<<< HEAD
-				"SELECT ROWNUM, G_PRODUCT, USER_ID, G_PRODUCT_NAME, G_PRICE, G_CONTENT, G_DATE, G_HITS, G_CATE, G_O_FILENAME, G_AREA1, G_AREA2 "
-=======
 				"SELECT ROWNUM, G_PRODUCT, USER_ID, G_PRODUCT_NAME, G_PRICE, G_CONTENT, G_DATE, G_HITS, G_CATE, G_O_FILENAME, G_AREA1, G_AREA2, STATUS "
->>>>>>> origin/product
 				+ "FROM GOODS "
 				+ "WHERE ROWNUM BETWEEN ? and ?";
 		
@@ -141,10 +132,9 @@ public class GoodsDao {
 				board.setOriginalFileName(rs.getString("G_O_FILENAME"));
 				board.setArea1(rs.getString("G_AREA1"));
 				board.setArea2(rs.getString("G_AREA2"));
-<<<<<<< HEAD
-=======
+
 				board.setStatus(rs.getString("STATUS"));
->>>>>>> origin/product
+
 				
 				list.add(board);
 			}
@@ -161,11 +151,8 @@ public class GoodsDao {
 	public int updateReadCount(Connection connection, GoodsBoard board) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-<<<<<<< HEAD
-		String query = "UPDATE GOODS SET G_HITS=? WHERE NO=?";
-=======
 		String query = "UPDATE GOODS SET G_HITS=? WHERE G_PRODUCT=?";
->>>>>>> origin/product
+
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -199,14 +186,9 @@ public class GoodsDao {
 				+   "G_DATE, "
 				+   "G_HITS, "
 				+   "G_CATE, "
-<<<<<<< HEAD
-				+   "G_O_FILENAME "
-				+   "G_R_FILENAME "
-=======
 				+   "G_O_FILENAME, "
 				+   "G_R_FILENAME, "
 				+	"STATUS "
->>>>>>> origin/product
 				+ "FROM GOODS "
 				+ "WHERE G_PRODUCT=?";
 		
@@ -228,17 +210,11 @@ public class GoodsDao {
 				board.setCreateDate(rs.getDate("G_DATE"));
 				board.setReadCount(rs.getInt("G_HITS"));
 				board.setCate(rs.getString("G_CATE"));
-<<<<<<< HEAD
-				board.setOriginalFileName(rs.getString("G_O_FILENAME"));
-				board.setRenamedFileName(rs.getString("G_R_FILENAME"));
-=======
 				board.setReplies(this.getRepliesByNo(connection, no));
 				board.setOriginalFileName(rs.getString("G_O_FILENAME"));
 				board.setRenamedFileName(rs.getString("G_R_FILENAME"));
 				board.setStatus(rs.getString("STATUS"));
 
->>>>>>> origin/product
-				
 			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -334,8 +310,6 @@ public class GoodsDao {
 		return replies;
 	}
 
-<<<<<<< HEAD
-=======
 	public int updateComStatus(Connection connection, int no) {
 		int result = 0;
 		
@@ -522,16 +496,5 @@ public class GoodsDao {
 
 		return list;
 	}
-
-	
-
-	
-
-
-
-	
-
->>>>>>> origin/product
-
 
 }

@@ -1,6 +1,5 @@
 package com.qtqt.mvc.goods.model.service;
 
-<<<<<<< HEAD
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.close;
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.commit;
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.getConnection;
@@ -9,23 +8,12 @@ import static com.qtqt.mvc.common.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
-=======
-import java.sql.Connection;
-import java.util.List;
-
-
-
->>>>>>> origin/product
 import com.qtqt.mvc.common.util.PageInfo;
 import com.qtqt.mvc.goods.model.dao.GoodsDao;
 import com.qtqt.mvc.goods.model.vo.GoodsBoard;
 import com.qtqt.mvc.goods.model.vo.GoodsReply;
-<<<<<<< HEAD
-=======
 import com.qtqt.mvc.goods.model.vo.GoodsWish;
 
-import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
->>>>>>> origin/product
 
 public class GoodsService {
 	
@@ -144,8 +132,7 @@ public class GoodsService {
 		return result;
 	}
 
-<<<<<<< HEAD
-=======
+
 	public int deleteReply(int no) {
 		int result = 0;
 		
@@ -232,14 +219,5 @@ public class GoodsService {
 		
 		return list;
 	}
-
-	
-
-
-
-	
-
->>>>>>> origin/product
-	
 
 }

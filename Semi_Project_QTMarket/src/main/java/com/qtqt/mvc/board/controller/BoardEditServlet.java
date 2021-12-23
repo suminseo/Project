@@ -2,10 +2,7 @@ package com.qtqt.mvc.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/borad
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,18 +58,15 @@ public class BoardEditServlet extends HttpServlet {
     	board.setNo(Integer.parseInt(mr.getParameter("no")));
     	board.setTitle(mr.getParameter("title"));
     	board.setWriterId(mr.getParameter("writer"));
-<<<<<<< HEAD
     	board.setContent(mr.getParameter("writer"));
     	board.setContent(mr.getParameter("content"));
     	board.setOriginalFileName(mr.getParameter("originalFileName"));
     	board.setRenamedFileName(mr.getParameter("renamedFileName"));
-=======
     	board.setContent(mr.getParameter("content"));
     	board.setOriginalFileName(mr.getParameter("originalFileName"));
     	board.setRenamedFileName(mr.getParameter("renamedFileName"));
     	board.setCategory(mr.getParameter("category"));
->>>>>>> origin/borad
-    	
+
     	// 여기는 사용자가 edit할 때 파일이 바뀌었을 경우
     	originalFileName = mr.getOriginalFileName("upfile");
     	renamedFileName = mr.getFilesystemName("upfile");
@@ -90,10 +84,6 @@ public class BoardEditServlet extends HttpServlet {
         	board.setRenamedFileName(renamedFileName);
     	} 
     	
-<<<<<<< HEAD
-=======
-    	
->>>>>>> origin/borad
     	result = new BoardService().save(board);
     	
     	if(result > 0) {
@@ -102,11 +92,9 @@ public class BoardEditServlet extends HttpServlet {
     		request.setAttribute("msg", "게시글 수정 실패");
     	}
     	
-<<<<<<< HEAD
+
     	System.out.println(board);
-=======
->>>>>>> origin/borad
-    	
+
     	request.setAttribute("location", "/board/boardview?no=" + board.getNo());
     	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
     	

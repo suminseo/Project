@@ -47,8 +47,6 @@ public class MemberService {
 		return result;
 	}
 	
-<<<<<<< HEAD
-=======
 	public int update(Member member) {
 		int result = 0;
 		Connection connection = getConnection();
@@ -65,8 +63,7 @@ public class MemberService {
 		
 		return result;
 	}
-	
->>>>>>> origin/mypage
+
 	public int delete(String string) {
 		int result = 0;
 		Connection connection = getConnection();

@@ -1,4 +1,4 @@
-package com.qtqt.mvc.board.model.vo;
+package com.qtqt.mvc.mypage.model.vo;
 
 import java.util.Date;
 
