@@ -313,3 +313,26 @@ td {
   border-radius: 2px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
+
+
+
+#pageBar {
+	text-align:center; 
+}
+
+.pagebutton {
+	width: 30px;
+  	height: 25px;
+  	background-color:white;
+}
+
+.movebutton {
+	width: 40px;
+  	height: 25px;
+}
+
+.setbutton {
+	width: 50px;
+  	height: 25px;
+}
+

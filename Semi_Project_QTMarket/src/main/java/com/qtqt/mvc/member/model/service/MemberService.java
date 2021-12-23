@@ -44,6 +44,40 @@ public class MemberService {
 		return result;
 	}
 	
+	public int update(Member member) {
+		int result = 0;
+		Connection connection = getConnection();
+		
+		result = dao.updateMember(connection, member);
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);	
+		}
+				
+		close(connection);
+		
+		return result;
+	}
+	
+	public int delete(String string) {
+		int result = 0;
+		Connection connection = getConnection();
+		
+		result = dao.deleteMember(connection, string);
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+		
+		return result;
+	}
+	
 	public boolean isDuplicateID(String id) {
 
 		return this.findMemberById(id) != null;

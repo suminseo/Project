@@ -49,7 +49,7 @@ public class PageInfo {
 			< 11 12 13 14 15 16 17 18 19 20 >
 			< 21 22 23 24 25 26 27 28 29 30 >
 			
-			1, 11, 21, 31, .... => (10 * n) + 1 (전제 조건 : n >= 0)
+			1, 11, 21, 31, .... => (10 * n) + 1 (n >= 0)
 			
 			1 ~ 10 : n = 0
 			11 ~ 20 : n = 1
@@ -58,7 +58,7 @@ public class PageInfo {
 			.... 
 			n = (currentPage - 1) / pageLimit
 			
-			(10 * ((currentPage - 1) / pageLimit)) + 1 (전제 조건 : n >= 0)
+			(10 * ((currentPage - 1) / pageLimit)) + 1 (n >= 0)
 		 */
 		return (this.pageLimit * ((this.currentPage - 1) / this.pageLimit)) + 1;
 	}

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.qtqt.mvc.common.wrapper.EncryptPasswordWrapper;
 
 
-@WebFilter(filterName="encryptFilter", servletNames = {"login", "enroll"})
+@WebFilter(filterName="encryptFilter", servletNames = {"login", "enroll", "update"})
 public class EncryptFilter implements Filter {
 
     public EncryptFilter() {

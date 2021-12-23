@@ -1,11 +1,12 @@
 package com.qtqt.mvc.member.model.dao;
 
+import static com.qtqt.mvc.common.jdbc.JDBCTemplate.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
 import com.qtqt.mvc.member.model.vo.Member;
 
 public class MemberDao {
@@ -74,4 +75,53 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	public int deleteMember(Connection connection, String string) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "DELETE FROM QT_USER WHERE USER_ID=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, string);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateMember(Connection connection, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE QT_USER SET USER_PASSWORD=?,USER_PHONE=?,USER_EMAIL=?, ORIGINAL_PROFILENAME=?, RENAMED_PROFILENAME=?, USER_AREA1=?,USER_AREA2=? WHERE USER_ID=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getPhone());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(4, member.getOriginalProfileName());
+			pstmt.setString(5, member.getRenamedProfileName());
+			pstmt.setString(6, member.getArea1());
+			pstmt.setString(7, member.getArea2());
+			pstmt.setString(8, member.getId());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
 }

@@ -1,8 +1,12 @@
 package com.qtqt.mvc.board.model.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.qtqt.mvc.board.model.dao.BoardDao;
+import com.qtqt.mvc.board.model.vo.Board;
+import com.qtqt.mvc.common.util.PageInfo;
+
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
 
 public class BoardService {
@@ -15,6 +19,42 @@ public class BoardService {
 		Connection connection = getConnection();
 		
 		count = dao.getBoardCount(connection);
+		
+		close(connection);
+		
+		return count;
+	}
+
+	public List<Board> getBoardList(PageInfo pageInfo) {
+		List<Board> list = null;
+		Connection connection = getConnection();
+		
+		list = dao.findAll(connection, pageInfo);
+		
+		close(connection);
+		
+		
+		return list;
+	}
+
+	public List<Board> getBoardListById(PageInfo pageInfo, String id) {
+		List<Board> list = null;
+		Connection connection = getConnection();
+		
+		list = dao.findBoardById(connection, pageInfo, id);
+		
+		close(connection);
+		
+		
+		return list;
+	}
+
+	public int getBoardCountById(String id) {
+		int count = 0; 
+		
+		Connection connection = getConnection();
+		
+		count = dao.getBoardCountById(connection, id);
 		
 		close(connection);
 		
