@@ -40,7 +40,7 @@
           </li>
           <c:if test="${ empty loginMember }">
           	<li class="navbar__menu__item">
-           	 	<a href="${ path }/QT/signinup">로그인</a>
+           	 	<a href="${ path }/QT/login">로그인</a>
          	</li>
           </c:if>
           <c:if test="${ !empty loginMember }">
@@ -49,7 +49,7 @@
          	</li>
          	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
          	<li class="navbar__menu__item">
-         		<a href="${ path }/QT/admin/member">관리자페이지</a>
+         		<a href="${ path }/QT/mypage">관리자페이지</a>
          	</li>
          	</c:if>
           	<li class="navbar__menu__item">
@@ -61,8 +61,7 @@
     <!-- main -->
     <main id="main">
       <ul class="main__order">
-        <li class="on"><a href="*">전체</a></li>
-        <li><a href=".clothes">의상</a></li>
+        <li class="on"><a href="*">찜 목록</a></li>
         <!-- 
           1. 카테고리 대분류 소분류 나눠주기 
               href=".대분류, .소분류"
@@ -70,7 +69,6 @@
               
           2. main__order 카테고리 메뉴 바 바꿔보기
         -->
-        <li><a href=".home__Appliances">가전</a></li>
       </ul>
       <c:if test="${ empty list }">			
 				<tr>
@@ -80,35 +78,6 @@
 				</tr>	
 	  </c:if>
 	  
-	  <div>
-	  
-	  <div class="container">
-		<div class="row">
-			<form method="get" name="search" action="${ pageContext.request.contextPath }/goods/notice">
-				<table class="pull-right">
-					<tr>
-						
-						<form class="table-form">
-						<fieldset>
-						<legend class="hidden">공지사항 검색 필드</legend>
-						<label class="hidden">검색분류</label>
-						<select name="f">
-						<option value="G_PRODUCT_NAME">제목</option>
-						<option value="USER_ID">작성자</option>
-						</select>
-						<label class="hidden">검색어</label>
-						<input type="text" name="q" value=""/>
-						<input class="btn btn-search" type="submit" value="검색" / >
-						</fieldset>
-						</form>
-					</tr>
-
-				</table>
-			</form>
-		</div>
-	</div>
-	
-	  </div>
 	  
 	      <section class="section">
 		      <c:if test="${ !empty list }">
@@ -135,7 +104,7 @@
 		            <div>
 		              <span>${ board.price }원</span>
 		              <div>
-		                <button class="wish__btn__0" onclick="heartEmpty()"><i class="far fa-heart"></i></button>
+		                <button class="wish__btn__0"><i class="far fa-heart"></i></button>
 		                <button class="chat__btn"><i class="fas fa-comments"></i></button>
 		              </div>
 		            </div>
@@ -168,16 +137,11 @@
         <span class="lines line-3"></span>
       </label>
 
-      <a onclick="location.href='${ pageContext.request.contextPath }/goods/goodsadd'" class="menu-item orange"> <i class="fas fa-plus"></i> </a>
-      <c:if test="${ !empty loginMember }">
-      <a href="${ pageContext.request.contextPath }/goods/goodswishlist" class="menu-item red"> <i class="fa fa-heart"></i> </a>
-      </c:if>
+     
       <a href="#" class="menu-item green"> <i class="fas fa-comments"></i> </a>
       <a href="main.html" class="menu-item purple"> <i class="fas fa-home"></i> </a>
-      <a href="#" class="menu-item blue"> <i class="fas fa-question"></i> </a>
+      <a href="#" class="menu-item blue"> <i class="fas fa-question"></i></i> </a>
       <!-- <a href="#" class="menu-item lightblue"> <i class="fas fa-question"></i> </a> -->
     </footer>
-    
-    
 </body>
 </html>

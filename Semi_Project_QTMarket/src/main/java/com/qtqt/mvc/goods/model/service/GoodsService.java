@@ -1,5 +1,6 @@
 package com.qtqt.mvc.goods.model.service;
 
+<<<<<<< HEAD
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.close;
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.commit;
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.getConnection;
@@ -8,10 +9,23 @@ import static com.qtqt.mvc.common.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+=======
+import java.sql.Connection;
+import java.util.List;
+
+
+
+>>>>>>> origin/product
 import com.qtqt.mvc.common.util.PageInfo;
 import com.qtqt.mvc.goods.model.dao.GoodsDao;
 import com.qtqt.mvc.goods.model.vo.GoodsBoard;
 import com.qtqt.mvc.goods.model.vo.GoodsReply;
+<<<<<<< HEAD
+=======
+import com.qtqt.mvc.goods.model.vo.GoodsWish;
+
+import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
+>>>>>>> origin/product
 
 public class GoodsService {
 	
@@ -130,6 +144,102 @@ public class GoodsService {
 		return result;
 	}
 
+<<<<<<< HEAD
+=======
+	public int deleteReply(int no) {
+		int result = 0;
+		
+		Connection connection = getConnection();
+		
+		result = dao.updateComStatus(connection, no);
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+		
+		return result;
+	}
+
+	public int complete(int no) {
+		int result = 0;
+		
+		Connection connection = getConnection();
+		
+		result = dao.complete(connection, no);
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+		
+		return result;
+	}
+
+	public int goodswish(GoodsWish wish) {
+		int result = 0;
+		Connection connection = getConnection();
+		
+		result = dao.goodswish(connection, wish);
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+		
+		return result;
+	}
+
+	public int goodswishcount() {
+		int count = 0; 
+		
+		Connection connection = getConnection();
+		
+		count = dao.goodswishcount(connection);
+		
+		close(connection);
+		
+		return count;
+	}
+
+	public List<GoodsWish> goodswishlist(PageInfo pageInfo, GoodsWish wish) {
+		List<GoodsWish> list = null;
+		Connection connection = getConnection();
+		
+		list = dao.goodswishlist(connection, pageInfo, wish);
+		
+		close(connection);
+		
+		return list;
+	}
+
+	public List<GoodsBoard> noticelist(String field, String field2, PageInfo pageInfo) {
+		List<GoodsBoard> list = null;
+		Connection connection = getConnection();
+		
+		list = dao.noticelist(connection, field, field2, pageInfo);
+		
+		close(connection);
+		
+		return list;
+	}
+
+	
+
+
+
+	
+
+>>>>>>> origin/product
 	
 
 }

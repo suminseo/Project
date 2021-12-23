@@ -62,6 +62,10 @@ public class GoodsAdd extends HttpServlet {
     	String cate = mr.getParameter("cate");
     	String area1 = mr.getParameter("area1");
     	String area2 = mr.getParameter("area2");
+<<<<<<< HEAD
+=======
+    	String status = mr.getParameter("status");
+>>>>>>> origin/product
     	
     	// 파일에 대한 정보를 가져올 때
     	String filesystemName = mr.getFilesystemName("upfile");
@@ -83,7 +87,12 @@ public class GoodsAdd extends HttpServlet {
     		board.setRenamedFileName(filesystemName);
     		board.setArea1(area1);
     		board.setArea2(area2);
+<<<<<<< HEAD
 
+=======
+    		board.setStatus(status);
+    		
+>>>>>>> origin/product
     		result = service.save(board);
     		
     		if(result > 0) {
