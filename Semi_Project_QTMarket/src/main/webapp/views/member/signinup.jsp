@@ -26,7 +26,7 @@
         <!-- SIGN UP -->
         <div class="col align-items-center flex-col sign-up">
           <div class="form-wrapper align-items-center">
-            <form class="form sign-up" name="memberEnrollFrm" action="${ path }/QT/enroll" enctype="multipart/form-data" method="post">
+            <form class="form sign-up" name="memberEnrollFrm" action="${ path }/QT/signinup/enroll" enctype="multipart/form-data" method="post">
               <div class="input-group up">
                 <i class="fas fa-user"></i>
                 <input type="text" name="userId" id="newId" placeholder="아이디" required />
@@ -77,7 +77,7 @@
         <div class="col align-items-center flex-col sign-in">
           <div class="form-wrapper align-items-center"
           >
-            <form action="${ path }/QT/login" method="post" class="form sign-in">
+            <form action="${ path }/QT/signinup/login" method="post" class="form sign-in">
               <div class="input-group in">
                 <i class="fas fa-user"></i>
                 <input type="text" name="userId" id="userId" value="${ empty cookie.saveId ? '' : cookie.saveId.value }" placeholder="아이디를 입력해주세요." />
