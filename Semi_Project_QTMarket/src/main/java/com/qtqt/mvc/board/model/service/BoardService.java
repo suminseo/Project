@@ -6,6 +6,10 @@ import java.util.List;
 import com.qtqt.mvc.board.model.vo.Board;
 import com.qtqt.mvc.board.model.vo.Reply;
 import com.qtqt.mvc.board.model.dao.BoardDao;
+<<<<<<< HEAD
+=======
+import com.qtqt.mvc.board.model.vo.Board;
+>>>>>>> origin/mypage
 import com.qtqt.mvc.common.util.PageInfo;
 
 import static com.qtqt.mvc.common.jdbc.JDBCTemplate.*;
@@ -104,6 +108,7 @@ public class BoardService {
 		return result;
 	}
 
+<<<<<<< HEAD
 	public int saveReply(Reply reply) {
 		
 		int result = 0;
@@ -184,3 +189,42 @@ public class BoardService {
 
 
 
+=======
+	public List<Board> getBoardList(PageInfo pageInfo) {
+		List<Board> list = null;
+		Connection connection = getConnection();
+		
+		list = dao.findAll(connection, pageInfo);
+		
+		close(connection);
+		
+		
+		return list;
+	}
+
+	public List<Board> getBoardListById(PageInfo pageInfo, String id) {
+		List<Board> list = null;
+		Connection connection = getConnection();
+		
+		list = dao.findBoardById(connection, pageInfo, id);
+		
+		close(connection);
+		
+		
+		return list;
+	}
+
+	public int getBoardCountById(String id) {
+		int count = 0; 
+		
+		Connection connection = getConnection();
+		
+		count = dao.getBoardCountById(connection, id);
+		
+		close(connection);
+		
+		return count;
+	}
+
+}
+>>>>>>> origin/mypage

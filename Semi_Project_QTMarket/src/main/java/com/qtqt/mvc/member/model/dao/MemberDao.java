@@ -9,7 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import com.qtqt.mvc.common.util.PageInfo;
+=======
+>>>>>>> origin/mypage
 import com.qtqt.mvc.member.model.vo.Member;
 
 public class MemberDao {
@@ -39,9 +42,13 @@ public class MemberDao {
 				member.setRole(rs.getString("USER_ROLE"));
 				member.setArea1(rs.getString("USER_AREA1"));
 <<<<<<< HEAD
+<<<<<<< HEAD
 				member.setArea2(rs.getString("USER_AREA2"));
 =======
 >>>>>>> origin/borad
+=======
+				member.setArea2(rs.getString("USER_AREA2"));
+>>>>>>> origin/mypage
 				member.setEnrollDate(rs.getDate("USER_ENROLLDATE"));
 			}
 		} catch (SQLException e) {
@@ -67,16 +74,21 @@ public class MemberDao {
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getEmail());
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/mypage
 			pstmt.setString(5, member.getOriginalProfileName());
 			pstmt.setString(6, member.getRenamedProfileName());
 			pstmt.setString(7, member.getPhone());
 			pstmt.setString(8, member.getArea1());
 			pstmt.setString(9, member.getArea2());
+<<<<<<< HEAD
 =======
 			pstmt.setString(5, member.getProfile());
 			pstmt.setString(6, member.getPhone());
 			pstmt.setString(7, member.getArea1());
 >>>>>>> origin/borad
+=======
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -87,6 +99,55 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	public int deleteMember(Connection connection, String string) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "DELETE FROM QT_USER WHERE USER_ID=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, string);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateMember(Connection connection, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE QT_USER SET USER_PASSWORD=?,USER_PHONE=?,USER_EMAIL=?, ORIGINAL_PROFILENAME=?, RENAMED_PROFILENAME=?, USER_AREA1=?,USER_AREA2=? WHERE USER_ID=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getPhone());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(4, member.getOriginalProfileName());
+			pstmt.setString(5, member.getRenamedProfileName());
+			pstmt.setString(6, member.getArea1());
+			pstmt.setString(7, member.getArea2());
+			pstmt.setString(8, member.getId());
+>>>>>>> origin/mypage
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+<<<<<<< HEAD
 	
 	public int deleteMember(Connection connection, String string) {
 		int result = 0;
@@ -196,5 +257,8 @@ public class MemberDao {
 
 		return list;
 	}
+=======
+
+>>>>>>> origin/mypage
 
 }
