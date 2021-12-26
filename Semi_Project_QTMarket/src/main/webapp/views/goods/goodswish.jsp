@@ -84,12 +84,11 @@
 		  		<c:forEach var="board" items="${ list }">
 		        <article class="${ board.cate }">
 		          <div>
-		            <c:if test="${ board.cate == 'clothes' && board.status == 'Y' }">
-	                	<img src="${ path }/resources/imgs/products/1.jpg" alt="" width="570px" />
-	                </c:if>
-	                <c:if test="${ board.cate == 'home__Appliances' && board.status == 'Y' }">
-	                    <img src="${ path }/resources/imgs/products/3.jpg" alt="" width="570px" />
-	                </c:if>
+		            <c:if test="${ board.status == 'Y' }">
+						<img
+							src="${ path }/resources/upload/goodsimage/${ board.renamedFileName }"
+							alt="" width="570px" />
+					</c:if>
 	                <c:if test="${ board.status == 'N' }">
 	                    <img src="${ path }/resources/imgs/products/5.jpg" alt="" width="570px" />
 	                </c:if>

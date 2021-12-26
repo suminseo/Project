@@ -139,7 +139,7 @@
             	<c:forEach var="board" items="${ list }">
 	              <tr>
 	                <td class="no">${ board.no }</td>
-	                <td class="title">${ board.title }</td>
+	                <td class="title"><a href="${ pageContext.request.contextPath }/board/boardview?no=${ board.no }">${ board.title }</a></td>
 	                <td class="writer">${ board.writerId }</td>
 	                <td class="content">${ board.content }</td>
 	                <td class="file">

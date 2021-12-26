@@ -44,7 +44,7 @@
           </c:if>
           <c:if test="${ !empty loginMember }">
           	<li class="navbar__menu__item">
-            	<a href="${ path }/QT/mypage">마이페이지</a>
+            	<a href="${ path }/QT/mypage" class="active">마이페이지</a>
          	</li>
          	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
          	<li class="navbar__menu__item">
@@ -71,12 +71,12 @@
           <div class="main__user__body__category">
             <button class="category product" onclick="location.href='${ path }/QT/mypage';">상품 관리</button>
             <button class="category board" onclick="location.href='${ path }/QT/myboards';">게시글 관리</button>
-            <button class="category wish" onclick="location.href='${ path }/QT/mywish';">찜 목록</button>
+            <button class="category wish" onclick="location.href='${ path }/goods/goodswishlist';">찜 목록</button>
             <button class="category prefernce" onclick="location.href='${ path }/QT/editprofile';">정보 수정</button>
             <button class="category resign" onclick="location.href='${ path }/QT/withdraw';">회원 탈퇴</button>
           </div>
           <div class="main__user__body__product">
-            <p>상품 관리</p>
+            <p>게시글 관리</p>
             <table class="main__user__body__table">
               <thead>
                 <tr>
@@ -105,7 +105,7 @@
 						<td>${ board.rowNum }</td>
 						
 						<td>
-							<a href="${ pageContext.request.contextPath }/board/view?no=${ board.no }">
+							<a href="${ pageContext.request.contextPath }/board/boardview?no=${ board.no }">
 								${ board.title }
 							</a>
 						</td>
@@ -113,7 +113,7 @@
 						<td>${ board.createDate }</td>
 						<td>${ board.hits }</td>
 						<td>
-                    		<button><i class="far fa-edit"></i></button>
+                    		<button onclick="location.href='${ pageContext.request.contextPath }/board/boardedit?no=${ board.no }'"><i class="far fa-edit"></i></button>
                  		 </td>					
 					</tr>
 				</c:forEach>

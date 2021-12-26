@@ -10,6 +10,7 @@ const searchBox = document.querySelector(".search-box");
 const searchBtn = document.querySelector(".search-icon");
 const cancelBtn = document.querySelector(".cancel-icon");
 const searchInput = document.querySelector("input");
+
 searchBtn.onclick = () => {
   searchBox.classList.add("active");
   searchBtn.classList.add("active");

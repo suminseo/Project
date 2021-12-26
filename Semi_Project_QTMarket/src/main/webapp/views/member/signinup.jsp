@@ -67,7 +67,7 @@
                 <b onclick="toggle()" class="pointer"> 로그인 </b>
               </p>
               <p>
-                <b onclick="location.href='${ path }/index.jsp';" style="cursor: pointer">메인으로 돌아가기</b>
+                <b onclick="location.href='${ path }'" style="cursor: pointer">메인으로 돌아가기</b>
               </p>
             </form>
           </div>
@@ -91,15 +91,15 @@
                 <span>아이디 자동 저장</span>
               </div>
               <input class="btn sign-ins" type="submit" value="로그인"></input>
-              <p>
+           <!--  <p>
                 <b> 비밀번호를 잊으셨나요? </b>
-              </p>
+              </p> -->
               <p>
                 <span> 어랏, 계정이 없으신가요? </span>
                 <b onclick="toggle()" class="pointer"> 회원가입 </b>
               </p>
               <p>
-                <b onclick="location.href='${ path }/index.jsp';" style="cursor: pointer">메인으로 돌아가기</b>
+                <b onclick="location.href='${ path }'" style="cursor: pointer">메인으로 돌아가기</b>
               </p>
             </form>
           </div>

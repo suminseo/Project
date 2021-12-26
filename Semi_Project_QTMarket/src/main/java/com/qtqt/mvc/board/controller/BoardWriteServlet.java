@@ -1,6 +1,7 @@
 package com.qtqt.mvc.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.qtqt.mvc.board.model.service.BoardService;
 import com.qtqt.mvc.board.model.vo.Board;
 import com.qtqt.mvc.common.util.FileRename;
@@ -73,7 +73,6 @@ public class BoardWriteServlet extends HttpServlet {
     		board.setOriginalFileName(originalFileName);
     		board.setRenamedFileName(filesystemName);
     		board.setCategory(category);
-
     		
     		result = service.save(board);
     		

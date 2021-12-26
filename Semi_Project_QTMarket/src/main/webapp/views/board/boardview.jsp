@@ -11,7 +11,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/community/boardstyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +23,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${ path }/resources/css/market/style.css" />
-    <script src="${ path }/resources/js/market/isotope.pkgd.min.js"></script>
-    <script src="${ path }/resources/js/market/main.js" defer></script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="${ path }/resources/js/community/board/main.js" defer></script>
     <style>
     	body {
       		background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
@@ -45,31 +43,36 @@
            <a href="${ path }">메인</a>
          </li>
          <li class="navbar__menu__item">
-           <a href="${ path }/QT/market" class="active">마켓</a>
+           <a href="${ path }/QT/market">마켓</a>
          </li>
          <li class="navbar__menu__item">
-           <a href="${ path }/QT/community">커뮤니티</a>
+           <a href="${ path }/QT/community" class="active">커뮤니티</a>
          </li>
-         <c:if test="${ empty loginMember }">
+           <c:if test="${ empty loginMember }">
+          	<li class="navbar__menu__item">
+           	 	<a href="${ path }/QT/signinup">로그인</a>
+         	</li>
+          </c:if>
+          <c:if test="${ !empty loginMember }">
+          	<li class="navbar__menu__item">
+            	<a href="${ path }/QT/mypage">마이페이지</a>
+         	</li>
+         	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
          	<li class="navbar__menu__item">
-          	 	<a href="${ path }/QT/login">로그인</a>
-        	</li>
-         </c:if>
-         <c:if test="${ !empty loginMember }">
-         	<li class="navbar__menu__item">
-           	<a href="${ path }/QT/mypage">마이페이지</a>
-        	</li>
-         	<li class="navbar__menu__item">
-         	  <a href="${ path }/logout">로그아웃</a>
-        	</li>
-         </c:if>
+         		<a href="${ path }/QT/admin/member">관리자페이지</a>
+         	</li>
+         	</c:if>
+          	<li class="navbar__menu__item">
+          	  <a href="${ path }/logout">로그아웃</a>
+         	</li>
+          </c:if>
         </ul>
      </nav>
      
      <!-- main -->
     <div class="board_wrap">
         <div class="board_title">
-            <h1><b>큐티 게시판</b></h1>
+            <h1><b><a href="${ path }/QT/community">큐티 게시판</a></b></h1>
             <p>큐티님을 위한 공간입니다.</p>
         </div>
         <div class="board_view_wrap">
@@ -98,7 +101,7 @@
                         <dt>조회수</dt>
                         <dd>${ board.hits }</dd>
                     </dl>
-                    <dl>
+                     <dl>
                     	<dt>첨부파일</dt>
                         <dd>
                         	<c:if test="${ empty board.originalFileName }">
@@ -113,6 +116,11 @@
                     </dl>
                 </div>
                 <div class="content">
+					
+	                    <img src="${ path }/resources/upload/board/${ board.renamedFileName }" alt="" width="570px" />
+	                
+	                <br>
+	                <br>
 					${ board.content }
                 </div>
             </div>
@@ -121,7 +129,6 @@
 		    		<form action="${ pageContext.request.contextPath }/board/reply" method="POST">
 		    			<input type="hidden" name="boardNo" value="${ board.no }">
 						<textarea name="content" id="replyContent" rows="3"  placeholder="댓글을 입력해주세요"></textarea>
-						
 						<button type="submit" id="btn-insert">등록</button>
 							    			
 		    		</form>
@@ -137,12 +144,9 @@
                     <td class="comment-writer"><c:out value="${ reply.writerId }"/></td>
                     <td class="comment-date"><fmt:formatDate type="date" value="${ reply.createDate }" pattern="yyyy-MM-dd" /></td>
                     <td class="btn-comment">
-                    <!-- <form action="${ pageContext.request.contextPath }/board/boardComEdit" method="POST">  -->
                     	<c:if test="${ !empty loginMember && loginMember.id == reply.writerId }">
-	                        <button type="submit" value="수정" id="btnCEdit" data-eno="${ reply.no }">수정</button>
-	                        <button type="button" value="삭제" id="btnCDelete" data-no="${ reply.no }">삭제</button>
+	                        <button type="button" value="삭제" class="btnCDelete" data-no="${ reply.no }">삭제</button>
                         </c:if>
-                 <!--    </form>  -->
                     </td>
                 </tr>
                 <tr>
@@ -163,60 +167,42 @@
     </div>
 
 <script>
-	$(document).ready(() => {
-		$("#btnDelete").on("click", () => {
-			if(confirm("정말 게시글을 삭제 하시겠습니까?")){
-				location.replace("${ pageContext.request.contextPath }/board/boarddelete?no=${ board.no }");
-			} 
-			
-		});
-		
-		$("#replyContent").on("click", () => {
-			if(${ empty loginMember }) {
-				alert("로그인 후 이용해주세요!");
-				
-				location.replace("${ pageContext.request.contextPath }/QT/login");
-			}
-		});
-		
-		$("#btnCDelete").on("click", (event) => {
-				const btn = event.target.dataset.no;
-			if(confirm("댓글을 삭제하시겠습니까?")){
-				location.replace("${ pageContext.request.contextPath }/board/boardComDelete?no=" + btn);
-			}
-			
-		});
-		
 
-		
-		
-		$("#btn-insert").click(function() {
-			if($("#replyContent").val().length==0){
-				alert("댓글을 입력하세요."); 
-				$("#replyContent").focus(); 
-				return false;}
-		})
+
+$(document).ready(() => {
+	$("#btnDelete").on("click", () => {
+		if (confirm("정말 게시글을 삭제 하시겠습니까?")) {
+			location.replace("${ pageContext.request.contextPath }/board/boarddelete?no=${ board.no }");
+		}
 
 	});
-	
-	
-	$("#btnCEdit").on("click", (event) => {
-			const btn = event.target.dataset.eno;
-	    if(confirm("수정 하시겠습니까?")){
-	 	window.open('${ pageContext.request.contextPath }/board/boardComEdit?no=' + no);
 
-	                }
-	        });
-	
+	$("#replyContent").on("click", () => {
+		if (${ empty loginMember }) {
+		alert("로그인 후 이용해주세요!");
 
-	function fileDownload(oname, rname){
-		
-		location.assign("${ pageContext.request.contextPath }/board/boardFileDown?oname=" + encodeURIComponent(oname) + "&rname=" + encodeURIComponent(rname));
-	}
-	
+		location.replace("${ pageContext.request.contextPath }/QT/signinup");
+		}
+	});
 
 
+	$("#btn-insert").click(function() {
+		if ($("#replyContent").val().length == 0) {
+			alert("댓글을 입력하세요.");
+			$("#replyContent").focus();
+			return false;
+		}
+	});
+
+});
+
+function fileDownload(oname, rname){
+	
+	location.assign("${ pageContext.request.contextPath }/board/boardFileDown?oname=" + encodeURIComponent(oname) + "&rname=" + encodeURIComponent(rname));
+}
+	
 </script>
+
 
 </body>
 

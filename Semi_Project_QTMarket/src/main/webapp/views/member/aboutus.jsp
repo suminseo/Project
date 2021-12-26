@@ -60,65 +60,65 @@
             세상 모든 장록 속 방치된 물건이 없어지길 바라는!! <br />
             저희는 다팔조입니다!!!!
           </p>
-          <article class="clothes">
+          <article>
             <div>
-              <img src="${ path }/resources/imgs/profile/no-image.png" alt="" />
+              <img src="${ path }/resources/imgs/profile/1.jpg" alt="" />
               <h2>서수민</h2>
-              <p>다팔조의 조장!</p>
+              <p>다팔조의 막내~!!<br>상품 등록 게시판 구현과 회의록 담당</p>
               <div class="home__href">
-                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fas fa-at"></i></a>
+                <a href="https://github.com/suminseo" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-blog"></i></a>
+                <a href="mailto:ssm3475742@naver.com"><i class="fas fa-at"></i></a>
               </div>
             </div>
           </article>
-          <article class="clothes">
+          <article>
             <div>
-              <img src="${ path }/resources/imgs/profile/no-image.png" alt="" />
+              <img src="${ path }/resources/imgs/profile/2.jpg" alt="" />
               <h2>김성엽</h2>
-              <p>다팔조의 조원 1</p>
+              <p>상품게시판 구현을 담당한 김성엽 입니다! 잘 부탁드립니다!</p>
               <div class="home__href">
-                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fas fa-at"></i></a>
+                <a href="https://github.com/ksungy/ksy" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-blog"></i></a>
+                <a href="mailto:ksuny0627@naver.com"><i class="fas fa-at"></i></a>
               </div>
             </div>
           </article>
-          <article class="home__Appliances">
+          <article>
             <div>
-              <img src="${ path }/resources/imgs/profile/3.png" alt="" />
+              <img src="${ path }/resources/imgs/profile/3.jpg" alt="" />
               <h2>이산아</h2>
-              <p>다팔조의 조원 2</p>
+              <p>큐티마켓의 참새방앗간!<br>게시판 UI 틀 제작, 게시글 및 댓글, 데이터베이스 스크립트를 담당하였습니다!</p>
               <div class="home__href">
                 <a href="https://github.com/Athesana" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fas fa-at"></i></a>
+                <a href="https://chichibaby.tistory.com" target="_blank"><i class="fas fa-blog"></i></a>
+                <a href="mailto:ssskdsal@gmail.com"><i class="fas fa-at"></i></a>
               </div>
             </div>
           </article>
-          <article class="home__Appliances">
+          <article>
             <div>
-              <img src="${ path }/resources/imgs/profile/4.png" alt="" />
+              <img src="${ path }/resources/imgs/profile/4.jpg" alt="" />
               <h2>임현규</h2>
-              <p>큐티마켓의 전반적인 프론트엔드 작업을 담당했습니다.</p>
+              <p>큐티마켓의 전반적인 프론트엔드 작업 및 관리자페이지를 담당했습니다.</p>
               <div>
                 <div class="home__href">
                   <a href="https://github.com/gyulsbox" target="_blank"><i class="fab fa-github"></i></a>
-                  <a href="https://www.instagram.com/aloofelicidad/" target="_blank"><i class="fab fa-instagram"></i></a>
+                  <a href="#" target="_blank"><i class="fas fa-blog"></i></a>
                   <a href="mailto:anwjr7878@gmail.com"><i class="fas fa-at"></i></a>
                 </div>
               </div>
             </div>
           </article>
-          <article class="clothes">
+          <article>
             <div>
-              <img src="${ path }/resources/imgs/profile/no-image.png" alt="" />
+              <img src="${ path }/resources/imgs/profile/5.jpg" alt="" />
               <h2>맹세정</h2>
-              <p>다팔조의 조원 4</p>
+              <p>큐티마켓의 마이페이지를 구현하였습니다!</p>
               <div class="home__href">
-                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fas fa-at"></i></a>
+                <a href="https://github.com/maenguri" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-blog"></i></a>
+                <a href="mailto:michelle213@naver.com"><i class="fas fa-at"></i></a>
               </div>
             </div>
           </article>

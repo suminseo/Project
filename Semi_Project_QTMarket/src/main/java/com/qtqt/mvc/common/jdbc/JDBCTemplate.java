@@ -13,7 +13,7 @@ public class JDBCTemplate {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "QTs", "QTs");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "QTQT", "QTQT");
 
 			connection.setAutoCommit(false);
 		} catch (ClassNotFoundException e) {

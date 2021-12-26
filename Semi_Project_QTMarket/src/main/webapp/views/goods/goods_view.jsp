@@ -23,6 +23,7 @@
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
     <script src="${ path }/resources/js/login/jquery-3.6.0.js"></script>
     <script src="${ path }/resources/js/login/main.js" defer></script>
+    <script src="${ path }/resources/js/market/board/main.js" defer></script>
     <style>
 	    div#comment-container button#btn-insert{width:60px;height:45px; color:white; background-color:#3300FF;position:relative;top:-20px;}
     </style>
@@ -49,7 +50,7 @@
 	                    </dl>
 	                    <dl>
 	                        <dt>작성일</dt>
-	                        <dd>2021</dd>
+	                        <dd>${ board.createDate }</dd>
 	                    </dl>
 	                    <dl>
 	                        <dt>조회</dt>
@@ -60,12 +61,9 @@
 	                    </dl>
 	                </div>
 	                <div class="cont">
-	                	<c:if test="${ board.cate == 'clothes' && board.status == 'Y' }">
-	                    	<img src="${ path }/resources/imgs/products/1.jpg" alt="" width="570px" />
-	                    </c:if>
-	                    <c:if test="${ board.cate == 'home__Appliances' && board.status == 'Y' }">
-	                    	<img src="${ path }/resources/imgs/products/3.jpg" alt="" width="570px" />
-	                    </c:if>
+	                	<c:if test="${ board.status == 'Y' }">
+	                    <img src="${ path }/resources/upload/goodsimage/${ board.renamedFileName }" alt="" width="570px" />
+	                	</c:if>
 	                    <c:if test="${ board.status == 'N' }">
 	                    	<img src="${ path }/resources/imgs/products/5.jpg" alt="" width="570px" />
 	                	</c:if>
@@ -106,8 +104,7 @@
 				        <td class="comment-date"><fmt:formatDate type="date" value="${ reply.createDate }" /></td>
 				        <td class="btn-comment">
                     		<c:if test="${ !empty loginMember && loginMember.id == reply.writerId }">
-	                        	<button type="submit" value="수정" id="btnCEdit" data-eno="${ reply.no }">수정</button>
-	                        	<button type="button" value="삭제" id="btnCDelete" data-no="${ reply.no }">삭제</button>
+	                        	<button type="button" value="삭제" class="btnCDelete" data-no="${ reply.no }">삭제</button>
                         	</c:if>
                     	</td>
                 	</tr>
@@ -125,7 +122,7 @@
     
     <script>
     $(document).ready(() => {
-    	$("#btnDelete").on("click",() => {
+    	$("#btnDelete").on("click", () => {
     		if(confirm("정말로 게시글을 삭제 하시겠습니까?")) {
     			location.replace("${ pageContext.request.contextPath }/goods/delete?no=${ board.no }");
     		}

@@ -24,8 +24,7 @@
     <script src="https://kit.fontawesome.com/91b5983e4b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="${ path }/resources/css/market/style.css" />
     <script src="${ path }/resources/js/login/jquery-3.6.0.js"></script>
-    <script src="${ path }/resources/js/market/isotope.pkgd.min.js"></script>
-    <script src="${ path }/resources/js/market/main.js" defer></script>
+
     <style>
     	body {
       		background: url(${ path }/resources/imgs/backgorund/background2.png) center/cover no-repeat;
@@ -45,30 +44,35 @@
            <a href="${ path }">메인</a>
          </li>
          <li class="navbar__menu__item">
-           <a href="${ path }/QT/market" class="active">마켓</a>
+           <a href="${ path }/QT/market">마켓</a>
          </li>
          <li class="navbar__menu__item">
-           <a href="${ path }/QT/community">커뮤니티</a>
+           <a href="${ path }/QT/community" class="active">커뮤니티</a>
          </li>
-         <c:if test="${ empty loginMember }">
+          <c:if test="${ empty loginMember }">
+          	<li class="navbar__menu__item">
+           	 	<a href="${ path }/QT/signinup">로그인</a>
+         	</li>
+          </c:if>
+          <c:if test="${ !empty loginMember }">
+          	<li class="navbar__menu__item">
+            	<a href="${ path }/QT/mypage">마이페이지</a>
+         	</li>
+         	<c:if test="${ loginMember.role == 'ROLE_ADMIN' }">
          	<li class="navbar__menu__item">
-          	 	<a href="${ path }/QT/login">로그인</a>
-        	</li>
-         </c:if>
-         <c:if test="${ !empty loginMember }">
-         	<li class="navbar__menu__item">
-           	<a href="${ path }/QT/mypage">마이페이지</a>
-        	</li>
-         	<li class="navbar__menu__item">
-         	  <a href="${ path }/logout">로그아웃</a>
-        	</li>
-         </c:if>
+         		<a href="${ path }/QT/admin/member" >관리자페이지</a>
+         	</li>
+         	</c:if>
+          	<li class="navbar__menu__item">
+          	  <a href="${ path }/logout">로그아웃</a>
+         	</li>
+          </c:if>
         </ul>
      </nav>
      <!-- main -->
     <div class="board_wrap">
 	        <div class="board_title">
-	            <h1><b>큐티 게시판</b></h1>
+	            <h1><b><a href="${ path }/QT/community">큐티 게시판</a></b></h1>
 	            <p>큐티님을 위한 공간입니다.</p>
 	        </div>
 	        <div class="board_write_wrap">

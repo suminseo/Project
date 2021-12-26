@@ -37,5 +37,4 @@ public class Board {
 	private Date modifyDate;
 	
 	private String category;
-
 }

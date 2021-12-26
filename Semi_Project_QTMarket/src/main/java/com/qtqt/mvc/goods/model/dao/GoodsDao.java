@@ -105,9 +105,10 @@ public class GoodsDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = 
-				"SELECT ROWNUM, G_PRODUCT, USER_ID, G_PRODUCT_NAME, G_PRICE, G_CONTENT, G_DATE, G_HITS, G_CATE, G_O_FILENAME, G_AREA1, G_AREA2, STATUS "
+				"SELECT ROWNUM, G_PRODUCT, USER_ID, G_PRODUCT_NAME, G_PRICE, G_CONTENT, G_DATE, G_HITS, G_CATE, G_O_FILENAME, G_R_FILENAME, G_AREA1, G_AREA2, STATUS "
 				+ "FROM GOODS "
-				+ "WHERE ROWNUM BETWEEN ? and ?";
+				+ "WHERE ROWNUM BETWEEN ? and ? "
+				+ "ORDER BY G_PRODUCT DESC";
 		
 		try {
 			pstmt = connection.prepareStatement(query);
@@ -130,6 +131,7 @@ public class GoodsDao {
 				board.setReadCount(rs.getInt("G_HITS"));
 				board.setCate(rs.getString("G_CATE"));
 				board.setOriginalFileName(rs.getString("G_O_FILENAME"));
+				board.setRenamedFileName(rs.getString("G_R_FILENAME"));
 				board.setArea1(rs.getString("G_AREA1"));
 				board.setArea2(rs.getString("G_AREA2"));
 
@@ -404,7 +406,7 @@ public class GoodsDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = 
-				"SELECT ROWNUM, W.G_PRODUCT, W.USER_ID, G.G_PRODUCT_NAME, G.G_PRICE, G.G_CONTENT, G.G_DATE, G.G_HITS, G.G_CATE, G.G_O_FILENAME, G.G_AREA1, G.G_AREA2, STATUS "
+				"SELECT ROWNUM, W.G_PRODUCT, W.USER_ID, G.G_PRODUCT_NAME, G.G_PRICE, G.G_CONTENT, G.G_DATE, G.G_HITS, G.G_CATE, G.G_O_FILENAME, G.G_R_FILENAME, G.G_AREA1, G.G_AREA2, STATUS "
 		                  + "FROM GOODS_WISHLIST W "
 		                  + "JOIN GOODS G ON(G.G_PRODUCT = W.G_PRODUCT) "
 		                  + "WHERE ROWNUM BETWEEN ? and ? and W.USER_ID=?";
@@ -431,6 +433,7 @@ public class GoodsDao {
 				board.setReadCount(rs.getInt("G_HITS"));
 				board.setCate(rs.getString("G_CATE"));
 				board.setOriginalFileName(rs.getString("G_O_FILENAME"));
+				board.setRenamedFileName(rs.getString("G_R_FILENAME"));
 				board.setArea1(rs.getString("G_AREA1"));
 				board.setArea2(rs.getString("G_AREA2"));
 				board.setStatus(rs.getString("STATUS"));

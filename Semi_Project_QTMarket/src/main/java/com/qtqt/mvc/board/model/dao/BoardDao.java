@@ -143,7 +143,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = 
-							"SELECT RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_HITS, CATEGORY "
+							"SELECT RNUM, BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CREATED, ORIGINAL_FILENAME, BOARD_CONTENT, BOARD_HITS, CATEGORY "
 							+ "FROM ("
 							+    "SELECT ROWNUM AS RNUM, "
 							+           "BOARD_NO, "
@@ -151,6 +151,7 @@ public class BoardDao {
 							+ 			"USER_ID, "
 							+ 			"BOARD_CREATED, "
 							+			"ORIGINAL_FILENAME, "
+							+  			"BOARD_CONTENT, "
 							+  			"BOARD_HITS, "
 							+			"CATEGORY "
 							+ 	 "FROM ("
@@ -159,6 +160,7 @@ public class BoardDao {
 							+  			   "M.USER_ID, "
 							+ 			   "B.BOARD_CREATED, "
 							+			   "B.ORIGINAL_FILENAME, "
+							+ 			   "B.BOARD_CONTENT, "
 							+ 			   "B.BOARD_HITS, "
 							+			   "B.CATEGORY "
 							+ 		"FROM BOARD B "
@@ -184,6 +186,7 @@ public class BoardDao {
 				board.setTitle(rs.getString("BOARD_TITLE"));
 				board.setCreateDate(rs.getDate("BOARD_CREATED"));
 				board.setOriginalFileName(rs.getString("ORIGINAL_FILENAME"));
+				board.setContent(rs.getString("BOARD_CONTENT"));
 				board.setHits(rs.getInt("BOARD_HITS"));
 				board.setCategory(rs.getString("CATEGORY"));
 				
@@ -350,27 +353,6 @@ public class BoardDao {
 		return result;
 	}
 
-	public int updateReply(Connection connection, Reply reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String query = "UPDATE BOARD_COMMENT SET COMMENT_CONTENT=? WHERE COMMENT_NO=?";
-		
-		try {
-			pstmt = connection.prepareStatement(query);
-			
-			pstmt.setString(1, reply.getContent());
-			pstmt.setInt(2, reply.getNo());
-			
-			result = pstmt.executeUpdate();	
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
 
 
 

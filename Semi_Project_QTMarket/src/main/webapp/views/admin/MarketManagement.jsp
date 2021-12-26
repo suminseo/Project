@@ -141,7 +141,7 @@
             	<c:forEach var="board" items="${ list }">
 	              <tr>
 	                <td class="no">${ board.rowNum }</td>
-	                <td class="title">${ board.title }</td>
+	                <td class="title"><a href="${ pageContext.request.contextPath }/goods/goodsview?no=${ board.no }">${ board.title }</a></td>
 	                <td class="price">${ board.price }</td>
 	                <td class="writer">${ board.writerId }</td>
 	                <td class="enroll">${ board.createDate }</td>

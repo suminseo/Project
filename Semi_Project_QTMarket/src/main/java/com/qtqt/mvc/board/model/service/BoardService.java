@@ -140,26 +140,6 @@ public class BoardService {
 		return result;
 	}
 
-	public int updateReply(Reply reply) {
-		
-		int result = 0;
-		
-		Connection connection = getConnection();
-		
-		result = dao.updateReply(connection, reply);
-		
-		if(result > 0) {
-			commit(connection);
-		} else {
-			rollback(connection);
-		}
-		
-		close(connection);
-		
-		
-		return result;
-	}
-
 
 
 

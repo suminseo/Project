@@ -450,5 +450,5 @@ select{
 	background-color:#8c52ff;
 	border-style: outset;
 	position:relative;
-	top:-20px;
+	margin: 10px;
 }
